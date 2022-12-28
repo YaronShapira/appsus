@@ -20,3 +20,9 @@
 @import 'cmps/note/note-preview.css';
 
 /* Mail  Componenets */
+@import 'cmps/mail/mail-index.css';
+@import 'cmps/mail/new-mail.css';
+@import 'cmps/mail/mail-preview.css';
+@import 'cmps/mail/mail-filter.css';
+@import 'cmps/mail/mail-list.css';
+@import 'cmps/mail/mail-folder-list.css';

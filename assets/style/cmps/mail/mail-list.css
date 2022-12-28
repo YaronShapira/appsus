@@ -1,0 +1,6 @@
+.mail-list {
+  justify-content: space-between;
+}
+.mail-list input[type='checkbox'] {
+  width: 30px;
+}
