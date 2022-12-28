@@ -1,5 +1,5 @@
+import { SideBar } from "./cmps/side-bar.jsx"
 
 export function MailIndex() {
-    return <div>mail app</div>
+  return <section className='mail-index'></section>
 }
-
