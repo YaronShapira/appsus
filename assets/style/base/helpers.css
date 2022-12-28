@@ -43,10 +43,10 @@
 
 /* list helpers */
 
-.clean-list {
+.dirty-list {
   padding: 0;
   margin: 0;
-  list-style-type: none;
+  list-style-type: disc;
 }
 /* line clamp */
 .line-clamp {

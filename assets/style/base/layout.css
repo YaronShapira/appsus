@@ -1,25 +1,21 @@
-.main-layout > *:not(.full) {
-  /* max-width: 1880px; */
-  padding: 0 1em;
-  margin-left: auto;
-  margin-right: auto;
-}
 .container {
 }
 .app {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  grid-template-rows: 64px 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
   grid-template-areas:
-    "sidebar header"
+    "header header"
     "sidebar main";
 }
 .side-bar {
-  grid-area: side-bar;
+  grid-area: sidebar;
+  min-height: calc(100vh - var(--header-height));
 }
 .app-header {
   grid-area: header;
 }
 .main-content {
   grid-area: main;
+  padding: 1.5em 2em;
 }
