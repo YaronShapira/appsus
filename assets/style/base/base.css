@@ -4,51 +4,51 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 /*
   2. Remove default margin
 */
 * {
-  margin: 0;
+    margin: 0;
 }
 /*
   3. Allow percentage-based heights in the application
 */
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 html {
-  line-height: 1.5;
-  font-size: 0.9rem;
+    line-height: 1.5;
+    font-size: 0.9rem;
 }
 body {
-  color: var(--clr-txt);
-  font-family: 'poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  background-color: var(--clrbg);
+    color: var(--clr-txt);
+    font-family: 'poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--clrbg);
 }
 img,
 picture,
 video,
 canvas,
 svg {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%;
 }
 a {
-  color: var(--clr-txt);
-  text-decoration: none;
-  transition: color 0.3s;
+    color: var(--clr-txt);
+    text-decoration: none;
+    transition: color 0.3s;
 }
 a:hover {
-  color: var(--clr1-hover);
+    color: var(--clr1-hover);
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 /*
   7. Remove built-in form typography styles
@@ -58,7 +58,7 @@ button,
 textarea,
 select,
 a {
-  font: inherit;
+    font: inherit;
 }
 /*
   8. Avoid text overflows
@@ -70,86 +70,85 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Headings */
 
 h1 {
-  font-size: 2.488rem;
+    font-size: 2.488rem;
 }
 
 h2 {
-  font-size: 2.074rem;
+    font-size: 2.074rem;
 }
 
 h3 {
-  font-size: 1.728rem;
+    font-size: 1.728rem;
 }
 
 h4 {
-  font-size: 1.44rem;
-  font-weight: 400;
+    font-size: 1.44rem;
+    font-weight: 400;
 }
 
 h5 {
-  font-size: 1.2rem;
-  color: var(--clr-txt-m);
-  font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 h6 {
-  font-size: 1rem;
-  font-weight: 500;
+    font-size: 1rem;
+    font-weight: 500;
 }
 small {
-  color: var(--clr-txt-m);
-  font-style: italic;
-  font-size: 0.833rem;
+    color: var(--clr-txt-m);
+    font-style: italic;
+    font-size: 0.833rem;
 }
 p {
-  color: var(--clr-txt-m);
+    color: var(--clr-txt-m);
 }
 div {
-  border-radius: var(--br-s);
+    border-radius: var(--br-s);
 }
 
 .icon-label > :first-child {
-  margin-inline-end: 2rem;
+    margin-inline-end: 2rem;
 }
 
 .test {
-  background-color: var(--clrbg-light-a);
-  background: rgb(14, 18, 26);
-  background: radial-gradient(circle, rgba(14, 18, 26, 0.664) 22%, rgba(23, 28, 38, 0.788) 100%);
-  backdrop-filter: blur(14px);
-  box-shadow: 0px 30px 20px -20px var(--clrbg-light-a);
-  border: 1px solid var(--clrbg-light);
-  border-radius: var(--br-l);
-  margin: 3em;
-  padding: 0.6em 1.9em 1.3em;
-  max-width: 360px;
+    background-color: var(--clrbg-light-a);
+    background: rgb(14, 18, 26);
+    background: radial-gradient(circle, rgba(14, 18, 26, 0.664) 22%, rgba(23, 28, 38, 0.788) 100%);
+    backdrop-filter: blur(14px);
+    box-shadow: 0px 30px 20px -20px var(--clrbg-light-a);
+    border: 1px solid var(--clrbg-light);
+    border-radius: var(--br-l);
+    margin: 3em;
+    padding: 0.6em 1.9em 1.3em;
+    max-width: 360px;
 }
 .test p {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 .btns-container {
-  margin-top: 1em;
+    margin-top: 1em;
 }
 .btns-container > :first-child {
-  margin-inline-end: 1em;
+    margin-inline-end: 1em;
 }
 
 /* test2 */
 .test2 {
-  background-color: transparent;
+    background-color: transparent;
 }
 .test2 > *:not(h2, .btns-container) {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 .noise {
-  background: radial-gradient(circle, rgb(14 18 26 / 67%) 20%, rgb(14 18 26 / 67%) 100%),
-    url(https://grainy-gradients.vercel.app/noise.svg);
-  backdrop-filter: contrast(250%) brightness(60%);
+    background: radial-gradient(circle, rgb(14 18 26 / 67%) 20%, rgb(14 18 26 / 67%) 100%),
+        url(https://grainy-gradients.vercel.app/noise.svg);
+    backdrop-filter: contrast(250%) brightness(60%);
 }

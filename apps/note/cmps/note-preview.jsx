@@ -39,9 +39,10 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                         onClick={() => setIsEditing(true)}
                         onMouseEnter={onHover}
                         onMouseLeave={onHoverLeave}>
-                        <h6>{note.title}</h6>
+                        <h5>{note.title}</h5>
                         <p>{note.info.txt}</p>
-                        {isHovering && <NoteHoversBtns note={note} deleteNote={onDeleteNote} />}
+                        {<NoteHoversBtns note={note} deleteNote={onDeleteNote} />}
+                        {/* {isHovering && <NoteHoversBtns note={note} deleteNote={onDeleteNote} />} */}
                     </article>
                     {isEditing && (
                         <Fragment>
