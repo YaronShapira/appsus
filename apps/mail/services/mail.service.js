@@ -14,39 +14,53 @@ export const mailService = {
   getDummyMails,
 }
 
+_createMails()
+
 function getDummyMails() {
   return [
     {
       id: 'e101',
+      sender: 'noyem',
+      from: 'noyemdahan@gmail.com',
       subject: 'Miss you Momo!',
       body: 'Would love to catch up sometimes',
       isRead: false,
       sentAt: 1551133930594,
       to: 'momo@momo.com',
+      isStared: true,
     },
     {
       id: 'e102',
+      sender: 'noyem',
+      from: 'noyemdahan@gmail.com',
       subject: 'Beat you Lomo!',
       body: 'Would love to catch up sometimes',
       isRead: true,
       sentAt: 1551133930456,
       to: 'lolo@lolo.com',
+      isStared: false,
     },
     {
       id: 'e103',
+      sender: 'noyem',
+      from: 'noyemdahan@gmail.com',
       subject: 'Love you Komo!',
       body: 'Would love to catch up sometimes',
       isRead: false,
       sentAt: 1551133912344,
       to: 'koko@koko.com',
+      isStared: false,
     },
     {
       id: 'e104',
+      sender: 'noyem',
+      from: 'noyemdahan@gmail.com',
       subject: 'Hate you Pomo!',
       body: 'Would love to catch up sometimes',
       isRead: false,
       sentAt: 1551234930594,
       to: 'popo@popo.com',
+      isStared: true,
     },
   ]
 }
@@ -80,7 +94,7 @@ function getEmptyMail() {
 }
 
 function getDefaultFilter() {
-  return { title: '', isSent: false }
+  return { title: '' }
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -104,47 +118,9 @@ function save(mail) {
 }
 
 function _createMails() {
-  return [
-    {
-      id: 'e101',
-      subject: 'Miss you Momo!',
-      body: 'Would love to catch up sometimes',
-      isRead: false,
-      sentAt: 1551133930594,
-      to: 'momo@momo.com',
-    },
-    {
-      id: 'e102',
-      subject: 'Beat you Lomo!',
-      body: 'Would love to catch up sometimes',
-      isRead: true,
-      sentAt: 1551133930456,
-      to: 'lolo@lolo.com',
-    },
-    {
-      id: 'e103',
-      subject: 'Love you Komo!',
-      body: 'Would love to catch up sometimes',
-      isRead: false,
-      sentAt: 1551133912344,
-      to: 'koko@koko.com',
-    },
-    {
-      id: 'e104',
-      subject: 'Hate you Pomo!',
-      body: 'Would love to catch up sometimes',
-      isRead: false,
-      sentAt: 1551234930594,
-      to: 'popo@popo.com',
-    },
-  ]
-}
-
-function _createMails() {
   let mails = utilService.loadFromStorage(MAILS_DB)
   if (!mails || !mails.length) {
-    mails = _createMails()
+    mails = getDummyMails()
     utilService.saveToStorage(MAILS_DB, mails)
   }
-  console.log('Got this mails...', mails)
 }

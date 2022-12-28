@@ -5,6 +5,7 @@
   --clr1-a: rgba(51, 105, 255, var(--a));
   --clr1-hover: #5582ff;
   --clr2: rgb(121, 129, 147);
+  --clr2-a: rgb(121, 129, 147, var(--a));
   --clr2-hover: #99a0af;
 
   --clrbg: rgb(14, 18, 26);

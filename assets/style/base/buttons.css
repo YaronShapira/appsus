@@ -35,7 +35,7 @@ button:hover {
 
 /* circle-round btns */
 .btn-rnd-s {
-  background-color: var(--clrbg-light);
+  background-color: transparent;
 }
 
 .btn-rnd-s,
