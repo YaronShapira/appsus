@@ -1,5 +1,3 @@
 export function MailList() {
-
-    return <div>Mail list</div>
-
+  return <ul className='mail-list'>Mail list</ul>
 }
