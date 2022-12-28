@@ -2,11 +2,13 @@ const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
 
-export default function AddNote({ setNotes }) {
-    const [addNodeParams, setAddNodeParams] = useState(noteService.getDefaultNote())
-    const [isWriting, setIsWriting] = useState(false)
+export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
+    const [addNodeParams, setAddNodeParams] = useState(
+        structuredClone(note) || noteService.getDefaultNote()
+    )
+    const [isWriting, setIsWriting] = useState(isEditing || false)
     const addNoteBoxRef = useRef(null)
-    const inputRef = useRef(null)
+
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
         let { value, name: field, type } = target
@@ -30,6 +32,7 @@ export default function AddNote({ setNotes }) {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
                     clearSlate()
+                    if (isEditing) setIsEditing(false)
                 }
             }
 
@@ -45,14 +48,18 @@ export default function AddNote({ setNotes }) {
     function clearSlate() {
         setIsWriting(false)
         setAddNodeParams(noteService.getDefaultNote())
-        inputRef.current.value = ''
     }
 
     function addNote() {
         clearSlate()
+        if (isEditing) setIsEditing(false)
 
         noteService.saveNote(addNodeParams).then(newNote => {
-            setNotes(prev => [newNote, ...prev])
+            if (!isEditing) return setNotes(prev => [newNote, ...prev])
+            setNotes(oldNotes => {
+                oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
+                return [...oldNotes]
+            })
         })
     }
 
@@ -64,18 +71,17 @@ export default function AddNote({ setNotes }) {
                     placeholder='Title'
                     id='title'
                     name='title'
-                    value={addNodeParams.txt}
+                    value={addNodeParams.title}
                     onChange={handleChange}
                 />
             )}
             <div className='main-input'>
                 <input
-                    ref={inputRef}
                     type='text'
                     placeholder='Take a note...'
                     id='txt'
                     name='txt'
-                    value={addNodeParams.txt}
+                    value={addNodeParams.info.txt}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                 />
@@ -107,7 +113,7 @@ export default function AddNote({ setNotes }) {
                         </button>
                     </div>
                     <button className='btn add-btn btn-primary' onClick={addNote}>
-                        Add
+                        Save
                     </button>
                 </div>
             )}

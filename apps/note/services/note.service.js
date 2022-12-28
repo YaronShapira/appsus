@@ -47,14 +47,10 @@ function getDefaultNote() {
 }
 
 function _createNote(txt) {
-    return {
-        id: utilService.makeId(),
-        type: 'note-txt',
-        isPinned: false,
-        info: {
-            txt,
-        },
-    }
+    const note = getDefaultNote()
+    note.id = utilService.makeId()
+    note.info.txt = txt
+    return note
 }
 
 function _createNotes() {

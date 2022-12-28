@@ -7,6 +7,7 @@ import AddNote from '../cmps/add-note.jsx'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    console.log(notes)
 
     function deleteNote(id) {
         noteService.deleteNote(id).then(() => {
@@ -20,7 +21,7 @@ export function NoteIndex() {
     return (
         <div className='note-index'>
             <AddNote setNotes={setNotes} />
-            <NoteList notes={notes} deleteNote={deleteNote} />
+            <NoteList notes={notes} deleteNote={deleteNote} setNotes={setNotes} />
         </div>
     )
 }
