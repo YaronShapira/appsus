@@ -2,6 +2,10 @@
     /* visibility: hidden; */
     opacity: 0;
     transition: opacity 0.3s;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .note-preview:hover .hovers {
@@ -10,14 +14,12 @@
 }
 
 .hover-utils {
-    position: absolute;
-    bottom: 2%;
-    left: 0%;
+    display: flex;
     width: 100%;
-    z-index: 15;
+    justify-content: space-between;
+    padding-top: 1em;
 }
 .hover-utils button {
-    margin: 0 0.35rem;
 }
 .note-preview .pin {
     position: absolute;

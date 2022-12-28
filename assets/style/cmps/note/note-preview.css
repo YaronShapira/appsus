@@ -14,21 +14,33 @@
 .note-preview {
     background-color: var(--clrbg-light-a);
     background: rgb(14, 18, 26);
-    background: radial-gradient(circle, rgba(14, 18, 26, 0.664) 22%, rgba(23, 28, 38, 0.788) 100%);
-    backdrop-filter: blur(14px);
+    /* background: radial-gradient(circle at 0%, #ffffff44 -200%, var(--clrbg) 80%); */
+    backdrop-filter: blur(4px);
     box-shadow: 0px 30px 20px -20px var(--clrbg-light-a);
     border: 1px solid var(--clrbg-light);
     border-radius: var(--br-l);
     padding: 0.8em 1.2em;
-    display: inline-block;
+    display: inline-flex;
     margin: 0 1rem 1rem 0;
     width: 240px;
     min-height: 100px;
     position: relative;
     border: 1px solid #ffffff26;
-    background: rgb(14, 18, 26);
+    transition: 0.8s background;
+    flex-direction: column;
 }
-
+/* .note-preview:nth-child(2n-1) {
+    background: radial-gradient(circle at -60%, #ffffff27 -200%, var(--clrbg) 80%);
+}
+.note-preview:nth-child(3n - 1) {
+    background: radial-gradient(circle at 120%, #ffffff28 -200%, var(--clrbg) 80%);
+}
+.note-preview:nth-child(4n - 1) {
+    background: radial-gradient(circle at -50%, #ffffff59 -200%, var(--clrbg) 80%);
+}
+.note-preview:nth-child(5n - 1) {
+    background: radial-gradient(circle at -50%, #ffffff15 0%, var(--clrbg) 80%);
+} */
 .note-preview p,
 .note-preview h6 {
     width: 85%;

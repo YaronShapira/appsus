@@ -1,6 +1,5 @@
 .note-palette {
     position: absolute;
-    top: 100%;
     background: var(--clr-txt-m);
     border: var(--br-l);
     z-index: 15;
@@ -10,6 +9,11 @@
 
     opacity: 0;
     pointer-events: none;
+
+    top: 100%;
+    transform: translateY(-50%);
+    left: 0%;
+    width: 100%;
 }
 
 .note-palette.open {
@@ -28,7 +32,7 @@
     background: #ffd947;
 }
 .note-palette button:nth-child(3) {
-    background: #ffffff;
+    background: #0e121a;
 }
 .note-palette button:nth-child(4) {
     background: #ae3b76;
@@ -38,7 +42,4 @@
 }
 .note-palette button:nth-child(6) {
     background: #fe7746;
-}
-.note-palette button:nth-child(6) {
-    background: #0e121a;
 }
