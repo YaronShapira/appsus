@@ -1,11 +1,11 @@
 import NotePreview from './note-preview.jsx'
 
-export function NoteList({ notes }) {
+export function NoteList({ notes,deleteNote }) {
     if (!notes || !notes.length) return ''
     return (
         <div className='note-list'>
             {notes.map(note => {
-                return <NotePreview note={note} key={note.id} />
+                return <NotePreview note={note} key={note.id} deleteNote={deleteNote} />
             })}
         </div>
     )

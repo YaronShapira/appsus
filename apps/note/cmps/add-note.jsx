@@ -5,11 +5,9 @@ import { noteService } from '../services/note.service.js'
 export default function AddNote({ setNotes }) {
     const [addNodeParams, setAddNodeParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false)
+    const addNoteBoxRef = useRef(null)
     const inputRef = useRef(null)
-    useOutsideAlerter(inputRef)
-    // console.log(addNodeParams)
-    console.log(addNodeParams.info)
-
+    useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
@@ -31,8 +29,7 @@ export default function AddNote({ setNotes }) {
              */
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    setIsWriting(false)
-                    setAddNodeParams(noteService.getDefaultNote())
+                    clearSlate()
                 }
             }
 
@@ -45,10 +42,14 @@ export default function AddNote({ setNotes }) {
         }, [ref])
     }
 
-    function addNote() {
-        // Clear State
+    function clearSlate() {
         setIsWriting(false)
         setAddNodeParams(noteService.getDefaultNote())
+        inputRef.current.value = ''
+    }
+
+    function addNote() {
+        clearSlate()
 
         noteService.saveNote(addNodeParams).then(newNote => {
             setNotes(prev => [newNote, ...prev])
@@ -56,7 +57,7 @@ export default function AddNote({ setNotes }) {
     }
 
     return (
-        <div className='add-note' ref={inputRef}>
+        <div className='add-note' ref={addNoteBoxRef}>
             {isWriting && (
                 <input
                     type='title'
@@ -69,6 +70,7 @@ export default function AddNote({ setNotes }) {
             )}
             <div className='main-input'>
                 <input
+                    ref={inputRef}
                     type='text'
                     placeholder='Take a note...'
                     id='txt'
@@ -86,7 +88,7 @@ export default function AddNote({ setNotes }) {
                             <i className='fa-solid fa-palette'></i>
                         </button>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-location-dot'></i>
+                            <i className='fa-solid fa-image'></i>
                         </button>
                     </div>
                 )}

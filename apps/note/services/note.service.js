@@ -6,6 +6,7 @@ export const noteService = {
     getNote,
     saveNote,
     getDefaultNote,
+    deleteNote,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -28,6 +29,10 @@ function saveNote(note) {
         console.log('POSTING')
         return storageService.post(NOTES_KEY, noteToSave)
     }
+}
+
+function deleteNote(id) {
+    return storageService.remove(NOTES_KEY, id)
 }
 
 function getDefaultNote() {
