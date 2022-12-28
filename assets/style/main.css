@@ -10,7 +10,7 @@
 @import 'base/tags.css';
 @import 'base/buttons.css';
 
-/* Components */
+/* Common Components */
 @import 'cmps/app-header.css';
 @import 'cmps/side-bar.css';
 @import 'cmps/search-header.css';

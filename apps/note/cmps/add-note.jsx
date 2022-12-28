@@ -22,7 +22,7 @@ export default function AddNote({ setNotes }) {
 
     function addNote() {
         noteService.saveNote(addNodeParams).then(newNote => {
-            setNotes(prev => [...prev, newNote])
+            setNotes(prev => [newNote, ...prev])
         })
     }
 

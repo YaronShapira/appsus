@@ -9,4 +9,5 @@
     margin: 3em;
     padding: 0.6em 1.9em 1.3em;
     max-width: 360px;
+    min-height: 125px;
 }
