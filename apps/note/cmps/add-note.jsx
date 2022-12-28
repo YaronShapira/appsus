@@ -1,3 +1,7 @@
 export default function AddNote() {
-    return <div>AddNote</div>
+    return (
+        <div>
+            <input type='text' placeholder='Take a note...' />
+        </div>
+    )
 }
