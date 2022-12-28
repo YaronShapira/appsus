@@ -20,7 +20,7 @@ export function AppHeader() {
             </NavLink>
           </li>
           <li key={"note"}>
-            <NavLink to='/note' className='nav-link'>
+            <NavLink to='/notes' className='nav-link'>
               Keepy
             </NavLink>
           </li>
