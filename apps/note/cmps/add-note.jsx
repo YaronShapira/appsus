@@ -77,7 +77,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             )}
             <div className='main-input'>
                 <input
-                    type='text'
+                    type='title'
                     placeholder='Take a note...'
                     id='txt'
                     name='txt'

@@ -6,6 +6,7 @@
     bottom: 2%;
     left: 0%;
     width: 100%;
+    z-index: 15;
 }
 .hover-utils button {
     margin: 0 0.35rem;

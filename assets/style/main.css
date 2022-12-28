@@ -22,6 +22,7 @@
 @import 'cmps/note/note-list.css';
 @import 'cmps/note/note-index.css';
 @import 'cmps/note/note-hovers-btns.css';
+@import 'cmps/note/note-palette.css';
 
 /* Mail  Componenets */
 @import 'cmps/mail/mail-index.css';

@@ -34,9 +34,9 @@
 
 .add-note-modal {
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -30%);
     z-index: 3;
 }
 
@@ -57,6 +57,10 @@
 .fade-in {
     -webkit-animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.z-2 {
+    z-index: 2;
 }
 
 @-webkit-keyframes fade-in {

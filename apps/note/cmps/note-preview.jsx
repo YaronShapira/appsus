@@ -2,11 +2,13 @@ const { Fragment } = React
 import AddNote from './add-note.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 
-const { useState } = React
+const { useState, useRef } = React
 
 export default function NotePreview({ note, deleteNote, setNotes }) {
     const [isEditing, setIsEditing] = useState(false)
     const [isHovering, setIsHovering] = useState(false)
+    const noteArticleRef = useRef(null)
+    console.log(noteArticleRef)
     function editNote() {
         console.log('F')
     }
@@ -17,12 +19,14 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
     function onHover(ev) {
         // console.log('ENTERING', ev.target)
         setIsHovering(true)
+        noteArticleRef.current.classList.add('z-2')
     }
     function onHoverLeave(ev) {
         // console.log('LEAVING', ev.target)
         // ev.target.classList.add('fade-out')
         // setTimeout(() => setIsHovering(false), 500)
         setIsHovering(false)
+        noteArticleRef.current.classList.remove('z-2')
     }
 
     switch (note.type) {
@@ -30,6 +34,7 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
             return (
                 <Fragment>
                     <article
+                        ref={noteArticleRef}
                         className='note-preview'
                         onClick={() => setIsEditing(true)}
                         onMouseEnter={onHover}
