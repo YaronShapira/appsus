@@ -1,9 +1,9 @@
 .mail-index {
-  margin: 2em;
+  margin: 0 2em 0 0;
   border-radius: 2em;
   overflow: hidden;
   border-radius: var(--br-l);
   background-color: var(--clrbg-light-a);
-  min-height: calc(100vh - var(--header-height) - 4em);
+  min-height: calc(100vh - var(--header-height) - 2em);
   overflow-y: auto;
 }
