@@ -19,16 +19,19 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                             DELETE
                         </button>
                     </article>
-                    <div className='add-note-modal'>
-                        {isEditing && (
-                            <AddNote
-                                note={note}
-                                isEditing={true}
-                                setIsEditing={setIsEditing}
-                                setNotes={setNotes}
-                            />
-                        )}
-                    </div>
+                    {isEditing && (
+                        <Fragment>
+                            <div className='add-note-modal'>
+                                <AddNote
+                                    note={note}
+                                    isEditing={true}
+                                    setIsEditing={setIsEditing}
+                                    setNotes={setNotes}
+                                />
+                            </div>
+                            <div className='dark-overlay'></div>
+                        </Fragment>
+                    )}
                 </Fragment>
             )
             break
