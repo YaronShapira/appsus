@@ -29,6 +29,10 @@ export function MailIndex() {
     })
   }
 
+  function onCheckMail(mailId) {
+    console.log('mailId:', mailId)
+  }
+
   function onMailRemoved(mailId) {
     mailService
       .remove(mailId)
@@ -39,6 +43,12 @@ export function MailIndex() {
       .catch((err) => {
         console.log('err onRemoveMail:', err)
       })
+  }
+
+  function sendMail(mail) {
+    mailService.save(mail).then(() => {
+      loadMails()
+    })
   }
 
   function loadMails() {
@@ -54,10 +64,11 @@ export function MailIndex() {
 
   return (
     <section className='mail-index'>
-      <MailCompose />
+      <MailCompose sendMail={sendMail} />
       {mails && (
         <MailList
           mails={mails}
+          onCheckMail={onCheckMail}
           onMailRemoved={onMailRemoved}
           onMailStarred={onMailStarred}
           onMailToNotes={onMailToNotes}

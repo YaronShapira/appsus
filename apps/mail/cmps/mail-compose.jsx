@@ -12,16 +12,16 @@ export function MailCompose({ sendMail }) {
 
   function onSendMail(ev) {
     ev.preventDefault()
-    sendMail(mail, newMailToEdit)
+    sendMail(newMailToEdit)
+    setIsMailEdited(!isMailEdited)
+    setNewMailToEdit(mailService.getEmptyMail())
   }
 
   function handleForm({ target }) {
     let { type, name: field, value } = target
-    console.log('field:', field)
-    console.log('value:', value)
     setNewMailToEdit((prevMailToEdit) => ({ ...prevMailToEdit, [field]: value }))
   }
-
+  console.log('newMailToEdit:', newMailToEdit)
   return (
     <section className='mail-compose'>
       <button
@@ -33,27 +33,27 @@ export function MailCompose({ sendMail }) {
         <form onSubmit={onSendMail}>
           <h4>New Mail</h4>
           <input
-            value={newMailToEdit.mailTo}
+            value={newMailToEdit.to}
             type='email'
             placeholder='To'
-            name='mailTo'
-            id='mailTo'
+            name='to'
+            id='to'
             onChange={handleForm}
           />
           <input
-            value={newMailToEdit.mailSubject}
+            value={newMailToEdit.subject}
             type='text'
             placeholder='Subject'
-            name='mailSubject'
-            id='mailSubject'
+            name='subject'
+            id='subject'
             onChange={handleForm}
           />
           <textarea
-            value={newMailToEdit.mailBody}
+            value={newMailToEdit.body}
             placeholder='Your message...'
-            name='mailBody'
+            name='body'
             rows={5}
-            id='mailBody'
+            id='body'
             onChange={handleForm}
           />
           <button className='btn-primary' type='submit'>

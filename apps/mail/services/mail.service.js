@@ -2,6 +2,10 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const MAILS_DB = 'mailsDB'
+const loggedinUser = {
+  email: 'user@appsus.com',
+  fullname: 'Mahatma Appsus',
+}
 
 export const mailService = {
   query, // List
@@ -55,7 +59,7 @@ function getDummyMails() {
       id: 'e104',
       sender: 'noyem',
       from: 'noyemdahan@gmail.com',
-      subject: 'Hate you Pomo!',
+      subject: 'Kiis you Pomo!',
       body: 'Would love to catch up sometimes',
       isRead: false,
       sentAt: 1551234930594,
@@ -63,6 +67,18 @@ function getDummyMails() {
       isStared: true,
     },
   ]
+}
+
+function getEmptyMail() {
+  return {
+    to: '',
+    subject: '',
+    body: '',
+    from: loggedinUser.email,
+    sender: loggedinUser.fullname,
+    isStared: false,
+    isRead: false,
+  }
 }
 
 function getNextMail(direction, currMailId) {
@@ -82,14 +98,6 @@ function getCriteria() {
     isRead: true, // (optional property, if missing: show all)
     isStared: true, // (optional property, if missing: show all)
     lables: ['important', 'romantic'], // has any of the labels
-  }
-}
-
-function getEmptyMail() {
-  return {
-    mailTo: '',
-    mailSubject: '',
-    mailBody: '',
   }
 }
 
@@ -113,6 +121,7 @@ function save(mail) {
   if (mail.id) {
     return storageService.put(MAILS_DB, mail)
   } else {
+    mail.sentAt = Date.now()
     return storageService.post(MAILS_DB, mail)
   }
 }
