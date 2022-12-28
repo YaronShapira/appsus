@@ -12,7 +12,7 @@ export function NoteIndex() {
         noteService.getNotes().then(setNotes)
     }, [])
     return (
-        <div>
+        <div className='note-index'>
             <AddNote setNotes={setNotes} />
             <NoteList notes={notes} />
         </div>
