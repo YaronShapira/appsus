@@ -1,35 +1,35 @@
 .side-bar {
-  padding: 3em 0em;
-  padding-right: 1em;
-  background-color: var(--clrbg-light);
-  box-shadow: 0px 0px 10px -5px var(--gray3);
+    padding: 3em 0em;
+    padding-right: 1em;
+    background-color: var(--clrbg-light-a);
+    box-shadow: 0px 0px 10px -5px var(--gray3);
 }
 .side-bar nav ul > *:not(:last-child) {
-  margin-bottom: 0.25em;
+    margin-bottom: 0.25em;
 }
 .side-bar nav ul .icon-label {
-  cursor: pointer;
-  padding: 1em 2em;
-  transition: background-color 0.3s;
-  border-radius: 0 3em 3em 0;
+    cursor: pointer;
+    padding: 1em 2em;
+    transition: background-color 0.3s;
+    border-radius: 0 3em 3em 0;
 }
 .icon-label i {
-  transition: 0.25s 0.15s color;
+    transition: 0.25s 0.15s color;
 }
 .side-bar .icon-label:hover {
-  background-color: var(--clrbg);
+    background-color: var(--clrbg);
 }
 .side-bar .icon-label:hover i {
-  color: var(--clr-txt);
+    color: var(--clr-txt);
 }
 .icon-label i:not(.active) {
-  color: var(--clr2);
+    color: var(--clr2);
 }
 
 .icon-label.active {
-  color: var(--clr-txt);
-  background-color: var(--clr1-a);
+    color: var(--clr-txt);
+    background-color: var(--clr1-a);
 }
 .icon-label.active i {
-  color: var(--clr-txt);
+    color: var(--clr-txt);
 }
