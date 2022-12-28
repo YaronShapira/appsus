@@ -43,13 +43,15 @@ function getDefaultNote() {
         info: {
             txt: '',
         },
+        style: {},
     }
 }
 
-function _createNote(txt) {
+function _createNote(txt, title = '') {
     const note = getDefaultNote()
     note.id = utilService.makeId()
     note.info.txt = txt
+    note.title = title
     return note
 }
 
@@ -57,9 +59,29 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
         notes = [
-            _createNote('Note number 1...'),
-            _createNote('Note number 2!'),
-            _createNote('What is this? Note number 3!'),
+            _createNote('Remember the wedding of Noa & Cody', 'Wedding'),
+            _createNote('Remember to do all the bonuses or else...', 'Extra Features'),
+            _createNote(
+                'My advice to you is get married: If you find a good wife you’ll be happy; if not, you’ll become a philosopher'
+            ),
+            _createNote(
+                'Chupa chups tootsie roll croissant marshmallow sugar plum chocolate bar',
+                'Chocolate'
+            ),
+            _createNote(
+                'If you want to be sure that you never forget your wife’s birthday, just try forgetting it once.'
+            ),
+            _createNote('Remember to flush after using the toilet'),
+            _createNote('Never go to bed mad. Stay up and fight'),
+            _createNote(
+                'Adults are always asking children what they want to be when they grow up because they’re looking for ideas'
+            ),
+            _createNote(
+                'When life gives you lemons, just say ‘fuck the lemons’, and bail',
+                'Funny Quote Number 52'
+            ),
+            _createNote('Never let your best friends get lonely, keep disturbing them.'),
+            _createNote('Friends buy you food. Best friends eat your food.', 'Truth'),
         ]
     }
     utilService.saveToStorage(NOTES_KEY, notes)

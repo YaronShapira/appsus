@@ -2,14 +2,15 @@ import NotePalette from './note-palette.jsx'
 
 const { useState } = React
 
-export default function NoteHoversBtns({ note, deleteNote }) {
+export default function NoteHoversBtns({ deleteNote, setColor }) {
     const [isInPalette, setIsInPalette] = useState(false)
 
     function onPalette(ev) {
         ev.stopPropagation()
         setIsInPalette(prev => !prev)
     }
-    console.log(isInPalette)
+
+    
     return (
         <div className='hovers fade-in' onMouseLeave={() => setIsInPalette(false)}>
             <div className='select'>
@@ -23,13 +24,13 @@ export default function NoteHoversBtns({ note, deleteNote }) {
                 </button>
             </div>
             <div className='hover-utils'>
-                <button className='btn btn-rnd-s' onClick={e => deleteNote(e, note.id)}>
+                <button className='btn btn-rnd-s' onClick={e => deleteNote(e)}>
                     <i className='fa-solid fa-trash'></i>
                 </button>
                 <button className='btn btn-rnd-s' onClick={onPalette}>
                     <i className='fa-solid fa-palette'></i>
-                    <NotePalette isInPalette={isInPalette} note={note} />
                 </button>
+                <NotePalette isInPalette={isInPalette} setColor={setColor} />
 
                 <button className='btn btn-rnd-s'>
                     <i className='fa-solid fa-image'></i>

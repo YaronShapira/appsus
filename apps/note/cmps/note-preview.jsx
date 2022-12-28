@@ -1,4 +1,5 @@
 const { Fragment } = React
+import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 
@@ -6,34 +7,36 @@ const { useState, useRef } = React
 
 export default function NotePreview({ note, deleteNote, setNotes }) {
     const [isEditing, setIsEditing] = useState(false)
-    const [isHovering, setIsHovering] = useState(false)
+    const [isInPalette, setIsInPalette] = useState(false)
     const noteArticleRef = useRef(null)
-    console.log(noteArticleRef)
-    function editNote() {
-        console.log('F')
-    }
-    function onDeleteNote(ev, id) {
+
+    function onDeleteNote(ev) {
         ev.stopPropagation()
         deleteNote(note.id)
     }
     function onHover(ev) {
-        // console.log('ENTERING', ev.target)
-        setIsHovering(true)
         noteArticleRef.current.classList.add('z-2')
     }
     function onHoverLeave(ev) {
-        // console.log('LEAVING', ev.target)
-        // ev.target.classList.add('fade-out')
-        // setTimeout(() => setIsHovering(false), 500)
-        setIsHovering(false)
         noteArticleRef.current.classList.remove('z-2')
     }
-
+    function setColor(ev, color) {
+        ev.stopPropagation()
+        note.style = { ...note.style }
+        note.style.backgroundColor = color
+        noteService.saveNote(note).then(newNote => {
+            setNotes(oldNotes => {
+                oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
+                return [...oldNotes]
+            })
+        })
+    }
     switch (note.type) {
         case 'note-txt':
             return (
                 <Fragment>
                     <article
+                        style={note.style}
                         ref={noteArticleRef}
                         className='note-preview'
                         onClick={() => setIsEditing(true)}
@@ -41,8 +44,7 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                         onMouseLeave={onHoverLeave}>
                         <h5>{note.title}</h5>
                         <p>{note.info.txt}</p>
-                        {<NoteHoversBtns note={note} deleteNote={onDeleteNote} />}
-                        {/* {isHovering && <NoteHoversBtns note={note} deleteNote={onDeleteNote} />} */}
+                        {<NoteHoversBtns deleteNote={onDeleteNote} setColor={setColor} />}
                     </article>
                     {isEditing && (
                         <Fragment>

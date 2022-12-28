@@ -1,8 +1,6 @@
 import NotePreview from './note-preview.jsx'
 
 export function NoteList({ notes, deleteNote, setNotes }) {
-    
-
     if (!notes || !notes.length) return ''
     return (
         <div className='note-list'>
@@ -19,3 +17,7 @@ export function NoteList({ notes, deleteNote, setNotes }) {
         </div>
     )
 }
+
+// TODO: support duplication
+// TODO: add pin func
+// TODO: add image, video
