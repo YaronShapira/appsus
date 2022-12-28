@@ -1,4 +1,4 @@
-export default function NotePalette({ isInPalette }) {
+export default function NotePalette({ isInPalette, note }) {
     function onColor(color) {
         console.log(color)
     }

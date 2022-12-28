@@ -28,7 +28,7 @@ export default function NoteHoversBtns({ note, deleteNote }) {
                 </button>
                 <button className='btn btn-rnd-s' onClick={onPalette}>
                     <i className='fa-solid fa-palette'></i>
-                    <NotePalette isInPalette={isInPalette} setIsInPalette={setIsInPalette} />
+                    <NotePalette isInPalette={isInPalette} note={note} />
                 </button>
 
                 <button className='btn btn-rnd-s'>

@@ -1,28 +1,28 @@
 .note-palette {
     position: absolute;
+    top: 90%;
     background: var(--clr-txt-m);
     border: var(--br-l);
     z-index: 15;
     display: flex;
     justify-content: center;
     align-items: center;
-
     opacity: 0;
     pointer-events: none;
-
-    top: 100%;
+    padding: 0.35em;
     transform: translateY(-50%);
-    left: 0%;
-    width: 100%;
+    transition: opacity 0.3s, top 0.3s;
 }
-
 .note-palette.open {
     opacity: 1;
     pointer-events: all;
+    top: 100%;
 }
 .note-palette button {
     padding: 0;
-    margin: 0 0.35rem;
+    margin: 0em 0.35rem;
+    width: 22px;
+    height: 22px;
 }
 
 .note-palette button:nth-child(1) {
