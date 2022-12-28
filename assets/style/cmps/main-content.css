@@ -1,3 +1,4 @@
 .main-content {
   position: relative;
+  align-self: stretch;
 }
