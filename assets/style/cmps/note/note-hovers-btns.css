@@ -1,4 +1,12 @@
 .hovers {
+    /* visibility: hidden; */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.note-preview:hover .hovers {
+    /* visibility: visible; */
+    opacity: 1;
 }
 
 .hover-utils {

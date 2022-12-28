@@ -7,11 +7,11 @@ export default function NoteHoversBtns({ note, deleteNote }) {
 
     function onPalette(ev) {
         ev.stopPropagation()
-        setIsInPalette(true)
+        setIsInPalette(prev => !prev)
     }
     console.log(isInPalette)
     return (
-        <div className='hovers fade-in'>
+        <div className='hovers fade-in' onMouseLeave={() => setIsInPalette(false)}>
             <div className='select'>
                 <button className='btn btn-rnd-s'>
                     <i className='fa-solid fa-check'></i>
@@ -28,8 +28,8 @@ export default function NoteHoversBtns({ note, deleteNote }) {
                 </button>
                 <button className='btn btn-rnd-s' onClick={onPalette}>
                     <i className='fa-solid fa-palette'></i>
+                    <NotePalette isInPalette={isInPalette} setIsInPalette={setIsInPalette} />
                 </button>
-                {isInPalette && <NotePalette />}
 
                 <button className='btn btn-rnd-s'>
                     <i className='fa-solid fa-image'></i>
