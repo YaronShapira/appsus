@@ -9,16 +9,13 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
 
     useEffect(() => {
-        noteService.getNotes(notes => {
-            console.log(notes)
-            setNotes(notes)
-        })
+        noteService.getNotes().then(setNotes)
     }, [])
     console.log(notes)
     return (
         <div>
             <AddNote />
-            <NoteList />
+            <NoteList notes={notes} />
         </div>
     )
 }

@@ -14,4 +14,8 @@
 @import 'cmps/app-header.css';
 @import 'cmps/side-bar.css';
 @import 'cmps/search-header.css';
-@import 'cmps/add-note.css';
+
+/* Note Componenets */
+@import 'cmps/note/add-note.css';
+
+/* Mail  Componenets */
