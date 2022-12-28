@@ -14,6 +14,7 @@
 @import 'cmps/app-header.css';
 @import 'cmps/side-bar.css';
 @import 'cmps/search-header.css';
+@import 'cmps/main-content.css';
 
 /* Note Componenets */
 @import 'cmps/note/add-note.css';
@@ -24,7 +25,7 @@
 
 /* Mail  Componenets */
 @import 'cmps/mail/mail-index.css';
-@import 'cmps/mail/new-mail.css';
+@import 'cmps/mail/mail-compose.css';
 @import 'cmps/mail/mail-preview.css';
 @import 'cmps/mail/mail-filter.css';
 @import 'cmps/mail/mail-list.css';

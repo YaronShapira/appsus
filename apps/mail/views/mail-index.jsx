@@ -1,5 +1,6 @@
 const { useState, useEffect, useRef } = React
 
+import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
 
 import { mailService } from '../services/mail.service.js'
@@ -12,7 +13,23 @@ export function MailIndex() {
     loadMails()
   }, [])
 
-  function onRemoveMail(mailId) {
+  function onMailStarred(mail) {
+    mail.isStared = !mail.isStared
+    mailService.save(mail).then((mail) => {
+      loadMails()
+    })
+  }
+  function onMailToNotes(mailId) {
+    console.log('mailId:', mailId)
+  }
+  function onToggleRead(mail) {
+    mail.isRead = !mail.isRead
+    mailService.save(mail).then((mail) => {
+      loadMails()
+    })
+  }
+
+  function onMailRemoved(mailId) {
     mailService
       .remove(mailId)
       .then(() => {
@@ -37,7 +54,16 @@ export function MailIndex() {
 
   return (
     <section className='mail-index'>
-      {mails && <MailList mails={mails} onRemoveMail={onRemoveMail} />}
+      <MailCompose />
+      {mails && (
+        <MailList
+          mails={mails}
+          onMailRemoved={onMailRemoved}
+          onMailStarred={onMailStarred}
+          onMailToNotes={onMailToNotes}
+          onToggleRead={onToggleRead}
+        />
+      )}
     </section>
   )
 }

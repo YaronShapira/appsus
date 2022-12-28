@@ -87,9 +87,9 @@ function getCriteria() {
 
 function getEmptyMail() {
   return {
-    subject: '',
-    body: '',
-    to: '',
+    mailTo: '',
+    mailSubject: '',
+    mailBody: '',
   }
 }
 

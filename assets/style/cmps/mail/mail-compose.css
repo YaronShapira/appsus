@@ -1,0 +1,62 @@
+.mail-compose {
+  position: absolute;
+  bottom: 1.5em;
+  right: 2em;
+}
+.mail-compose .btn-mail-compose {
+  z-index: 1;
+}
+.btn-mail-compose {
+  background-color: var(--clr1);
+}
+.btn-mail-compose.open {
+  background-color: var(--clrbg-light);
+}
+.btn-mail-compose:hover {
+  background-color: var(--clr-txt);
+  color: var(--clr1);
+}
+.compose-mail-form form > *:not(:last-child) {
+  margin-bottom: 0.66em;
+}
+.compose-mail-form {
+  opacity: 0;
+  transition: 0.25s opacity 0.1s, top 0.25;
+  pointer-events: none;
+}
+.compose-mail-form.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.compose-mail-form {
+  border-radius: var(--br-l);
+  background-color: var(--clrbg-light);
+  background-color: var(--clr-txt);
+  color: var(--clrbg);
+  padding: 1.5em 2em;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-100%, -100%);
+  transform: translate(calc(-100% + 3.33em), calc(-100% +1.5em));
+  min-width: 380px;
+  z-index: 1;
+  box-shadow: 0px 20px 30px 0px var(--clrbg-a);
+}
+
+.compose-mail-form form input,
+.compose-mail-form form textarea {
+  background-color: var(--clr-txt);
+  color: var(--clrbg);
+  border: 1px solid var(--clrbg-light-a);
+}
+.compose-mail-form form input:focus,
+.compose-mail-form form textarea:focus {
+  background-color: var(--clr-txt);
+  border: 1px solid var(--clr1);
+}
+.compose-mail-form input:focus::-webkit-input-placeholder,
+.compose-mail-form textarea:focus::-webkit-input-placeholder {
+  background-color: var(--clr-txt);
+  color: var(--clrbg);
+}

@@ -1,23 +1,51 @@
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onMailStarred, onMailRemoved, onMailToNotes, onToggleRead }) {
+  function formatTime(sentAt) {
+    return 'Dec 27'
+  }
+
   return (
-    <article className={`mail-preview flex align-center ${mail.isRead ? 'read' : ''}`}>
+    <article className={`mail-preview ${mail.isRead ? 'read' : ''}`}>
       <input type='checkbox' name='check-email'></input>
-      <button className='btn-rnd-s'>
-        <i className={`fa-solid fa-star`}></i>
+      <button
+        onClick={() => {
+          onMailStarred(mail)
+        }}
+        className='btn-rnd-s'>
+        {mail.isStared ? (
+          <i className='fa-regular fa-star fullstar'></i>
+        ) : (
+          <i className='fa-solid fa-star'></i>
+        )}
       </button>
       <span className='mail-sender'>{mail.sender}</span>
       <span className='mail-subject line-clamp'>{mail.subject}</span>
       <span className='mail-body line-clamp'>{mail.body}</span>
-      <span className='mail-time'>Dec 27</span>
+      <span className='mail-time'>{formatTime(mail.sentAt)}</span>
       <div className='hover-actions'>
-        <button className='btn-rnd-l'>
-          <i className={`fa-solid fa-star`}></i>
+        <button
+          onClick={() => {
+            onMailRemoved(mail.id)
+          }}
+          className='btn-rnd-l'>
+          <i className='fa-regular fa-trash-can'></i>
         </button>
-        <button className='btn-rnd-l'>
-          <i className={`fa-solid fa-star`}></i>
+        <button
+          onClick={() => {
+            onMailToNotes(mail.id)
+          }}
+          className='btn-rnd-l'>
+          <i className='fa-regular fa-paper-plane'></i>
         </button>
-        <button className='btn-rnd-l'>
-          <i className={`fa-solid fa-star`}></i>
+        <button
+          onClick={() => {
+            onToggleRead(mail)
+          }}
+          className='btn-rnd-l'>
+          {mail.isRead ? (
+            <i className='fa-regular fa-envelope'></i>
+          ) : (
+            <i className='fa-solid fa-envelope-open'></i>
+          )}
         </button>
       </div>
     </article>
