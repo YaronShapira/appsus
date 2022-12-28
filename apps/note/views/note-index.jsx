@@ -14,7 +14,7 @@ export function NoteIndex() {
     console.log(notes)
     return (
         <div>
-            <AddNote />
+            <AddNote setNotes={setNotes} />
             <NoteList notes={notes} />
         </div>
     )

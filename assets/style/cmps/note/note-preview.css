@@ -1,0 +1,12 @@
+.note-preview {
+    background-color: var(--clrbg-light-a);
+    background: rgb(14, 18, 26);
+    background: radial-gradient(circle, rgba(14, 18, 26, 0.664) 22%, rgba(23, 28, 38, 0.788) 100%);
+    backdrop-filter: blur(14px);
+    box-shadow: 0px 30px 20px -20px var(--clrbg-light-a);
+    border: 1px solid var(--clrbg-light);
+    border-radius: var(--br-l);
+    margin: 3em;
+    padding: 0.6em 1.9em 1.3em;
+    max-width: 360px;
+}

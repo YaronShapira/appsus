@@ -1,3 +1,3 @@
 export default function NotePreview({ note }) {
-    return <div>{note.info.txt}</div>
+    return <div className='note-preview'>{note.info.txt}</div>
 }

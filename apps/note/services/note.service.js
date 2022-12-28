@@ -5,6 +5,7 @@ export const noteService = {
     getNotes,
     getNote,
     saveNote,
+    getDefaultNote,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -18,13 +19,32 @@ function getNote(id) {
     return storageService.get(NOTES_KEY, id)
 }
 
-function saveNote(note) {}
+function saveNote(note) {
+    console.log(note.id)
+    if (note.id) {
+        console.log('PUTTING')
+        return storageService.put(NOTES_KEY, note)
+    } else {
+        console.log('POSTING')
+        return storageService.post(NOTES_KEY, note)
+    }
+}
+
+function getDefaultNote() {
+    return {
+        type: 'note-txt',
+        isPinned: false,
+        info: {
+            txt: '',
+        },
+    }
+}
 
 function _createNote(txt) {
     return {
         id: utilService.makeId(),
         type: 'note-txt',
-        isPinned: true,
+        isPinned: false,
         info: {
             txt,
         },

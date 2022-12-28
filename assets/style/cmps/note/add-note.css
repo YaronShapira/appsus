@@ -1,6 +1,10 @@
-input {
+.add-note input {
     max-width: 600px;
     margin: 0 auto;
     display: block;
     padding: 0.65em 2em;
+}
+
+.add-note button {
+    display: inline-block;
 }
