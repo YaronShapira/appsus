@@ -1,0 +1,42 @@
+.mail-compose {
+  position: absolute;
+  bottom: 1.5em;
+  right: 2em;
+}
+.mail-compose .btn-mail-compose {
+  z-index: 1;
+}
+.btn-mail-compose {
+  background-color: var(--clr1);
+}
+.btn-mail-compose.open {
+  background-color: var(--clrbg-light);
+}
+.btn-mail-compose:hover {
+  background-color: var(--clr-txt);
+  color: var(--clr1);
+}
+.compose-mail-form form > *:not(:last-child) {
+  margin-bottom: 0.66em;
+}
+.compose-mail-form {
+  opacity: 0;
+  transition: 0.5s opacity;
+  pointer-events: none;
+}
+.compose-mail-form.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.compose-mail-form {
+  border-radius: var(--br-l);
+  background-color: var(--clrbg-light);
+  padding: 1.5em 2em;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-100%, -100%);
+  transform: translate(calc(-100% + 3.33em), calc(-100% + 3.33em));
+  min-width: 380px;
+  z-index: -1;
+}
