@@ -13,15 +13,12 @@
     outline: none;
     border: none;
     padding: 0.65em 2em;
-    width: 75%;
 }
 .add-note input:hover {
     border-radius: var(--br-l);
     outline: none;
     color: var(--clr-txt);
     background-color: var(--clrbg-light);
-    max-width: 600px;
-    width: 75%;
 }
 .add-note input:focus {
     color: var(--clr-txt);
@@ -29,8 +26,6 @@
     outline: none;
     color: var(--clr-txt);
     background-color: var(--clrbg-light);
-    max-width: 600px;
-    width: 75%;
 }
 
 input::-webkit-input-placeholder {
@@ -53,4 +48,16 @@ input:focus::-webkit-input-placeholder {
 }
 .add-note .utils > * {
     margin: 0 0.2rem;
+}
+
+.add-note .inline-utils {
+    display: flex;
+}
+.add-note .inline-utils > * {
+    margin: 0.4rem;
+}
+.main-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
