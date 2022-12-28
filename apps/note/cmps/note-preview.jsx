@@ -14,11 +14,11 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         deleteNote(note.id)
     }
     function onHover(ev) {
-        console.log('ENTERING', ev.target)
+        // console.log('ENTERING', ev.target)
         setIsHovering(true)
     }
     function onHoverLeave(ev) {
-        console.log('LEAVING', ev.target)
+        // console.log('LEAVING', ev.target)
         setIsHovering(false)
     }
 
@@ -40,7 +40,12 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                                         <i className='fa-solid fa-check'></i>
                                     </button>
                                 </div>
-                                <div className='utils'>
+                                <div className='pin'>
+                                    <button className='btn btn-rnd-l'>
+                                        <i className='fa-solid fa-thumbtack'></i>
+                                    </button>
+                                </div>
+                                <div className='hover-utils'>
                                     <button className='btn'>
                                         <i className='fa-solid fa-trash'></i>
                                     </button>
@@ -49,6 +54,12 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                                     </button>
                                     <button className='btn'>
                                         <i className='fa-solid fa-image'></i>
+                                    </button>
+                                    <button className='btn'>
+                                        <i className='fa-solid fa-envelope'></i>
+                                    </button>
+                                    <button className='btn'>
+                                        <i className='fa-solid fa-envelope'></i>
                                     </button>
                                     <button className='btn'>
                                         <i className='fa-solid fa-envelope'></i>

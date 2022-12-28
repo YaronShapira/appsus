@@ -28,12 +28,20 @@
 }
 
 .note-preview p {
+    width: 85%;
 }
 
-.utils {
+.hover-utils {
     position: absolute;
-    bottom: 0%;
+    bottom: 2%;
+    left: 0%;
     width: 100%;
+}
+
+.note-preview .pin {
+    position: absolute;
+    top: 3%;
+    right: 3%;
 }
 
 .note-preview .select {
