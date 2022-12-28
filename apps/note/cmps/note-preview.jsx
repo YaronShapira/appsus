@@ -36,7 +36,7 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                         onMouseLeave={onHoverLeave}>
                         <h6>{note.title}</h6>
                         <p>{note.info.txt}</p>
-                        {isHovering && <NoteHoversBtns />}
+                        {isHovering && <NoteHoversBtns note={note} deleteNote={onDeleteNote} />}
                     </article>
                     {isEditing && (
                         <Fragment>
