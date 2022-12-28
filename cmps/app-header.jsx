@@ -19,7 +19,7 @@ export function AppHeader() {
               Maily
             </NavLink>
           </li>
-          <li key={"notes"}>
+          <li key={"note"}>
             <NavLink to='/notes' className='nav-link'>
               Keepy
             </NavLink>

@@ -1,3 +1,7 @@
 export function NoteIndex() {
-    return <div>hgfhd</div>
+  return (
+    <div>
+      <h1>Welcome</h1>
+    </div>
+  )
 }
