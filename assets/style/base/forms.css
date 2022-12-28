@@ -17,7 +17,7 @@ input,
 input::-webkit-input-placeholder,
 textarea,
 textarea::-webkit-input-placeholder {
-  transition: border 0.5s, background-color 0.5s, color 0.15s;
+  transition: border 0.25s, background-color 0.25s, color 0.15s;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {

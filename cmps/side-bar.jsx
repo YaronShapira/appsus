@@ -1,12 +1,25 @@
-import { SideBarMail } from "../apps/mail/cmps/side-bar-mail.jsx"
-import { SideBarNote } from "../apps/note/cmps/side-bar-note.jsx"
+import { SideBarMail } from '../apps/mail/cmps/side-bar-mail.jsx'
+import { SideBarNote } from '../apps/note/cmps/side-bar-note.jsx'
 
 const { useParams, useLocation } = ReactRouterDOM
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 export function SideBar() {
-  const [sidebarLoc, setSidebarLoc] = useState("home")
+  // dynamic path
+  const [sidebarLoc, setSidebarLoc] = useState('home')
   const location = useLocation()
+
+  // hover effect
+  const [isOpen, setIsOpen] = useState(false)
+  const elAside = useRef()
+  useEffect(() => {
+    elAside.current.addEventListener('mouseenter', () => {
+      setIsOpen(true)
+    })
+    elAside.current.addEventListener('mouseleave', () => {
+      setIsOpen(false)
+    })
+  }, [])
 
   useEffect(() => {
     setSidebarLoc(location.pathname)
@@ -38,16 +51,20 @@ export function SideBar() {
       </nav>
     )
   }
-  function sidebarFor() {
+  function sidebarFor(isOpen) {
     switch (location.pathname) {
-      case "/note":
-        return <SideBarNote />
-      case "/mail":
-        return <SideBarMail />
+      case '/note':
+        return <SideBarNote isOpen={isOpen} />
+      case '/mail':
+        return <SideBarMail isOpen={isOpen} />
       default:
         return getHomeSideBar()
     }
   }
 
-  return <aside className='side-bar flex flex-column'>{sidebarFor()}</aside>
+  return (
+    <aside ref={elAside} className={`side-bar flex flex-column ${isOpen ? 'open' : ''}`}>
+      {sidebarFor(isOpen)}
+    </aside>
+  )
 }

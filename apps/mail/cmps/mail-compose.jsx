@@ -1,7 +1,7 @@
 const { useState, useEffect, useRef } = React
 import { mailService } from '../services/mail.service.js'
 
-export function MailCompose() {
+export function MailCompose({ sendMail }) {
   const [newMailToEdit, setNewMailToEdit] = useState(mailService.getEmptyMail())
 
   const [isMailEdited, setIsMailEdited] = useState(false)
@@ -10,21 +10,27 @@ export function MailCompose() {
     setIsMailEdited(!isMailEdited)
   }
 
-  function handleForm({ target }) {
-    let { type, name: field, value } = target
-    setReviewToEdit((prevMailToEdit) => ({ ...prevMailToEdit, [field]: value }))
+  function onSendMail(ev) {
+    ev.preventDefault()
+    sendMail(mail, newMailToEdit)
   }
 
-  function onComposeMail() {}
+  function handleForm({ target }) {
+    let { type, name: field, value } = target
+    console.log('field:', field)
+    console.log('value:', value)
+    setNewMailToEdit((prevMailToEdit) => ({ ...prevMailToEdit, [field]: value }))
+  }
+
   return (
     <section className='mail-compose'>
       <button
         onClick={onBtnPlus}
         className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
-        <i className={`fa-solid ${!isMailEdited ? 'fa-plus' : 'fa-minus'}`}></i>
+        <i className={`fa-solid ${!isMailEdited ? 'fa-pencil' : 'fa-minus'}`}></i>
       </button>
       <section className={`compose-mail-form ${isMailEdited ? 'open' : ''}`}>
-        <form onSubmit={onComposeMail}>
+        <form onSubmit={onSendMail}>
           <h4>New Mail</h4>
           <input
             value={newMailToEdit.mailTo}
