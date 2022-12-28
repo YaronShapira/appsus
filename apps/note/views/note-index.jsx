@@ -11,7 +11,6 @@ export function NoteIndex() {
     useEffect(() => {
         noteService.getNotes().then(setNotes)
     }, [])
-    console.log(notes)
     return (
         <div>
             <AddNote setNotes={setNotes} />

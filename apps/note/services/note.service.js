@@ -20,18 +20,19 @@ function getNote(id) {
 }
 
 function saveNote(note) {
-    console.log(note.id)
-    if (note.id) {
+    const noteToSave = structuredClone(note)
+    if (noteToSave.id) {
         console.log('PUTTING')
-        return storageService.put(NOTES_KEY, note)
+        return storageService.put(NOTES_KEY, noteToSave)
     } else {
         console.log('POSTING')
-        return storageService.post(NOTES_KEY, note)
+        return storageService.post(NOTES_KEY, noteToSave)
     }
 }
 
 function getDefaultNote() {
     return {
+        title: '',
         type: 'note-txt',
         isPinned: false,
         info: {
