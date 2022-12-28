@@ -1,7 +1,5 @@
+import { noteService } from "../services/note.service.js"
+
 export function NoteIndex() {
-  return (
-    <div>
-      <h1>Welcome</h1>
-    </div>
-  )
+  return <div></div>
 }
