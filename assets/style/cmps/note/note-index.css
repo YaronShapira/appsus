@@ -1,15 +1,15 @@
 .note-index {
-    margin-right: 2em;
-    border-radius: 2em;
-    overflow: hidden;
-    border-radius: var(--br-l);
-    background-color: var(--clrbg-light-a);
-    height: calc(100vh - var(--header-height) - 2em);
-    overflow-y: auto;
-    padding: 2em;
-    ms-overflow-style: none;
-    scrollbar-width: none; /* Firefox */
+  margin-right: 2em;
+  border-radius: 2em;
+  overflow: hidden;
+  border-radius: var(--br-l);
+  background-color: var(--clrbg-light-a);
+  height: calc(100vh - var(--header-height) - 2em);
+  overflow-y: auto;
+  padding: 2em;
+  ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
 }
 .note-index::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
