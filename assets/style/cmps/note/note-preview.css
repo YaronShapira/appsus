@@ -22,8 +22,26 @@
     padding: 0.6em 1.9em 1.3em;
     display: inline-block;
     margin: 0 1rem 1rem 0;
-    width: 100%;
+    width: 240px;
     min-height: 100px;
+    position: relative;
+}
+
+.note-preview p {
+}
+
+.utils {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+}
+
+.note-preview .select {
+    position: absolute;
+    top: -12%;
+    left: -6%;
+    background: var(--clr1);
+    border-radius: 50%;
 }
 
 .add-note-modal {
