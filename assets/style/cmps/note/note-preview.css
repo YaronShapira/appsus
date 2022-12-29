@@ -13,7 +13,7 @@
     min-height: 100px;
     position: relative;
     border: 1px solid #ffffff26;
-    transition: 0.8s background;
+    transition: 0.8s background, 0.8s color;
     flex-direction: column;
     color: var(--clr-txt-m);
 }
@@ -38,7 +38,7 @@
     background: radial-gradient(circle at -50%, #ffffff15 0%, var(--clrbg) 80%);
 } */
 .note-preview p,
-.note-preview h6 {
+.note-preview h5 {
     width: 85%;
 }
 
@@ -60,7 +60,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 2;
 }
 

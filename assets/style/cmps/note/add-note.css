@@ -9,18 +9,20 @@
     display: block;
 }
 
-.add-note input {
+.add-note :is(input, textarea) {
     outline: none;
     border: none;
     padding: 0.65em 2em;
+    resize: none;
+    height: auto;
 }
-.add-note input:hover {
+.add-note :is(input, textarea):hover {
     border-radius: var(--br-l);
     outline: none;
     color: var(--clr-txt);
     background-color: var(--clrbg-light);
 }
-.add-note input:focus {
+.add-note :is(input, textarea):focus {
     color: var(--clr-txt);
     border-radius: var(--br-l);
     outline: none;
@@ -28,10 +30,10 @@
     background-color: var(--clrbg-light);
 }
 
-input::-webkit-input-placeholder {
+:is(input, textarea)::-webkit-input-placeholder {
     color: var(--clr-txt-m);
 }
-input:focus::-webkit-input-placeholder {
+:is(input, textarea):focus::-webkit-input-placeholder {
     transition: background-color 0.5s 0.05s, color 0.25s 0.25s;
     color: var(--clr-txt);
 }

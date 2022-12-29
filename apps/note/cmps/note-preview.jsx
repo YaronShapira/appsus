@@ -9,6 +9,9 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
     const [isEditing, setIsEditing] = useState(false)
     const noteArticleRef = useRef(null)
 
+    function onDuplicateNote(ev) {
+        ev.stopPropagation()
+    }
     function onDeleteNote(ev) {
         ev.stopPropagation()
         deleteNote(note.id)
@@ -22,10 +25,7 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         noteArticleRef.current.classList.remove('z-2')
     }
 
-    function setColor(ev, color) {
-        ev.stopPropagation()
-        note.style = { ...note.style }
-        note.style.backgroundColor = color
+    function saveNoteAndRender() {
         noteService.saveNote(note).then(newNote => {
             setNotes(oldNotes => {
                 oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
@@ -33,27 +33,15 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
             })
         })
     }
-    switch (note.type) {
-        case 'note-txt':
-            // return ()
-            break
-        case 'note-img':
-            // return (
-            //     <article className='note-preview'>
-            //         <img src={note.info.url} alt='' />
-            //         <h6>{note.title}</h6>
-            //         <p>{note.info.txt}</p>
-            //     </article>
-            // )
-            break
-        case 'note-video':
-            break
-        case 'note-todos':
-            break
 
-        default:
-            break
+    function setColor(ev, bgColor, color) {
+        ev.stopPropagation()
+        note.style = { ...note.style }
+        note.style.backgroundColor = bgColor
+        note.style.color = color
+        saveNoteAndRender()
     }
+
     return (
         <Fragment>
             <article
@@ -65,17 +53,12 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                 onMouseLeave={onHoverLeave}>
                 <h5>{note.title}</h5>
                 <p>{note.info.txt}</p>
-                {<NoteHoversBtns deleteNote={onDeleteNote} setColor={setColor} />}
+                {<NoteHoversBtns onDeleteNote={onDeleteNote} setColor={setColor} onDuplicateNote={onDuplicateNote} />}
             </article>
             {isEditing && (
                 <Fragment>
                     <div className='add-note-modal'>
-                        <AddNote
-                            note={note}
-                            isEditing={true}
-                            setIsEditing={setIsEditing}
-                            setNotes={setNotes}
-                        />
+                        <AddNote note={note} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />
                     </div>
                     <div className='dark-overlay'></div>
                 </Fragment>
@@ -83,3 +66,17 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         </Fragment>
     )
 }
+
+// switch (note.type) {
+//     case 'note-txt':
+//         break
+//     case 'note-img':
+//         break
+//     case 'note-video':
+//         break
+//     case 'note-todos':
+//         break
+
+//     default:
+//         break
+// }
