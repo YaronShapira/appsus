@@ -44,6 +44,7 @@ function deleteNote(id) {
 
 function getDefaultNote() {
     return {
+        id: null,
         title: '',
         type: 'note-txt',
         isPinned: false,

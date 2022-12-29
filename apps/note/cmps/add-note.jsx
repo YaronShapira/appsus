@@ -71,6 +71,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         mainTextAreaRef.current.id = 'link'
     }
 
+    function onToDoList() {
+        console.log('TODO')
+        setIsWriting(true)
+        mainTextAreaRef.current.focus()
+    }
+
     function addNote() {
         clearSlate()
         if (isEditing) setIsEditing(false)
@@ -85,16 +91,13 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 console.log('?')
             })
             .catch(err => {
-                // ...
+                console.log(err)
                 setNotes(noteService.getNotes())
             })
         if (!isEditing) {
-            newNote.id = null
             return setNotes(prev => [newNote, ...prev])
         }
         setNotes(oldNotes => {
-            console.log('EDITING')
-            console.log(oldNotes.findIndex(note => note.id === newNote.id))
             oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
             return [...oldNotes]
         })
@@ -129,7 +132,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 {!isWriting && (
                     <div className='inline-utils'>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
+                            <i className='fa-solid fa-list' onClick={onToDoList}></i>
                         </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
