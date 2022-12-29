@@ -1,3 +1,3 @@
-export default function ImgCmp({ note }) {
-    return <img src={note.src} />
+export default function ImgCmp({ src }) {
+    return <img src={src} />
 }

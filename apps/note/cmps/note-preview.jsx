@@ -5,6 +5,7 @@ import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
 import NoteTxt from './note-txt.jsx'
+import VideoCmp from './video-cmp.jsx'
 
 const { useState, useRef } = React
 
@@ -92,7 +93,7 @@ export default function NotePreview({ note, setNotes }) {
                 break
         }
     }
-
+    
     return (
         <Fragment>
             {/* <DynamicNote
@@ -105,7 +106,8 @@ export default function NotePreview({ note, setNotes }) {
             /> */}
 
             <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
-                {note.src && <ImgCmp note={note} />}
+                {note.src && <ImgCmp src={note.src} />}
+                {note.link && <VideoCmp link={note.link} />}
                 <h5>{note.title}</h5>
                 <p>{note.info.txt}</p>
 
