@@ -1,4 +1,12 @@
+/* LAYOUT */
 .mail-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content 1fr auto;
+}
+/* basics for container */
+.mail-details {
+  --avatar-size: 42px;
   margin: 2em;
   border-radius: 2em;
   overflow: hidden;
@@ -6,5 +14,63 @@
   background-color: var(--clrbg-light-a);
   height: calc(100vh - var(--header-height) - 4em);
   overflow-y: auto;
+}
+.mail-details-header,
+.mail-details-footer,
+.mail-msg {
   padding: 2em;
+}
+.mail-details-nav {
+  background-color: var(--clr2-a);
+  padding: 0.15em 1em;
+}
+/* HEADER */
+.mail-details-header {
+  padding-left: calc(var(--avatar-size) + 3.75rem);
+  margin-bottom: 1em;
+}
+.mail-details-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  font-size: var(--avatar-size);
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  background-color: var(--clr2-hover);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin-inline-end: 1.75rem;
+}
+.user-avatar > * {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75em;
+}
+.mail-msg-header {
+  margin-bottom: 4em;
+}
+.sender-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  /* grid-template-columns: max-content; */
+  /* grid-auto-flow: column; */
+}
+.mail-time {
+  margin-inline-end: 1em;
+}
+
+/* MSG BODY */
+
+.mail-details-body {
+}
+
+/* FOOTER */
+.mail-footer-actions > * {
+  margin-inline-end: 1em;
 }

@@ -16,8 +16,8 @@
   background-color: var(--clr-txt);
   color: var(--clr1);
 }
-.compose-mail-form form > *:not(:last-child) {
-  margin-bottom: 0.66em;
+.compose-mail-form form > *:last-child {
+  margin-bottom: 0.25em;
 }
 .compose-mail-form {
   opacity: 0;
@@ -29,34 +29,64 @@
   pointer-events: all;
 }
 .compose-mail-form {
-  border-radius: var(--br-l);
   background-color: var(--clrbg-light);
   background-color: var(--clr-txt);
   color: var(--clrbg);
-  padding: 1.5em 2em;
+  /* padding: 0em 2em 1.5em; */
   position: absolute;
   top: 0%;
   left: 0%;
   transform: translate(-100%, -100%);
   transform: translate(calc(-100% + 3.33em), calc(-100% +1.5em));
-  min-width: 380px;
+  min-width: 450px;
   z-index: 2;
   box-shadow: 0px 20px 30px 0px var(--clrbg-a);
+  border-radius: var(--br-l);
 }
+.compose-mail-form-footer,
+.compose-mail-form-header {
+  padding: 0.4em 0.8em;
+}
+.compose-mail-form-header {
+  border-radius: var(--br-l) var(--br-l) 0 0;
+  background-color: var(--clr2-hover);
 
+  color: var(--clrbg);
+}
 .compose-mail-form form input,
 .compose-mail-form form textarea {
+  border-radius: 0;
   background-color: var(--clr-txt);
   color: var(--clrbg);
-  border: 1px solid var(--clrbg-light-a);
+  border-top: none;
+  border-bottom: 1px solid var(--clr2-a);
+}
+.compose-mail-form form textarea {
+  border: none;
 }
 .compose-mail-form form input:focus,
 .compose-mail-form form textarea:focus {
   background-color: var(--clr-txt);
-  border: 1px solid var(--clr1);
 }
 .compose-mail-form input:focus::-webkit-input-placeholder,
 .compose-mail-form textarea:focus::-webkit-input-placeholder {
   background-color: var(--clr-txt);
   color: var(--clrbg);
+}
+
+.compose-mail-form-header .btn-rnd-l-s,
+.compose-mail-form-header .btn-rnd-s {
+  color: var(--clrbg);
+}
+.compose-mail-form-header .btn-rnd-l-s:hover,
+.compose-mail-form-header .btn-rnd-s:hover {
+  background-color: var(--clr2-a);
+}
+.compose-mail-form-footer .btn-rnd-l-s {
+  color: var(--clrbg-a);
+}
+.compose-mail-form-footer .btn-rnd-l-s:hover,
+.compose-mail-form-footer .btn-rnd-s:hover {
+  /* color: var(--clr-txt); */
+  background-color: var(--clr2-hover);
 }

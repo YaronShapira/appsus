@@ -23,19 +23,30 @@ button:hover {
   box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.3);
 }
 .btn-secondary {
-  background-color: var(--clrbg-light);
+  background-color: var(--clr2);
 }
 .btn-primary:hover {
   background-color: var(--clr1-hover);
 }
 
 .btn-secondary:hover {
-  background-color: transparent;
+  background-color: var(--clr2-hover);
+  color: var(--clrbg);
 }
 
 /* circle-round btns */
 .btn-rnd-s {
   background-color: transparent;
+}
+
+.btn-rnd-l-s {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3em;
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
 }
 
 .btn-rnd-s,

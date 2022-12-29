@@ -6,6 +6,7 @@ import { MailList } from '../cmps/mail-list.jsx'
 import { mailService } from '../services/mail.service.js'
 
 export function MailIndex() {
+  const [isMarked, setIsMarked] = useState(false)
   const [mails, setMails] = useState([])
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
 
@@ -13,27 +14,32 @@ export function MailIndex() {
     loadMails()
   }, [])
 
-  function onMailStarred(mail) {
+  function onMailStarred(ev, mail) {
+    ev.stopPropagation()
     mail.isStared = !mail.isStared
     mailService.save(mail).then((mail) => {
       loadMails()
     })
   }
-  function onMailToNotes(mailId) {
+  function onMailToNotes(ev, mailId) {
+    ev.stopPropagation()
     console.log('mailId:', mailId)
   }
-  function onToggleRead(mail) {
+  function onToggleRead(ev, mail) {
+    ev.stopPropagation()
     mail.isRead = !mail.isRead
     mailService.save(mail).then((mail) => {
       loadMails()
     })
   }
 
-  function onCheckMail(mailId) {
+  function onCheckMail(ev, mailId) {
+    ev.stopPropagation()
     console.log('mailId:', mailId)
   }
 
-  function onMailRemoved(mailId) {
+  function onMailRemoved(ev, mailId) {
+    ev.stopPropagation()
     mailService
       .remove(mailId)
       .then(() => {
@@ -73,6 +79,8 @@ export function MailIndex() {
           onMailStarred={onMailStarred}
           onMailToNotes={onMailToNotes}
           onToggleRead={onToggleRead}
+          isMarked={isMarked}
+          setIsMarked={setIsMarked}
         />
       )}
     </section>
