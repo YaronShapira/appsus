@@ -21,7 +21,7 @@ export function MailCompose({ sendMail }) {
     let { type, name: field, value } = target
     setNewMailToEdit((prevMailToEdit) => ({ ...prevMailToEdit, [field]: value }))
   }
-  console.log('newMailToEdit:', newMailToEdit)
+
   return (
     <section className='mail-compose'>
       <button
@@ -45,30 +45,39 @@ export function MailCompose({ sendMail }) {
               </button>
             </div>
           </section>
-          <input
-            value={newMailToEdit.to}
-            type='email'
-            placeholder='To'
-            name='to'
-            id='to'
-            onChange={handleForm}
-          />
-          <input
-            value={newMailToEdit.subject}
-            type='text'
-            placeholder='Subject'
-            name='subject'
-            id='subject'
-            onChange={handleForm}
-          />
-          <textarea
-            value={newMailToEdit.body}
-            placeholder='Your message...'
-            name='body'
-            rows={10}
-            id='body'
-            onChange={handleForm}
-          />
+          <div className='fields-container'>
+            <div className='field-wrapper'>
+              <label htmlFor='to'>To</label>
+              <input
+                autoComplete='off'
+                value={newMailToEdit.to}
+                type='email'
+                name='to'
+                id='to'
+                onChange={handleForm}
+              />
+            </div>
+            <div className='field-wrapper'>
+              <label htmlFor='subject'>Subject</label>
+              <input
+                autoComplete='off'
+                value={newMailToEdit.subject}
+                type='text'
+                name='subject'
+                id='subject'
+                onChange={handleForm}
+              />
+            </div>
+
+            <textarea
+              value={newMailToEdit.body}
+              placeholder='Your message...'
+              name='body'
+              rows={10}
+              id='body'
+              onChange={handleForm}
+            />
+          </div>
           <div className='compose-mail-form-footer flex align-center justify-between'>
             <button className='btn-primary' type='submit'>
               Send

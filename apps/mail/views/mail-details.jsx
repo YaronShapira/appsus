@@ -4,14 +4,42 @@ const { Link, useParams, useNavigate } = ReactRouterDOM
 import { utilService } from '../../../services/util.service.js'
 import { mailService } from '../services/mail.service.js'
 
+import { DetailsBody } from '../cmps/mail-details-cmps/details-body.jsx'
+import { DetailsFooter } from '../cmps/mail-details-cmps/details-footer.jsx'
+import { DetailsHeader } from '../cmps/mail-details-cmps/details-header.jsx'
+
 export function MailDetails() {
   const [mail, setMail] = useState(null)
+  const [isReply, setReplyMode] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
+  const elMsgContainer = useRef()
+  const elIframeForPrint = useRef()
 
   useEffect(() => {
     loadMail()
   }, [params.mailId])
+
+  function onPrintMail(ev) {
+    const iframe = elIframeForPrint.current.contentWindow
+    iframe.document.open()
+    iframe.document.write(elMsgContainer.current.innerHTML)
+    iframe.document.close()
+    iframe.focus()
+    iframe.print()
+  }
+
+  function onReply() {
+    setReplyMode(!isReply)
+  }
+
+  function onMailStarred(ev, mail) {
+    ev.stopPropagation()
+    mail.isStared = !mail.isStared
+    mailService.save(mail).then((mail) => {
+      loadMail()
+    })
+  }
 
   function loadMail() {
     mailService
@@ -38,57 +66,13 @@ export function MailDetails() {
           </button>
         </ul>
       </nav>
-      <section className='mail-details-header flex align-center justify-between'>
-        <h2>
-          {mail.subject}
-          <span className='tag'>Incoming</span>
-        </h2>
-        <div className='mail-details-header-actions'>
-          <button
-            onClick={() => {
-              onMailStarred(mail)
-            }}
-            className='btn-rnd-l'>
-            <i className='fa-solid fa-print'></i>
-          </button>
-        </div>
-      </section>
-      <section className='mail-msg'>
-        <div className='mail-msg-header flex align-center justify-between'>
-          <div className='sender-details'>
-            <div className='user-avatar'>
-              <i className='fa-solid fa-user'></i>
-            </div>
-            <div className='user-details-txt'>
-              <h5>Boydem</h5>
-              <small>{`<notifications@github.com>`}</small>
-            </div>
-          </div>
-          <div className='sender-info-actions flex align-center justify-between'>
-            <h6 className='mail-time'>28 Dec 2022, 22:57 (14 hours ago)</h6>
-            <button
-              onClick={() => {
-                onMailStarred(mail)
-              }}
-              className='btn-rnd-l-s'>
-              <i className='fa-solid fa-star'></i>
-            </button>
-          </div>
-        </div>
-        <div className='mail-msg-body'>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis non debitis nobis
-            aspernatur placeat unde officiis obcaecati consequuntur illo quae temporibus ipsam fuga
-            minus, excepturi corrupti nemo? Molestiae, eveniet veritatis.
-          </p>
-        </div>
-      </section>
-      <section className='mail-details-footer'>
-        <div className='mail-footer-actions'>
-          <button className='btn-secondary'>Reply</button>
-          <button className='btn-secondary'>Move</button>
-        </div>
-      </section>
+      <div ref={elMsgContainer} className='msg-container'>
+        <iframe ref={elIframeForPrint} className='ifm-content-toprint'></iframe>
+
+        <DetailsHeader mail={mail} onPrintMail={onPrintMail} />
+        <DetailsBody mail={mail} onMailStarred={onMailStarred} />
+        <DetailsFooter mail={mail} onReply={onReply} />
+      </div>
     </section>
   )
 }
