@@ -18,6 +18,5 @@ export function NoteList({ notes, deleteNote, setNotes }) {
     )
 }
 
-// TODO: support duplication
 // TODO: add pin func
 // TODO: add image, video

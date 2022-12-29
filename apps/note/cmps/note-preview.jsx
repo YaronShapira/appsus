@@ -11,6 +11,20 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
 
     function onDuplicateNote(ev) {
         ev.stopPropagation()
+        const duplicatedNote = structuredClone(note)
+        duplicatedNote.id = null
+
+        noteService.saveNote(duplicatedNote).then(duplicatedNote => {
+            setNotes(prevNotes => [duplicatedNote, ...prevNotes])
+        })
+
+        // noteService.saveNote(duplicatedNote).then(duplicatedNote => {
+        //     setNotes(oldNotes => {
+        //         const currNoteIdx = oldNotes.findIndex(currNote => currNote.id === note.id)
+        //         oldNotes.splice(currNoteIdx + 1, 0, duplicatedNote)
+        //         return [...oldNotes]
+        //     })
+        // })
     }
     function onDeleteNote(ev) {
         ev.stopPropagation()
@@ -26,9 +40,9 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
     }
 
     function saveNoteAndRender() {
-        noteService.saveNote(note).then(newNote => {
+        noteService.saveNote(note).then(updatedNewNote => {
             setNotes(oldNotes => {
-                oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
+                oldNotes[oldNotes.findIndex(note => note.id === updatedNewNote.id)] = updatedNewNote
                 return [...oldNotes]
             })
         })
