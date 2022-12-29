@@ -2,7 +2,7 @@ import NotePalette from './note-palette.jsx'
 
 const { useState } = React
 
-export default function NoteHoversBtns({ deleteNote, setColor }) {
+export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote, onPin }) {
     const [isInPalette, setIsInPalette] = useState(false)
 
     function onPalette(ev) {
@@ -10,7 +10,6 @@ export default function NoteHoversBtns({ deleteNote, setColor }) {
         setIsInPalette(prev => !prev)
     }
 
-    
     return (
         <div className='hovers fade-in' onMouseLeave={() => setIsInPalette(false)}>
             <div className='select'>
@@ -19,14 +18,11 @@ export default function NoteHoversBtns({ deleteNote, setColor }) {
                 </button>
             </div>
             <div className='pin'>
-                <button className='btn btn-rnd-l'>
+                <button className='btn btn-rnd-l' onClick={onPin}>
                     <i className='fa-solid fa-thumbtack'></i>
                 </button>
             </div>
             <div className='hover-utils'>
-                <button className='btn btn-rnd-s' onClick={e => deleteNote(e)}>
-                    <i className='fa-solid fa-trash'></i>
-                </button>
                 <button className='btn btn-rnd-s' onClick={onPalette}>
                     <i className='fa-solid fa-palette'></i>
                 </button>
@@ -41,8 +37,11 @@ export default function NoteHoversBtns({ deleteNote, setColor }) {
                 <button className='btn btn-rnd-s'>
                     <i className='fa-solid fa-envelope'></i>
                 </button>
-                <button className='btn btn-rnd-s'>
-                    <i className='fa-solid fa-star'></i>
+                <button className='btn btn-rnd-s' onClick={e => onDuplicateNote(e)}>
+                    <i className='fa-solid fa-copy'></i>
+                </button>
+                <button className='btn btn-rnd-s' onClick={e => onDeleteNote(e)}>
+                    <i className='fa-solid fa-trash'></i>
                 </button>
             </div>
         </div>

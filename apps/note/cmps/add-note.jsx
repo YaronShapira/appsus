@@ -3,9 +3,7 @@ const { useState, useEffect, useRef } = React
 import { noteService } from '../services/note.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
-    const [addNodeParams, setAddNodeParams] = useState(
-        structuredClone(note) || noteService.getDefaultNote()
-    )
+    const [addNodeParams, setAddNodeParams] = useState(structuredClone(note) || noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(isEditing || false)
     const addNoteBoxRef = useRef(null)
 
@@ -74,11 +72,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 />
             )}
             <div className='main-input'>
-                <input
+                <textarea
                     type='title'
                     placeholder='Take a note...'
                     id='txt'
                     name='txt'
+                    rows={isEditing ? 3 : isWriting ? 2 : 1}
                     value={addNodeParams.info.txt}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
