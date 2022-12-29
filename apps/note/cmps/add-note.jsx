@@ -74,6 +74,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
     return (
         <div className='add-note' ref={addNoteBoxRef}>
+            {addNodeParams.src && <img src={addNodeParams.src} />}
             {isWriting && (
                 <input
                     type='title'
@@ -84,7 +85,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     onChange={handleChange}
                 />
             )}
-            {addNodeParams.src && <img src={addNodeParams.src} />}
+
             <div className='main-input'>
                 <textarea
                     type='title'

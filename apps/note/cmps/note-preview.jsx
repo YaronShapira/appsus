@@ -2,41 +2,32 @@ const { Fragment } = React
 import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
+import NoteImg from './note-img.jsx'
+import NoteTxt from './note-txt.jsx'
 
 const { useState, useRef } = React
 
 export default function NotePreview({ note, deleteNote, setNotes }) {
     const [isEditing, setIsEditing] = useState(false)
-    const noteArticleRef = useRef(null)
 
     function onDuplicateNote(ev) {
         ev.stopPropagation()
         const duplicatedNote = structuredClone(note)
         duplicatedNote.id = null
 
-        noteService.saveNote(duplicatedNote).then(duplicatedNote => {
-            setNotes(prevNotes => [duplicatedNote, ...prevNotes])
+        noteService.saveNote(duplicatedNote).catch(err => {
+            console.log(err)
+            setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
         })
-
-        // noteService.saveNote(duplicatedNote).then(duplicatedNote => {
-        //     setNotes(oldNotes => {
-        //         const currNoteIdx = oldNotes.findIndex(currNote => currNote.id === note.id)
-        //         oldNotes.splice(currNoteIdx + 1, 0, duplicatedNote)
-        //         return [...oldNotes]
-        //     })
-        // })
+        setNotes(prevNotes => [duplicatedNote, ...prevNotes])
     }
     function onDeleteNote(ev) {
         ev.stopPropagation()
-        deleteNote(note.id)
-    }
-
-    // Solution for color palette not being on top of other cards. adding z-index
-    function onHover(ev) {
-        noteArticleRef.current.classList.add('z-2')
-    }
-    function onHoverLeave(ev) {
-        noteArticleRef.current.classList.remove('z-2')
+        const recoveryNote = structuredClone(note)
+        noteService.deleteNote(note.id).catch(() => {
+            setNotes(prevNotes => [...prevNotes, recoveryNote])
+        })
+        setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
     }
 
     function onPin(ev) {
@@ -80,41 +71,33 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         note.style.color = color
         renderNoteAndSave(recoveryNote)
     }
+    function DynamicNote(props) {
+        switch (note.type) {
+            case 'note-txt':
+                return <NoteTxt {...props} />
+            case 'note-img':
+                return <NoteImg {...props} />
+            case 'note-video':
+                break
+            case 'note-todos':
+                break
 
-    switch (note.type) {
-        case 'note-txt':
-            break
-        case 'note-img':
-            break
-        case 'note-video':
-            break
-        case 'note-todos':
-            break
-
-        default:
-            break
+            default:
+                break
+        }
     }
 
     return (
         <Fragment>
-            <article
-                style={note.style}
-                ref={noteArticleRef}
-                className='note-preview'
-                onClick={() => setIsEditing(true)}
-                onMouseEnter={onHover}
-                onMouseLeave={onHoverLeave}>
-                <h5>{note.title}</h5>
-                <p>{note.info.txt}</p>
-                {
-                    <NoteHoversBtns
-                        onDeleteNote={onDeleteNote}
-                        setColor={setColor}
-                        onDuplicateNote={onDuplicateNote}
-                        onPin={onPin}
-                    />
-                }
-            </article>
+            <DynamicNote
+                note={note}
+                setIsEditing={setIsEditing}
+                onDeleteNote={onDeleteNote}
+                setColor={setColor}
+                onDuplicateNote={onDuplicateNote}
+                onPin={onPin}
+            />
+
             {isEditing && (
                 <Fragment>
                     <div className='add-note-modal'>

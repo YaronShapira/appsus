@@ -9,11 +9,7 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     // console.log(notes)
 
-    function deleteNote(id) {
-        noteService.deleteNote(id).then(() => {
-            setNotes(notes.filter(note => note.id !== id))
-        })
-    }
+    
 
     useEffect(() => {
         noteService.getNotes().then(setNotes)
@@ -21,7 +17,7 @@ export function NoteIndex() {
     return (
         <div className='note-index'>
             <AddNote setNotes={setNotes} />
-            <NoteList notes={notes} deleteNote={deleteNote} setNotes={setNotes} />
+            <NoteList notes={notes} setNotes={setNotes} />
         </div>
     )
 }
