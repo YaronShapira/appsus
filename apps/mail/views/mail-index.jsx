@@ -16,7 +16,7 @@ export function MailIndex() {
     setFilterBy((prevFilterBy) => {
       return { ...prevFilterBy, txt: searchParams.get('q') + '' }
     })
-    loadMails({ txt: searchParams.get('q') })
+    loadMails({ ...filterBy, txt: searchParams.get('q') })
   }, [searchParams])
 
   function loadMails(filterBy) {
