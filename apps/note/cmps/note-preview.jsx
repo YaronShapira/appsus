@@ -58,12 +58,27 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         })
     }
 
+    function renderNoteAndSave(recoveryNote) {
+        noteService.saveNote(note).catch(err => {
+            console.log(err)
+            setNotes(oldNotes => {
+                oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = recoveryNote
+                return [...oldNotes]
+            })
+        })
+        setNotes(oldNotes => {
+            oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = note
+            return [...oldNotes]
+        })
+    }
+
     function setColor(ev, bgColor, color) {
         ev.stopPropagation()
+        const recoveryNote = structuredClone(note)
         note.style = { ...note.style }
         note.style.backgroundColor = bgColor
         note.style.color = color
-        saveNoteAndRender()
+        renderNoteAndSave(recoveryNote)
     }
 
     return (

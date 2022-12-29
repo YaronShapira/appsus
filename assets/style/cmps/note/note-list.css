@@ -25,7 +25,6 @@
 }
 @media screen and (max-width: 1200px) {
     .note-list {
-        padding: 3rem;
         columns: 2;
     }
 }
