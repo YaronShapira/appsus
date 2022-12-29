@@ -23,14 +23,15 @@ button:hover {
   box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.3);
 }
 .btn-secondary {
-  background-color: var(--clrbg-light);
+  background-color: var(--clr2);
 }
 .btn-primary:hover {
   background-color: var(--clr1-hover);
 }
 
 .btn-secondary:hover {
-  background-color: transparent;
+  background-color: var(--clr2-hover);
+  color: var(--clrbg);
 }
 
 /* circle-round btns */

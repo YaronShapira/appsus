@@ -5,21 +5,42 @@ import { utilService } from '../../../services/util.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailDetails() {
+  const [mail, setMail] = useState(null)
   const params = useParams()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    loadMail()
+  }, [params.mailId])
+
+  function loadMail() {
+    mailService
+      .get(params.mailId)
+      .then((mail) => {
+        setMail(mail)
+      })
+      .catch((err) => {
+        console.log(err, ' had issue in MailDetails cmp')
+        navigate('/mail')
+      })
+  }
+  if (!mail) return <section>Loading...</section>
   return (
     <section className='mail-details'>
       <nav className='mail-details-nav'>
         <ul className='tools-list'>
-          <button className='btn-rnd-l'>
+          <button
+            onClick={() => {
+              navigate('/mail')
+            }}
+            className='btn-rnd-l'>
             <i className='fa-solid fa-arrow-left'></i>
           </button>
         </ul>
       </nav>
       <section className='mail-details-header flex align-center justify-between'>
         <h2>
-          Mail in params : {params.mailId}
+          {mail.subject}
           <span className='tag'>Incoming</span>
         </h2>
         <div className='mail-details-header-actions'>
@@ -64,8 +85,8 @@ export function MailDetails() {
       </section>
       <section className='mail-details-footer'>
         <div className='mail-footer-actions'>
-          <button className='btn-primary'>Reply</button>
-          <button className='btn-primary'>Move</button>
+          <button className='btn-secondary'>Reply</button>
+          <button className='btn-secondary'>Move</button>
         </div>
       </section>
     </section>

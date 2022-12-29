@@ -1,3 +1,5 @@
+const { Link, useParams, useNavigate } = ReactRouterDOM
+
 export function MailPreview({
   mail,
   onCheckMail,
@@ -6,21 +8,29 @@ export function MailPreview({
   onMailToNotes,
   onToggleRead,
 }) {
+  const navigate = useNavigate()
   function formatTime(sentAt) {
     return 'Dec 27'
   }
+  function onExpandedMsg(mailId) {
+    navigate(`/mail/${mailId}`)
+  }
 
   return (
-    <article className={`mail-preview ${mail.isRead ? 'read' : ''}`}>
+    <article
+      onClick={() => {
+        onExpandedMsg(mail.id)
+      }}
+      className={`mail-preview ${mail.isRead ? 'read' : ''}`}>
       <input
         type='checkbox'
         name='check-email'
-        onChange={() => {
-          onCheckMail(mail.id)
+        onChange={(ev) => {
+          onCheckMail(ev, mail.id)
         }}></input>
       <button
-        onClick={() => {
-          onMailStarred(mail)
+        onClick={(ev) => {
+          onMailStarred(ev, mail)
         }}
         className='btn-rnd-l-s'>
         {mail.isStared ? (
@@ -35,22 +45,22 @@ export function MailPreview({
       <span className='mail-time'>{formatTime(mail.sentAt)}</span>
       <div className='hover-actions'>
         <button
-          onClick={() => {
-            onMailRemoved(mail.id)
+          onClick={(ev) => {
+            onMailRemoved(ev, mail.id)
           }}
           className='btn-rnd-l'>
           <i className='fa-solid fa-trash'></i>
         </button>
         <button
-          onClick={() => {
-            onMailToNotes(mail.id)
+          onClick={(ev) => {
+            onMailToNotes(ev, mail.id)
           }}
           className='btn-rnd-l'>
           <i className='fa-regular fa-paper-plane'></i>
         </button>
         <button
-          onClick={() => {
-            onToggleRead(mail)
+          onClick={(ev) => {
+            onToggleRead(ev, mail)
           }}
           className='btn-rnd-l'>
           {mail.isRead ? (
