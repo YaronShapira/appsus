@@ -81,6 +81,20 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         renderNoteAndSave(recoveryNote)
     }
 
+    switch (note.type) {
+        case 'note-txt':
+            break
+        case 'note-img':
+            break
+        case 'note-video':
+            break
+        case 'note-todos':
+            break
+
+        default:
+            break
+    }
+
     return (
         <Fragment>
             <article
@@ -112,17 +126,3 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         </Fragment>
     )
 }
-
-// switch (note.type) {
-//     case 'note-txt':
-//         break
-//     case 'note-img':
-//         break
-//     case 'note-video':
-//         break
-//     case 'note-todos':
-//         break
-
-//     default:
-//         break
-// }

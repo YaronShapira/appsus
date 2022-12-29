@@ -43,6 +43,7 @@ function getDefaultNote() {
         info: {
             txt: '',
         },
+        src: '',
         style: {},
     }
 }
@@ -93,6 +94,7 @@ function _createNotes() {
                     txt: 'Remember the wedding of Noa & Cody',
                 },
                 style: {},
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -103,6 +105,7 @@ function _createNotes() {
                     txt: 'Remember to do all the bonuses or else...',
                 },
                 style: { backgroundColor: '#3269ff', color: 'white' },
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -113,6 +116,7 @@ function _createNotes() {
                     txt: 'My advice to you is get married: If you find a good wife you’ll be happy; if not, you’ll become a philosopher',
                 },
                 style: { backgroundColor: '#8cc40f', color: 'black' },
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -123,6 +127,7 @@ function _createNotes() {
                     txt: 'Chupa chups tootsie roll croissant marshmallow sugar plum chocolate bar',
                 },
                 style: {},
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -133,6 +138,7 @@ function _createNotes() {
                     txt: 'If you want to be sure that you never forget your wife’s birthday, just try forgetting it once.',
                 },
                 style: { backgroundColor: '#ae3b76', color: 'white' },
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -143,6 +149,7 @@ function _createNotes() {
                     txt: 'Remember to flush after using the toilet',
                 },
                 style: {},
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -153,6 +160,7 @@ function _createNotes() {
                     txt: 'Never go to bed mad. Stay up and fight',
                 },
                 style: { backgroundColor: '#fe7745', color: 'black' },
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -163,6 +171,7 @@ function _createNotes() {
                     txt: 'Adults are always asking children what they want to be when they grow up because they’re looking for ideas',
                 },
                 style: { backgroundColor: '#0e121a', color: '#798193' },
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -173,6 +182,7 @@ function _createNotes() {
                     txt: 'When life gives you lemons, just say ‘fuck the lemons’, and bail',
                 },
                 style: {},
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -183,6 +193,7 @@ function _createNotes() {
                     txt: 'Never let your best friends get lonely, keep disturbing them.',
                 },
                 style: {},
+                src: '',
             },
             {
                 id: utilService.makeId(),
@@ -193,6 +204,7 @@ function _createNotes() {
                     txt: 'Friends buy you food. Best friends eat your food.',
                 },
                 style: { backgroundColor: '#b82af3', color: 'white' },
+                src: '',
             },
         ]
     }

@@ -1,11 +1,13 @@
 const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
+import loadImageFromInput from '../services/upload.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNodeParams, setAddNodeParams] = useState(structuredClone(note) || noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(isEditing || false)
     const addNoteBoxRef = useRef(null)
+    const uploadImgInputRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
@@ -20,6 +22,17 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         setAddNodeParams(prev => {
             return { ...prev, [field]: value }
         })
+    }
+
+    function updateParamsSrc(img) {
+        addNodeParams.src = img.src
+        addNodeParams.type = 'note-img'
+        setAddNodeParams({ ...addNodeParams })
+    }
+
+    function onUploadImg(ev) {
+        loadImageFromInput(ev, updateParamsSrc)
+        setIsWriting(true)
     }
 
     function useOutsideAlerter(ref) {
@@ -71,6 +84,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     onChange={handleChange}
                 />
             )}
+            {addNodeParams.src && <img src={addNodeParams.src} />}
             <div className='main-input'>
                 <textarea
                     type='title'
@@ -90,9 +104,18 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
                         </button>
-                        <button className='btn btn-rnd-s'>
+                        <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
                             <i className='fa-solid fa-image'></i>
                         </button>
+                        <input
+                            type='file'
+                            className='file-input btn'
+                            name='image'
+                            id='image'
+                            hidden
+                            ref={uploadImgInputRef}
+                            onChange={onUploadImg}
+                        />
                     </div>
                 )}
             </div>
