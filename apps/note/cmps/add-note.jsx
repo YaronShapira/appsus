@@ -1,34 +1,37 @@
 const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
+import { recordAudio } from '../services/record.service.js'
 import loadImageFromInput from '../services/upload.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
-    const [addNodeParams, setAddNodeParams] = useState(structuredClone(note) || noteService.getDefaultNote())
+    const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(isEditing || false)
+    const [isRecording, setIsRecording] = useState(false)
     const addNoteBoxRef = useRef(null)
     const uploadImgInputRef = useRef(null)
     const mainTextAreaRef = useRef(null)
+    const micRecorderRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
         if (target.id === 'txt') {
-            return setAddNodeParams(prev => {
+            return setAddNoteParams(prev => {
                 prev.info.txt = value
                 return { ...prev }
             })
         }
-        setAddNodeParams(prev => {
+        setAddNoteParams(prev => {
             return { ...prev, [field]: value }
         })
     }
 
     function updateParamsSrc(img) {
-        addNodeParams.src = img.src
-        addNodeParams.type = 'note-img'
-        setAddNodeParams({ ...addNodeParams })
+        addNoteParams.src = img.src
+        addNoteParams.type = 'note-img'
+        setAddNoteParams({ ...addNoteParams })
     }
 
     function onUploadImg(ev) {
@@ -57,10 +60,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
     function clearSlate() {
         setIsWriting(false)
-        setAddNodeParams(noteService.getDefaultNote())
+        setIsRecording(false)
+        setAddNoteParams(noteService.getDefaultNote())
         mainTextAreaRef.current.placeholder = 'Take a note...'
         mainTextAreaRef.current.name = 'txt'
         mainTextAreaRef.current.id = 'txt'
+        addNoteParams.type = 'note-txt'
     }
 
     function onYoutube() {
@@ -69,6 +74,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         mainTextAreaRef.current.placeholder = 'Enter a Youtube Link...'
         mainTextAreaRef.current.name = 'link'
         mainTextAreaRef.current.id = 'link'
+        addNoteParams.type = 'note-video'
     }
 
     function onToDoList() {
@@ -78,13 +84,16 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function addNote() {
-        clearSlate()
+        // if (isRecording) saveRecording()
+
         if (isEditing) setIsEditing(false)
 
-        const newNote = structuredClone(addNodeParams)
+        const newNote = structuredClone(addNoteParams)
+
+        clearSlate()
 
         noteService
-            .saveNote(addNodeParams)
+            .saveNote(addNoteParams)
             .then(newNoteFromDB => {
                 newNote.id = newNoteFromDB.id
                 setNotes(prev => [...prev])
@@ -103,16 +112,54 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         })
     }
 
+    function onRecord() {
+        ;(async () => {
+            setIsWriting(true)
+            setIsRecording(true)
+            mainTextAreaRef.current.placeholder = 'Listening'
+            const recorder = await recordAudio()
+            micRecorderRef.current = recorder
+            recorder.start()
+        })()
+    }
+
+    async function stopRecording() {
+        clearSlate()
+        const audio = await micRecorderRef.current.stop()
+        addNoteParams.audio = audio
+        audio.play()
+        var reader = new FileReader()
+        reader.readAsDataURL(audio.audioBlob)
+        setTimeout(() => {
+            console.log(reader.result)
+            addNoteParams.audio = reader.result
+            const dataLength = 'data:audio/wav;base64'.length
+            addNoteParams.audio = 'data:audio/wav;base64' + reader.result.slice(dataLength)
+            // addNoteParams.audio = audio.audioUrl
+            console.log(addNoteParams)
+            addNote()
+        }, 100)
+        console.log(reader.result)
+        console.log(audio)
+    }
+
+    async function saveRecording() {
+        const audio = await micRecorderRef.current.stop()
+        addNoteParams.audio = audio
+        console.log(addNoteParams)
+        audio.play()
+    }
+
     return (
         <div className='add-note' ref={addNoteBoxRef}>
-            {addNodeParams.src && <img src={addNodeParams.src} />}
+            {addNoteParams.src && <img src={addNoteParams.src} />}
             {isWriting && (
                 <input
                     type='title'
                     placeholder='Title'
                     id='title'
                     name='title'
-                    value={addNodeParams.title}
+                    value={addNoteParams.title}
                     onChange={handleChange}
                 />
             )}
@@ -124,7 +171,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     id='txt'
                     name='txt'
                     rows={isEditing ? 3 : isWriting ? 2 : 1}
-                    value={addNodeParams.info.txt || addNodeParams.link}
+                    value={addNoteParams.info.txt || addNoteParams.link}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                     ref={mainTextAreaRef}
@@ -132,10 +179,10 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 {!isWriting && (
                     <div className='inline-utils'>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-list' onClick={onToDoList}></i>
+                            <i className='fa-solid fa-list' onClick={stopRecording}></i>
                         </button>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-palette'></i>
+                        <button className='btn btn-rnd-s' onClick={onRecord}>
+                            <i className='fa-solid fa-microphone'></i>
                         </button>
                         <button className='btn btn-rnd-s' onClick={onYoutube}>
                             <i className='fa-brands fa-youtube'></i>
@@ -168,8 +215,8 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                             <i className='fa-solid fa-location-dot'></i>
                         </button>
                     </div>
-                    <button className='btn add-btn btn-primary' onClick={addNote}>
-                        Save
+                    <button className='btn add-btn btn-primary' onClick={isRecording ? stopRecording : addNote}>
+                        {isRecording ? 'Stop' : 'Save'}
                     </button>
                 </div>
             )}
