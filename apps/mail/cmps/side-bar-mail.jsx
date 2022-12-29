@@ -1,3 +1,5 @@
+import { eventBusService } from '../../../services/event-bus.service.js'
+
 export function SideBarMail({ isOpen }) {
   return (
     <nav className={`tools-nav ${isOpen ? 'open' : ''}`}>
