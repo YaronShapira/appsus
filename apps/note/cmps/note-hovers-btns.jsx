@@ -11,7 +11,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
     }
 
     return (
-        <div className='hovers fade-in' onMouseLeave={() => setIsInPalette(false)}>
+        <div className='hovers fade-in' onMouseLeave={() => setIsInPalette(false)} onClick={e => e.stopPropagation()}>
             <div className='select'>
                 <button className='btn btn-rnd-s'>
                     <i className='fa-solid fa-check'></i>

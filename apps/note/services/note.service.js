@@ -112,7 +112,7 @@ function _createNotes() {
                 info: {
                     txt: 'My advice to you is get married: If you find a good wife you’ll be happy; if not, you’ll become a philosopher',
                 },
-                style: { backgroundColor: '#ffd947', color: 'black' },
+                style: { backgroundColor: '#8cc40f', color: 'black' },
             },
             {
                 id: utilService.makeId(),
@@ -152,7 +152,7 @@ function _createNotes() {
                 info: {
                     txt: 'Never go to bed mad. Stay up and fight',
                 },
-                style: { backgroundColor: '#0beaaf', color: 'black' },
+                style: { backgroundColor: '#fe7745', color: 'black' },
             },
             {
                 id: utilService.makeId(),
@@ -162,7 +162,7 @@ function _createNotes() {
                 info: {
                     txt: 'Adults are always asking children what they want to be when they grow up because they’re looking for ideas',
                 },
-                style: { backgroundColor: '#0e121a', color: 'white' },
+                style: { backgroundColor: '#0e121a', color: '#798193' },
             },
             {
                 id: utilService.makeId(),
@@ -192,7 +192,7 @@ function _createNotes() {
                 info: {
                     txt: 'Friends buy you food. Best friends eat your food.',
                 },
-                style: { backgroundColor: '#fe7746', color: 'white' },
+                style: { backgroundColor: '#b82af3', color: 'white' },
             },
         ]
     }

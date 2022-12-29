@@ -29,7 +29,7 @@
     background: #3269ff;
 }
 .note-palette button:nth-child(2) {
-    background: #ffd947;
+    background: #8cc40f;
 }
 .note-palette button:nth-child(3) {
     background: #0e121a;
@@ -38,8 +38,8 @@
     background: #ae3b76;
 }
 .note-palette button:nth-child(5) {
-    background: #0beaaf;
+    background: #fe7745;
 }
 .note-palette button:nth-child(6) {
-    background: #fe7746;
+    background: #b82af3;
 }
