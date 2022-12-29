@@ -38,6 +38,16 @@ button:hover {
   background-color: transparent;
 }
 
+.btn-rnd-l-s {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3em;
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+}
+
 .btn-rnd-s,
 .btn-rnd-l {
   display: inline-flex;

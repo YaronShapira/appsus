@@ -22,7 +22,7 @@ export function MailPreview({
         onClick={() => {
           onMailStarred(mail)
         }}
-        className='btn-rnd-s'>
+        className='btn-rnd-l-s'>
         {mail.isStared ? (
           <i className='fa-solid fa-star'></i>
         ) : (

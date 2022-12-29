@@ -1,4 +1,12 @@
+/* LAYOUT */
 .mail-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content 1fr auto;
+}
+/* basics for container */
+.mail-details {
+  --avatar-size: 42px;
   margin: 2em;
   border-radius: 2em;
   overflow: hidden;
@@ -7,4 +15,45 @@
   height: calc(100vh - var(--header-height) - 4em);
   overflow-y: auto;
   padding: 2em;
+}
+
+/* HEADER */
+.mail-details-header {
+  padding-left: calc(var(--avatar-size) + 1.75rem);
+  margin-bottom: 1em;
+}
+
+.user-avatar {
+  font-size: var(--avatar-size);
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  background-color: var(--clr2);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin-inline-end: 1.75rem;
+}
+.user-avatar > * {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75em;
+}
+.mail-msg-header {
+  margin-bottom: 4em;
+}
+.sender-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  /* grid-template-columns: max-content; */
+  /* grid-auto-flow: column; */
+}
+.mail-time {
+  margin-inline-end: 1em;
+}
+
+/* MSG BODY */
+
+.mail-details-body {
 }

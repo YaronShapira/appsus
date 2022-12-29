@@ -8,7 +8,7 @@
   --clr1-hover: #5582ff;
   --clr2: rgb(121, 129, 147);
   --clr2-a: rgb(121, 129, 147, var(--a));
-  --clr2-hover: #99a0af;
+  --clr2-hover: #d0d4dd;
 
   --clrbg: rgb(14, 18, 26);
   --clrbg-a: rgba(14, 18, 26, var(--a));

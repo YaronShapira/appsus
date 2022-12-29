@@ -31,7 +31,20 @@ export function MailCompose({ sendMail }) {
       </button>
       <section className={`compose-mail-form ${isMailEdited ? 'open' : ''}`}>
         <form onSubmit={onSendMail}>
-          <h4>New Mail</h4>
+          <section className='compose-mail-form-header flex align-center justify-between'>
+            <h5>New Mail</h5>
+            <div className='footer-tools'>
+              <button className='btn-rnd-s'>
+                <i className='fa-solid fa-window-minimize'></i>
+              </button>
+              <button className='btn-rnd-s'>
+                <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
+              </button>
+              <button className='btn-rnd-s'>
+                <i className='fa-solid fa-xmark'></i>
+              </button>
+            </div>
+          </section>
           <input
             value={newMailToEdit.to}
             type='email'
@@ -52,13 +65,20 @@ export function MailCompose({ sendMail }) {
             value={newMailToEdit.body}
             placeholder='Your message...'
             name='body'
-            rows={5}
+            rows={10}
             id='body'
             onChange={handleForm}
           />
-          <button className='btn-primary' type='submit'>
-            Send
-          </button>
+          <div className='compose-mail-form-footer flex align-center justify-between'>
+            <button className='btn-primary' type='submit'>
+              Send
+            </button>
+            <section className='footer-tools'>
+              <button className='btn-rnd-l-s'>
+                <i className='fa-solid fa-trash'></i>
+              </button>
+            </section>
+          </div>
         </form>
       </section>
     </section>
