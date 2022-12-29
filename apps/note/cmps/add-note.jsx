@@ -59,12 +59,16 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         setIsWriting(false)
         setAddNodeParams(noteService.getDefaultNote())
         mainTextAreaRef.current.placeholder = 'Take a note...'
+        mainTextAreaRef.current.name = 'txt'
+        mainTextAreaRef.current.id = 'txt'
     }
 
     function onYoutube() {
         setIsWriting(true)
         mainTextAreaRef.current.focus()
         mainTextAreaRef.current.placeholder = 'Enter a Youtube Link...'
+        mainTextAreaRef.current.name = 'link'
+        mainTextAreaRef.current.id = 'link'
     }
 
     function addNote() {
@@ -111,7 +115,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     id='txt'
                     name='txt'
                     rows={isEditing ? 3 : isWriting ? 2 : 1}
-                    value={addNodeParams.info.txt}
+                    value={addNodeParams.info.txt || addNodeParams.link}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                     ref={mainTextAreaRef}

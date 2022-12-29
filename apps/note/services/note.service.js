@@ -52,6 +52,7 @@ function getDefaultNote() {
         },
         src: '',
         style: {},
+        link: '',
     }
 }
 
