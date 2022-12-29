@@ -10,7 +10,8 @@
   background-color: var(--clr1);
 }
 .btn-mail-compose.open {
-  background-color: var(--clrbg-light);
+  background-color: var(--clr-txt);
+  color: var(--clr1);
 }
 .btn-mail-compose:hover {
   background-color: var(--clr-txt);

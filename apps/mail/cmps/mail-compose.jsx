@@ -6,7 +6,7 @@ export function MailCompose({ sendMail }) {
 
   const [isMailEdited, setIsMailEdited] = useState(false)
 
-  function onBtnPlus() {
+  function onBtnCompose() {
     setIsMailEdited(!isMailEdited)
   }
 
@@ -25,22 +25,22 @@ export function MailCompose({ sendMail }) {
   return (
     <section className='mail-compose'>
       <button
-        onClick={onBtnPlus}
+        onClick={onBtnCompose}
         className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
-        <i className={`fa-solid ${!isMailEdited ? 'fa-pencil' : 'fa-minus'}`}></i>
+        <i className={`fa-solid fa-pencil`}></i>
       </button>
       <section className={`compose-mail-form ${isMailEdited ? 'open' : ''}`}>
         <form onSubmit={onSendMail}>
           <section className='compose-mail-form-header flex align-center justify-between'>
             <h5>New Mail</h5>
             <div className='footer-tools'>
-              <button className='btn-rnd-s'>
+              <button type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-window-minimize'></i>
               </button>
-              <button className='btn-rnd-s'>
+              <button type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
               </button>
-              <button className='btn-rnd-s'>
+              <button onClick={onBtnCompose} type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-xmark'></i>
               </button>
             </div>
@@ -83,7 +83,7 @@ export function MailCompose({ sendMail }) {
               Send
             </button>
             <section className='footer-tools'>
-              <button className='btn-rnd-l-s'>
+              <button onClick={onBtnCompose} type='button' className='btn-rnd-l-s'>
                 <i className='fa-solid fa-trash'></i>
               </button>
             </section>
