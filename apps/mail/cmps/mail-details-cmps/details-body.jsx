@@ -1,3 +1,5 @@
+import { utilService } from '../../../../services/util.service.js'
+
 export function DetailsBody({ mail, onMailStarred }) {
   function formatTime(timestamp) {
     return <h6 className='mail-time'>{timestamp}</h6>
@@ -18,7 +20,7 @@ export function DetailsBody({ mail, onMailStarred }) {
           </div>
         </div>
         <div className='sender-info-actions flex align-center justify-between'>
-          {formatTime(mail.sentAt)}
+          {utilService.formatTime(mail.sentAt)}
           <button
             onClick={(ev) => {
               onMailStarred(ev, mail)

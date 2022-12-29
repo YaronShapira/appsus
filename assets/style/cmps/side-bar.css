@@ -18,6 +18,7 @@
 }
 .icon-label i {
   transition: 0.25s 0.15s color;
+  font-size: 1.25em;
 }
 .side-bar .icon-label:hover {
   background-color: var(--clrbg-light);

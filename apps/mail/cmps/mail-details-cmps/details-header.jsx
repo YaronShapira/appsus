@@ -4,7 +4,7 @@ export function DetailsHeader({ mail, onPrintMail }) {
       <div className='mail-subject'>
         <div>
           <span className='mail-subject-txt'>{mail.subject}</span>
-          <span className='tag'>Incoming</span>
+          <span className='tag'>{mail.status}</span>
         </div>
       </div>
       <div className='mail-details-header-actions'>

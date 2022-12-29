@@ -28,6 +28,10 @@ body {
   font-family: 'poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   background-color: var(--clrbg);
+  /* background-image: url(../../imgs/bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  backdrop-filter: brightness(25%); */
 }
 img,
 picture,

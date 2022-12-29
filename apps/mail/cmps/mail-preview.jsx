@@ -1,3 +1,5 @@
+import { utilService } from '../../../services/util.service.js'
+
 const { Link, useParams, useNavigate } = ReactRouterDOM
 
 export function MailPreview({
@@ -9,9 +11,7 @@ export function MailPreview({
   onToggleRead,
 }) {
   const navigate = useNavigate()
-  function formatTime(sentAt) {
-    return 'Dec 27'
-  }
+
   function onExpandedMsg(mailId) {
     navigate(`/mail/${mailId}`)
   }
@@ -41,8 +41,8 @@ export function MailPreview({
       </button>
       <span className='mail-sender line-clamp'>{mail.sender}</span>
       <span className='mail-subject line-clamp'>{mail.subject}</span>
-      <span className='mail-body line-clamp'>{mail.body}</span>
-      <span className='mail-time'>{formatTime(mail.sentAt)}</span>
+      <span className='mail-body line-clamp'>{mail.body.replace(/<[^>]*>?/gm, '')}...</span>
+      <span className='mail-time'>{utilService.formatTime(mail.sentAt)}</span>
       <div className='hover-actions'>
         <button
           onClick={(ev) => {
