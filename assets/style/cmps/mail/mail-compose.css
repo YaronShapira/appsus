@@ -45,7 +45,7 @@
 }
 .compose-mail-form-footer,
 .compose-mail-form-header {
-  padding: 0.4em 0.8em;
+  padding: 0.4em 1em;
 }
 .compose-mail-form-header {
   border-radius: var(--br-l) var(--br-l) 0 0;
@@ -53,17 +53,46 @@
 
   color: var(--clrbg);
 }
+.compose-mail-form form textarea {
+  padding: 0.4em 0em;
+}
 .compose-mail-form form input,
 .compose-mail-form form textarea {
   border-radius: 0;
   background-color: var(--clr-txt);
   color: var(--clrbg);
   border-top: none;
-  border-bottom: 1px solid var(--clr2-a);
-}
-.compose-mail-form form textarea {
   border: none;
+  position: relative;
+  /* border-bottom: 1px solid var(--clr2-hover); */
 }
+.field-wrapper {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.field-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--clr2-hover);
+}
+
+.field-wrapper > *:first-child {
+  margin-inline-end: 0.5em;
+}
+.compose-mail-form .fields-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4em 1em;
+}
+
 .compose-mail-form form input:focus,
 .compose-mail-form form textarea:focus {
   background-color: var(--clr-txt);

@@ -20,7 +20,7 @@
   transition: 0.25s 0.15s color;
 }
 .side-bar .icon-label:hover {
-  background-color: var(--clrbg);
+  background-color: var(--clrbg-light);
 }
 .side-bar .icon-label:hover i {
   color: var(--clr-txt);
@@ -31,7 +31,7 @@
 
 .icon-label.active {
   color: var(--clr-txt);
-  background-color: var(--clr1-a);
+  background-color: var(--clr1-a) !important;
 }
 .icon-label.active i {
   color: var(--clr-txt);
