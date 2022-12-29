@@ -16,9 +16,11 @@
   overflow-y: auto;
 }
 .mail-details-header,
-.mail-details-footer,
-.mail-msg {
+.mail-details-footer {
   padding: 2em;
+}
+.mail-msg {
+  padding: 0 2em;
 }
 .mail-details-nav {
   background-color: var(--clr2-a);
