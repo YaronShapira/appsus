@@ -7,6 +7,7 @@ export const noteService = {
     saveNote,
     getDefaultNote,
     deleteNote,
+    duplicateNote,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -14,6 +15,12 @@ _createNotes()
 
 function getNotes() {
     return storageService.query(NOTES_KEY)
+}
+
+function duplicateNote(note) {
+    const newNote = structuredClone(note)
+    newNote.id = utilService.makeId()
+    return newNote
 }
 
 function getNote(id) {
@@ -37,6 +44,7 @@ function deleteNote(id) {
 
 function getDefaultNote() {
     return {
+        id: null,
         title: '',
         type: 'note-txt',
         isPinned: false,
@@ -45,6 +53,7 @@ function getDefaultNote() {
         },
         src: '',
         style: {},
+        link: '',
     }
 }
 

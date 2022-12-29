@@ -59,12 +59,22 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         setIsWriting(false)
         setAddNodeParams(noteService.getDefaultNote())
         mainTextAreaRef.current.placeholder = 'Take a note...'
+        mainTextAreaRef.current.name = 'txt'
+        mainTextAreaRef.current.id = 'txt'
     }
 
     function onYoutube() {
         setIsWriting(true)
         mainTextAreaRef.current.focus()
         mainTextAreaRef.current.placeholder = 'Enter a Youtube Link...'
+        mainTextAreaRef.current.name = 'link'
+        mainTextAreaRef.current.id = 'link'
+    }
+
+    function onToDoList() {
+        console.log('TODO')
+        setIsWriting(true)
+        mainTextAreaRef.current.focus()
     }
 
     function addNote() {
@@ -72,15 +82,21 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         if (isEditing) setIsEditing(false)
 
         const newNote = structuredClone(addNodeParams)
-        
-        noteService.saveNote(addNodeParams).catch(err => {
-            if (!isEditing) return setNotes(prev => [newNote, ...prev])
-            setNotes(oldNotes => {
-                oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
-                return [...oldNotes]
+
+        noteService
+            .saveNote(addNodeParams)
+            .then(newNoteFromDB => {
+                newNote.id = newNoteFromDB.id
+                setNotes(prev => [...prev])
+                console.log('?')
             })
-        })
-        if (!isEditing) return setNotes(prev => [newNote, ...prev])
+            .catch(err => {
+                console.log(err)
+                setNotes(noteService.getNotes())
+            })
+        if (!isEditing) {
+            return setNotes(prev => [newNote, ...prev])
+        }
         setNotes(oldNotes => {
             oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
             return [...oldNotes]
@@ -108,7 +124,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     id='txt'
                     name='txt'
                     rows={isEditing ? 3 : isWriting ? 2 : 1}
-                    value={addNodeParams.info.txt}
+                    value={addNodeParams.info.txt || addNodeParams.link}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                     ref={mainTextAreaRef}
@@ -116,7 +132,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 {!isWriting && (
                     <div className='inline-utils'>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
+                            <i className='fa-solid fa-list' onClick={onToDoList}></i>
                         </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>

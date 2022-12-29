@@ -5,6 +5,7 @@ import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
 import NoteTxt from './note-txt.jsx'
+import VideoCmp from './video-cmp.jsx'
 
 const { useState, useRef } = React
 
@@ -13,19 +14,24 @@ export default function NotePreview({ note, setNotes }) {
 
     function onDuplicateNote(ev) {
         ev.stopPropagation()
+        // const duplicatedNote = noteService.duplicateNote(note)
         const duplicatedNote = structuredClone(note)
         duplicatedNote.id = null
 
-        noteService.saveNote(duplicatedNote).catch(err => {
-            console.log(err)
-            setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
-        })
+        noteService
+            .saveNote(duplicatedNote)
+            .then(newNote => (duplicatedNote.id = newNote.id))
+            .catch(err => {
+                console.log(err)
+                setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
+            })
         setNotes(prevNotes => [duplicatedNote, ...prevNotes])
     }
     function onDeleteNote(ev) {
         ev.stopPropagation()
         const recoveryNote = structuredClone(note)
-        noteService.deleteNote(note.id).catch(() => {
+        noteService.deleteNote(note.id).catch(err => {
+            console.log(err)
             setNotes(prevNotes => [...prevNotes, recoveryNote])
         })
         setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
@@ -100,7 +106,8 @@ export default function NotePreview({ note, setNotes }) {
             /> */}
 
             <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
-                {note.src && <ImgCmp note={note} />}
+                {note.src && <ImgCmp src={note.src} />}
+                {note.link && <VideoCmp link={note.link} />}
                 <h5>{note.title}</h5>
                 <p>{note.info.txt}</p>
 

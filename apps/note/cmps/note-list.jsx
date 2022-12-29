@@ -14,13 +14,7 @@ export function NoteList({ notes, setNotes }) {
                     <h6 className='list-title'>Pinned</h6>
                     <div className='note-list'>
                         {pinnedNotes.map(note => {
-                            return (
-                                <NotePreview
-                                    note={note}
-                                    key={note.id ? note.id : utilService.makeId()}
-                                    setNotes={setNotes}
-                                />
-                            )
+                            return <NotePreview note={note} key={note.id} setNotes={setNotes} />
                         })}
                     </div>
                 </Fragment>
@@ -28,9 +22,7 @@ export function NoteList({ notes, setNotes }) {
             <h6 className='list-title'>{pinnedNotes.length > 0 && 'Others'}</h6>
             <div className='note-list'>
                 {unPinnedNotes.map(note => {
-                    return (
-                        <NotePreview note={note} key={note.id ? note.id : utilService.makeId()} setNotes={setNotes} />
-                    )
+                    return <NotePreview note={note} key={note.id} setNotes={setNotes} />
                 })}
             </div>
         </div>
