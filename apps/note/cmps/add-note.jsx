@@ -26,9 +26,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
     function useOutsideAlerter(ref) {
         useEffect(() => {
-            /**
-             * Alert if clicked on outside of element
-             */
+            // Alert if clicked on outside of element
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
                     clearSlate()
