@@ -93,7 +93,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         clearSlate()
 
         noteService
-            .saveNote(addNoteParams)
+            .saveNote(newNote)
             .then(newNoteFromDB => {
                 newNote.id = newNoteFromDB.id
                 setNotes(prev => [...prev])
@@ -126,21 +126,15 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     async function stopRecording() {
         clearSlate()
         const audio = await micRecorderRef.current.stop()
-        addNoteParams.audio = audio
-        audio.play()
         var reader = new FileReader()
         reader.readAsDataURL(audio.audioBlob)
+        addNoteParams.type = 'note-recording'
         setTimeout(() => {
-            console.log(reader.result)
             addNoteParams.audio = reader.result
             const dataLength = 'data:audio/wav;base64'.length
             addNoteParams.audio = 'data:audio/wav;base64' + reader.result.slice(dataLength)
-            // addNoteParams.audio = audio.audioUrl
-            console.log(addNoteParams)
             addNote()
         }, 100)
-        console.log(reader.result)
-        console.log(audio)
     }
 
     async function saveRecording() {

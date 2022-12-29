@@ -4,6 +4,7 @@ import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
+import NoteRecording from './note-recording.jsx'
 import NoteTxt from './note-txt.jsx'
 import NoteVideo from './note-video.jsx'
 import VideoCmp from './video-cmp.jsx'
@@ -92,7 +93,9 @@ export default function NotePreview({ note, setNotes }) {
                 return <NoteVideo {...props} />
             case 'note-todos':
                 break
-
+            case 'note-recording':
+                return <NoteRecording {...props} />
+                break
             default:
                 break
         }
@@ -135,7 +138,6 @@ export default function NotePreview({ note, setNotes }) {
                     <div className='dark-overlay'></div>
                 </Fragment>
             )}
-            {note.audio && <audio controls={true} src={note.audio}></audio>}
         </Fragment>
     )
 }
