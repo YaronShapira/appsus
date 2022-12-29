@@ -5,6 +5,16 @@ export function DetailsBody({ mail, onMailStarred }) {
     return <h6 className='mail-time'>{timestamp}</h6>
   }
 
+  function formatDate(date) {
+    return new Intl.DateTimeFormat('he-IL', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date)
+  }
+
   console.log('mail:', mail)
   if (!mail) return <section>Loading...</section>
   return (
@@ -15,12 +25,12 @@ export function DetailsBody({ mail, onMailStarred }) {
             <i className='fa-solid fa-user'></i>
           </div>
           <div className='user-details-txt'>
-            <h5>{mail.sender}</h5>
+            <h6>{mail.sender}</h6>
             <small>{mail.from}</small>
           </div>
         </div>
         <div className='sender-info-actions flex align-center justify-between'>
-          {utilService.formatTime(mail.sentAt)}
+          {`${formatDate(mail.sentAt)} (${utilService.formatTime(mail.sentAt)})`}
           <button
             onClick={(ev) => {
               onMailStarred(ev, mail)

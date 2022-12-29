@@ -13,6 +13,7 @@ export function MailPreview({
   const navigate = useNavigate()
 
   function onExpandedMsg(mailId) {
+    onToggleRead(mail)
     navigate(`/mail/${mailId}`)
   }
 
@@ -26,11 +27,11 @@ export function MailPreview({
         type='checkbox'
         name='check-email'
         onChange={(ev) => {
-          onCheckMail(ev, mail.id)
+          onCheckMail(mail.id, ev)
         }}></input>
       <button
         onClick={(ev) => {
-          onMailStarred(ev, mail)
+          onMailStarred(mail, ev)
         }}
         className='btn-rnd-l-s'>
         {mail.isStared ? (
@@ -46,21 +47,21 @@ export function MailPreview({
       <div className='hover-actions'>
         <button
           onClick={(ev) => {
-            onMailRemoved(ev, mail.id)
+            onMailRemoved(mail.id, ev)
           }}
           className='btn-rnd-l'>
           <i className='fa-solid fa-trash'></i>
         </button>
         <button
           onClick={(ev) => {
-            onMailToNotes(ev, mail.id)
+            onMailToNotes(mail.id, ev)
           }}
           className='btn-rnd-l'>
           <i className='fa-regular fa-paper-plane'></i>
         </button>
         <button
           onClick={(ev) => {
-            onToggleRead(ev, mail)
+            onToggleRead(mail, ev)
           }}
           className='btn-rnd-l'>
           {mail.isRead ? (

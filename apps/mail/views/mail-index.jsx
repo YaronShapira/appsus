@@ -30,8 +30,8 @@ export function MailIndex() {
   function onSetFilter(filterBy) {
     setFilterBy(filterBy)
   }
-  function onMailStarred(ev, mail) {
-    ev.stopPropagation()
+  function onMailStarred(mail, ev) {
+    ev && ev.stopPropagation()
     mail.isStared = !mail.isStared
     mailService.save(mail).catch(() => {
       loadMails(filterBy)
@@ -39,25 +39,26 @@ export function MailIndex() {
     setMails((prev) => [...prev])
   }
 
-  function onMailToNotes(ev, mailId) {
-    ev.stopPropagation()
+  function onMailToNotes(mailId, ev) {
+    ev && ev.stopPropagation()
     console.log('mailId:', mailId)
   }
 
-  function onToggleRead(ev, mail) {
-    ev.stopPropagation()
+  function onToggleRead(mail, ev) {
+    ev && ev.stopPropagation()
+
     mail.isRead = !mail.isRead
     mailService.save(mail).then((mail) => {})
     setMails((prev) => [...prev])
   }
 
-  function onCheckMail(ev, mailId) {
-    ev.stopPropagation()
+  function onCheckMail(mailId, ev) {
+    ev && ev.stopPropagation()
     console.log('mailId:', mailId)
   }
 
-  function onMailRemoved(ev, mailId) {
-    ev.stopPropagation()
+  function onMailRemoved(mailId, ev) {
+    ev && ev.stopPropagation()
     mailService.remove(mailId).catch((err) => {
       loadMails(filterBy)
       console.log('err onRemoveMail:', err)

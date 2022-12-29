@@ -13,7 +13,7 @@
 
 /* basics for container */
 .mail-details {
-  --avatar-size: 28px;
+  --avatar-size: 38px;
   margin: 2em;
   border-radius: 2em;
   overflow: hidden;
@@ -115,7 +115,7 @@
   margin-inline-end: 1em;
 }
 .mail-details-footer > * {
-  max-width: 540px;
+  max-width: 740px;
   margin: auto;
 }
 /* print content */

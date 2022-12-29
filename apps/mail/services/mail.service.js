@@ -229,10 +229,10 @@ function getDummyMails() {
  <img alt="" src="https://ci6.googleusercontent.com/proxy/hMkixnYkFiAtbDeB8cOEuqg93mDF5dBt9HABlMMpJgw6mXWhiewy8_V-ukX6SaFZonVI2aB7SLLI1CIgDLzrOWleBDPPGCzcP7W1FQJfPA8Xp5Hxs4v_c0lzNcgLUJkDTCJif7HnpS3f47WL1H5fy7R0zEewkAC1NfSQdkMPjO-jeUU-EwgZeC7l_DVecQFLub_GA_WlOMCexTht3VM=s0-d-e1-ft#https://pxcrtw8c.r.eu-central-1.awstrack.me/I0/01070185553cafb6-1d11afbb-42c4-46b4-bd64-be30df7978bc-000000/XOk6s7xm8swiYWYp-7r-FZTn574=83" style="display:none;width:1px;height:1px" class="CToWUd" data-bit="iit" jslog="138226; u014N:xr6bB; 53:W2ZhbHNlLDJd" f9guzt6f3=""><div class="yj6qo"></div><div class="adL">
 </div></div>
       `,
-      isRead: false,
-      sentAt: Date.now() - 190000,
+      isRead: true,
+      sentAt: Date.now() - 1900000000,
       to: loggedinUser.email,
-      isStared: true,
+      isStared: false,
       status: 'inbox',
     },
     {
@@ -246,7 +246,7 @@ function getDummyMails() {
       isRead: false,
       sentAt: Date.now() - 1200000,
       to: loggedinUser.email,
-      isStared: true,
+      isStared: false,
       status: 'inbox',
     },
     {
