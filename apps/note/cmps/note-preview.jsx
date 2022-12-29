@@ -1,13 +1,14 @@
 const { Fragment } = React
 import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
+import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
 import NoteTxt from './note-txt.jsx'
 
 const { useState, useRef } = React
 
-export default function NotePreview({ note, deleteNote, setNotes }) {
+export default function NotePreview({ note, setNotes }) {
     const [isEditing, setIsEditing] = useState(false)
 
     function onDuplicateNote(ev) {
@@ -58,7 +59,7 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
             })
         })
         setNotes(oldNotes => {
-            oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = note
+            // oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = note
             return [...oldNotes]
         })
     }
@@ -89,14 +90,27 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
 
     return (
         <Fragment>
-            <DynamicNote
+            {/* <DynamicNote
                 note={note}
                 setIsEditing={setIsEditing}
                 onDeleteNote={onDeleteNote}
                 setColor={setColor}
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
-            />
+            /> */}
+
+            <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
+                {note.src && <ImgCmp note={note} />}
+                <h5>{note.title}</h5>
+                <p>{note.info.txt}</p>
+
+                <NoteHoversBtns
+                    onDeleteNote={onDeleteNote}
+                    setColor={setColor}
+                    onDuplicateNote={onDuplicateNote}
+                    onPin={onPin}
+                />
+            </article>
 
             {isEditing && (
                 <Fragment>

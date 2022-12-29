@@ -1,4 +1,5 @@
 const { Fragment } = React
+import { utilService } from '../../../services/util.service.js'
 import NotePreview from './note-preview.jsx'
 
 export function NoteList({ notes, setNotes }) {
@@ -13,7 +14,13 @@ export function NoteList({ notes, setNotes }) {
                     <h6 className='list-title'>Pinned</h6>
                     <div className='note-list'>
                         {pinnedNotes.map(note => {
-                            return <NotePreview note={note} key={note.id} setNotes={setNotes} />
+                            return (
+                                <NotePreview
+                                    note={note}
+                                    key={note.id ? note.id : utilService.makeId()}
+                                    setNotes={setNotes}
+                                />
+                            )
                         })}
                     </div>
                 </Fragment>
@@ -21,7 +28,9 @@ export function NoteList({ notes, setNotes }) {
             <h6 className='list-title'>{pinnedNotes.length > 0 && 'Others'}</h6>
             <div className='note-list'>
                 {unPinnedNotes.map(note => {
-                    return <NotePreview note={note} key={note.id} setNotes={setNotes} />
+                    return (
+                        <NotePreview note={note} key={note.id ? note.id : utilService.makeId()} setNotes={setNotes} />
+                    )
                 })}
             </div>
         </div>

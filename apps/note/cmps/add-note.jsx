@@ -8,6 +8,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [isWriting, setIsWriting] = useState(isEditing || false)
     const addNoteBoxRef = useRef(null)
     const uploadImgInputRef = useRef(null)
+    const mainTextAreaRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
@@ -57,18 +58,32 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     function clearSlate() {
         setIsWriting(false)
         setAddNodeParams(noteService.getDefaultNote())
+        mainTextAreaRef.current.placeholder = 'Take a note...'
+    }
+
+    function onYoutube() {
+        setIsWriting(true)
+        mainTextAreaRef.current.focus()
+        mainTextAreaRef.current.placeholder = 'Enter a Youtube Link...'
     }
 
     function addNote() {
         clearSlate()
         if (isEditing) setIsEditing(false)
 
-        noteService.saveNote(addNodeParams).then(newNote => {
+        const newNote = structuredClone(addNodeParams)
+        
+        noteService.saveNote(addNodeParams).catch(err => {
             if (!isEditing) return setNotes(prev => [newNote, ...prev])
             setNotes(oldNotes => {
                 oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
                 return [...oldNotes]
             })
+        })
+        if (!isEditing) return setNotes(prev => [newNote, ...prev])
+        setNotes(oldNotes => {
+            oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
+            return [...oldNotes]
         })
     }
 
@@ -96,6 +111,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     value={addNodeParams.info.txt}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
+                    ref={mainTextAreaRef}
                 />
                 {!isWriting && (
                     <div className='inline-utils'>
@@ -104,6 +120,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
+                        </button>
+                        <button className='btn btn-rnd-s' onClick={onYoutube}>
+                            <i className='fa-brands fa-youtube'></i>
                         </button>
                         <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
                             <i className='fa-solid fa-image'></i>
