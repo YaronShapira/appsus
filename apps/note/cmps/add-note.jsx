@@ -72,14 +72,17 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         if (isEditing) setIsEditing(false)
 
         const newNote = structuredClone(addNodeParams)
-        
-        noteService.saveNote(addNodeParams).catch(err => {
-            if (!isEditing) return setNotes(prev => [newNote, ...prev])
-            setNotes(oldNotes => {
-                oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
-                return [...oldNotes]
+        newNote.id = null
+
+        noteService
+            .saveNote(addNodeParams)
+            .then(newNoteFromDB => {
+                newNote.id = newNoteFromDB.id
             })
-        })
+            .catch(err => {
+                // ...
+                setNotes(noteService.getNotes())
+            })
         if (!isEditing) return setNotes(prev => [newNote, ...prev])
         setNotes(oldNotes => {
             oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote

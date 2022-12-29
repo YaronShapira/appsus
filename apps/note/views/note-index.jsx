@@ -9,8 +9,6 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     // console.log(notes)
 
-    
-
     useEffect(() => {
         noteService.getNotes().then(setNotes)
     }, [])
@@ -21,8 +19,3 @@ export function NoteIndex() {
         </div>
     )
 }
-
-// TODO LIST
-// add search icon to navbar
-// add hover state to cards and implement delete (CRUD)
-//

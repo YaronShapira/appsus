@@ -13,19 +13,24 @@ export default function NotePreview({ note, setNotes }) {
 
     function onDuplicateNote(ev) {
         ev.stopPropagation()
+        // const duplicatedNote = noteService.duplicateNote(note)
         const duplicatedNote = structuredClone(note)
         duplicatedNote.id = null
 
-        noteService.saveNote(duplicatedNote).catch(err => {
-            console.log(err)
-            setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
-        })
+        noteService
+            .saveNote(duplicatedNote)
+            .then(newNote => (duplicatedNote.id = newNote.id))
+            .catch(err => {
+                console.log(err)
+                setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
+            })
         setNotes(prevNotes => [duplicatedNote, ...prevNotes])
     }
     function onDeleteNote(ev) {
         ev.stopPropagation()
         const recoveryNote = structuredClone(note)
-        noteService.deleteNote(note.id).catch(() => {
+        noteService.deleteNote(note.id).catch(err => {
+            console.log(err)
             setNotes(prevNotes => [...prevNotes, recoveryNote])
         })
         setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
