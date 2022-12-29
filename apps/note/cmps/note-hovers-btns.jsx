@@ -2,7 +2,7 @@ import NotePalette from './note-palette.jsx'
 
 const { useState } = React
 
-export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote }) {
+export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote, onPin }) {
     const [isInPalette, setIsInPalette] = useState(false)
 
     function onPalette(ev) {
@@ -18,7 +18,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
                 </button>
             </div>
             <div className='pin'>
-                <button className='btn btn-rnd-l'>
+                <button className='btn btn-rnd-l' onClick={onPin}>
                     <i className='fa-solid fa-thumbtack'></i>
                 </button>
             </div>

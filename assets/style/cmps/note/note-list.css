@@ -1,7 +1,16 @@
 .note-list {
-    padding: 5rem;
     columns: 6;
     column-gap: 1rem;
+}
+
+.note-lists {
+    padding: 5rem;
+}
+.note-lists .list-title {
+    text-transform: uppercase;
+    position: relative;
+    left: 1%;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1730px) {

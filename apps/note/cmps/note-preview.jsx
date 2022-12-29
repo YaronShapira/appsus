@@ -39,6 +39,16 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
         noteArticleRef.current.classList.remove('z-2')
     }
 
+    function onPin(ev) {
+        ev.stopPropagation()
+        note.isPinned = !note.isPinned
+        noteService.saveNote(note).catch(() => {
+            note.isPinned = !note.isPinned
+            setNotes(prev => [...prev])
+        })
+        setNotes(prev => [...prev])
+    }
+
     function saveNoteAndRender() {
         noteService.saveNote(note).then(updatedNewNote => {
             setNotes(oldNotes => {
@@ -67,7 +77,14 @@ export default function NotePreview({ note, deleteNote, setNotes }) {
                 onMouseLeave={onHoverLeave}>
                 <h5>{note.title}</h5>
                 <p>{note.info.txt}</p>
-                {<NoteHoversBtns onDeleteNote={onDeleteNote} setColor={setColor} onDuplicateNote={onDuplicateNote} />}
+                {
+                    <NoteHoversBtns
+                        onDeleteNote={onDeleteNote}
+                        setColor={setColor}
+                        onDuplicateNote={onDuplicateNote}
+                        onPin={onPin}
+                    />
+                }
             </article>
             {isEditing && (
                 <Fragment>
