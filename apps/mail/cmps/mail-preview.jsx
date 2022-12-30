@@ -1,3 +1,5 @@
+import { utilService } from '../../../services/util.service.js'
+
 const { Link, useParams, useNavigate } = ReactRouterDOM
 
 export function MailPreview({
@@ -9,10 +11,9 @@ export function MailPreview({
   onToggleRead,
 }) {
   const navigate = useNavigate()
-  function formatTime(sentAt) {
-    return 'Dec 27'
-  }
+
   function onExpandedMsg(mailId) {
+    onToggleRead(mail)
     navigate(`/mail/${mailId}`)
   }
 
@@ -26,11 +27,11 @@ export function MailPreview({
         type='checkbox'
         name='check-email'
         onChange={(ev) => {
-          onCheckMail(ev, mail.id)
+          onCheckMail(mail.id, ev)
         }}></input>
       <button
         onClick={(ev) => {
-          onMailStarred(ev, mail)
+          onMailStarred(mail, ev)
         }}
         className='btn-rnd-l-s'>
         {mail.isStared ? (
@@ -41,26 +42,26 @@ export function MailPreview({
       </button>
       <span className='mail-sender line-clamp'>{mail.sender}</span>
       <span className='mail-subject line-clamp'>{mail.subject}</span>
-      <span className='mail-body line-clamp'>{mail.body}</span>
-      <span className='mail-time'>{formatTime(mail.sentAt)}</span>
+      <span className='mail-body line-clamp'>{mail.body.replace(/<[^>]*>?/gm, '')}...</span>
+      <span className='mail-time'>{utilService.formatTime(mail.sentAt)}</span>
       <div className='hover-actions'>
         <button
           onClick={(ev) => {
-            onMailRemoved(ev, mail.id)
+            onMailRemoved(mail.id, ev)
           }}
           className='btn-rnd-l'>
           <i className='fa-solid fa-trash'></i>
         </button>
         <button
           onClick={(ev) => {
-            onMailToNotes(ev, mail.id)
+            onMailToNotes(mail.id, ev)
           }}
           className='btn-rnd-l'>
           <i className='fa-regular fa-paper-plane'></i>
         </button>
         <button
           onClick={(ev) => {
-            onToggleRead(ev, mail)
+            onToggleRead(mail, ev)
           }}
           className='btn-rnd-l'>
           {mail.isRead ? (
