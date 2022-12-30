@@ -1,6 +1,6 @@
 const { Fragment, useState } = React
 
-export default function TodoInput({ index, handleChange, addNoteParams }) {
+export default function TodoInput({ index, handleChange, addNoteParams, onDeleteTodo }) {
     const isToDoExists = addNoteParams.todos[index] ? true : false
     const [checked, setChecked] = useState(addNoteParams.todos[index] ? addNoteParams.todos[index].isChecked : false)
 
@@ -11,7 +11,9 @@ export default function TodoInput({ index, handleChange, addNoteParams }) {
         })
     }
 
-    console.log(addNoteParams)
+    
+
+    // console.log(addNoteParams)
     return (
         <div className='todo-input-wrapper'>
             {!addNoteParams.todos[index] ? (
@@ -30,7 +32,7 @@ export default function TodoInput({ index, handleChange, addNoteParams }) {
                 onChange={handleChange}
                 value={addNoteParams.todos[index] ? addNoteParams.todos[index].value : ''}
             />
-            <button className='btn btn-rnd-s'>
+            <button className='btn btn-rnd-s' onClick={() => onDeleteTodo(index)}>
                 <i className='fa-solid fa-xmark'></i>
             </button>
         </div>

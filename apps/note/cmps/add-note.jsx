@@ -147,7 +147,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         }, 100)
     }
 
-
     function getTextAreaRows() {
         if (isEditing) return 3
         if (isWriting) return 2
@@ -158,9 +157,15 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         console.log('TODO')
         setIsWriting(true)
         addNoteParams.type = 'note-todo'
-        // mainTextAreaRef.current.placeholder = 'List item 1'
-        // mainTextAreaRef.current.classList.add('todo-input')
-        // mainTextAreaRef.current.focus()
+    }
+
+    function onDeleteTodo(index) {
+        if (addNoteParams.todos.length === 0) {
+            addNoteParams.type = 'note-txt'
+        }
+        console.log(addNoteParams)
+        setAddNoteParams(prev => ({ ...prev }))
+        addNoteParams.todos.splice(index, 1)
     }
 
     return (
@@ -199,6 +204,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                                         index={idx}
                                         handleChange={handleChange}
                                         addNoteParams={addNoteParams}
+                                        onDeleteTodo={onDeleteTodo}
                                         key={idx}
                                     />
                                 )
