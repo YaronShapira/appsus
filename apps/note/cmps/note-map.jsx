@@ -2,7 +2,7 @@ import { mapService } from '../services/map.service.js'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 const { useRef, useEffect } = React
 
-export default function NoteMap({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin }) {
+export default function NoteMap({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin, onArchive }) {
     const noteArticleRef = useRef(null)
     const mapRef = useRef(null)
     function onHover() {
@@ -33,6 +33,7 @@ export default function NoteMap({ note, setIsEditing, onDeleteNote, setColor, on
                 setColor={setColor}
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
+                onArchive={onArchive}
             />
         </article>
     )

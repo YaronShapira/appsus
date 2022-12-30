@@ -1,7 +1,7 @@
 import NoteHoversBtns from './note-hovers-btns.jsx'
 const { useRef } = React
 
-export default function NoteImg({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin }) {
+export default function NoteImg({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin,onArchive }) {
     const noteArticleRef = useRef(null)
     function onHover() {
         noteArticleRef.current.classList.add('z-2')
@@ -27,6 +27,7 @@ export default function NoteImg({ note, setIsEditing, onDeleteNote, setColor, on
                 setColor={setColor}
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
+                onArchive={onArchive}
             />
         </article>
     )

@@ -38,6 +38,7 @@ export default function NotePreview({ note, setNotes }) {
         const recoveryNote = structuredClone(note)
         if (note.status !== 'trash') {
             note.status = 'trash'
+            note.isPinned = false
             renderNoteAndSave(recoveryNote)
             setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
             return
@@ -82,6 +83,15 @@ export default function NotePreview({ note, setNotes }) {
         })
     }
 
+    function onArchive(ev) {
+        ev.stopPropagation()
+        const recoveryNote = structuredClone(note)
+        if (note.status === 'archive') note.status = 'notes'
+        else note.status = 'archive'
+        renderNoteAndSave(recoveryNote)
+        setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
+    }
+
     function setColor(ev, bgColor, color) {
         ev.stopPropagation()
         const recoveryNote = structuredClone(note)
@@ -120,6 +130,7 @@ export default function NotePreview({ note, setNotes }) {
                 setColor={setColor}
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
+                onArchive={onArchive}
             />
 
             {isEditing && <AddNote note={note} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />}
