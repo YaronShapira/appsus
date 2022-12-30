@@ -21,7 +21,18 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         value = type === 'number' ? +value : value
         if (target.id === 'txt') {
             return setAddNoteParams(prev => {
-                prev.info.txt = value
+                prev.info[target.id] = value
+                return { ...prev }
+            })
+        }
+
+        if (addNoteParams.type === 'note-todo') {
+            return setAddNoteParams(prev => {
+                const todoIdx = field.at(-1) - 1 // arrays are zero based
+                if (!prev.todos[todoIdx]) {
+                    prev.todos.push({ value, isChecked: false })
+                }
+                prev.todos[todoIdx].value = value
                 return { ...prev }
             })
         }
@@ -181,7 +192,17 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         ref={mainTextAreaRef}
                         hidden={addNoteParams.type === 'note-todo' ? true : false}
                     />
-                    {addNoteParams.type === 'note-todo' && <TodoInput index={1} />}
+                    {addNoteParams.type === 'note-todo' &&
+                        [...Array(addNoteParams.todos.length + 1)].map((_, idx) => {
+                            return (
+                                <TodoInput
+                                    index={idx}
+                                    handleChange={handleChange}
+                                    addNoteParams={addNoteParams}
+                                    key={idx}
+                                />
+                            )
+                        })}
 
                     {!isWriting && (
                         <div className='inline-utils'>
