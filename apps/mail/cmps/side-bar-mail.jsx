@@ -1,12 +1,13 @@
 import { eventBusService } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
-const { useSearchParams, NavLink } = ReactRouterDOM
+const { useSearchParams, NavLink, useNavigate } = ReactRouterDOM
 
 export function SideBarMail({ isOpen }) {
   // const [filterBy, setFilterBy] = useState()
   const [searchParams, setSearchParams] = useSearchParams()
   const folder = useRef('inbox')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (searchParams.has('folder')) {

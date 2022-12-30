@@ -1,11 +1,13 @@
+import { AppHeader } from './app-header.jsx'
 import { SideBar } from './side-bar.jsx'
+const { Fragment } = React
 
 export const PageLayout = ({ children }) => {
-  console.log('children:', children)
   return (
-    <div>
+    <Fragment>
+      <AppHeader />
       <SideBar />
-      <div>{children}</div>
-    </div>
+      {children}
+    </Fragment>
   )
 }

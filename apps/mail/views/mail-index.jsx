@@ -1,6 +1,7 @@
 const { useState, useEffect, useRef } = React
 const { useSearchParams } = ReactRouterDOM
 
+import { PageLayout } from '../../../cmps/page-layout.jsx'
 import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
 
@@ -98,20 +99,22 @@ export function MailIndex() {
   console.log('mails:', mails)
 
   return (
-    <section className='mail-index'>
-      <MailCompose sendMail={sendMail} draftMail={draftMail} />
-      {mails && (
-        <MailList
-          mails={mails}
-          onCheckMail={onCheckMail}
-          onMailRemoved={onMailRemoved}
-          onMailStarred={onMailStarred}
-          onMailToNotes={onMailToNotes}
-          onToggleRead={onToggleRead}
-          isMarked={isMarked}
-          setIsMarked={setIsMarked}
-        />
-      )}
-    </section>
+    <PageLayout>
+      <section className='mail-index'>
+        <MailCompose sendMail={sendMail} draftMail={draftMail} />
+        {mails && (
+          <MailList
+            mails={mails}
+            onCheckMail={onCheckMail}
+            onMailRemoved={onMailRemoved}
+            onMailStarred={onMailStarred}
+            onMailToNotes={onMailToNotes}
+            onToggleRead={onToggleRead}
+            isMarked={isMarked}
+            setIsMarked={setIsMarked}
+          />
+        )}
+      </section>
+    </PageLayout>
   )
 }

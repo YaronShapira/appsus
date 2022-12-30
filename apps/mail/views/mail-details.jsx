@@ -7,6 +7,7 @@ import { mailService } from '../services/mail.service.js'
 import { DetailsBody } from '../cmps/mail-details-cmps/details-body.jsx'
 import { DetailsFooter } from '../cmps/mail-details-cmps/details-footer.jsx'
 import { DetailsHeader } from '../cmps/mail-details-cmps/details-header.jsx'
+import { PageLayout } from '../../../cmps/page-layout.jsx'
 
 export function MailDetails() {
   const [mail, setMail] = useState(null)
@@ -52,27 +53,34 @@ export function MailDetails() {
         navigate('/mail')
       })
   }
-  if (!mail) return <section>Loading...</section>
+  if (!mail)
+    return (
+      <PageLayout>
+        <section>Loading...</section>
+      </PageLayout>
+    )
   return (
-    <section className='mail-details'>
-      <nav className='mail-details-nav'>
-        <ul className='tools-list'>
-          <button
-            onClick={() => {
-              navigate('/mail')
-            }}
-            className='btn-rnd-l'>
-            <i className='fa-solid fa-arrow-left'></i>
-          </button>
-        </ul>
-      </nav>
-      <div ref={elMsgContainer} className='msg-container'>
-        <iframe ref={elIframeForPrint} className='ifm-content-toprint'></iframe>
+    <PageLayout>
+      <section className='mail-details'>
+        <nav className='mail-details-nav'>
+          <ul className='tools-list'>
+            <button
+              onClick={() => {
+                navigate('/mail')
+              }}
+              className='btn-rnd-l'>
+              <i className='fa-solid fa-arrow-left'></i>
+            </button>
+          </ul>
+        </nav>
+        <div ref={elMsgContainer} className='msg-container'>
+          <iframe ref={elIframeForPrint} className='ifm-content-toprint'></iframe>
 
-        <DetailsHeader mail={mail} onPrintMail={onPrintMail} />
-        <DetailsBody mail={mail} onMailStarred={onMailStarred} />
-        <DetailsFooter mail={mail} onReply={onReply} />
-      </div>
-    </section>
+          <DetailsHeader mail={mail} onPrintMail={onPrintMail} />
+          <DetailsBody mail={mail} onMailStarred={onMailStarred} />
+          <DetailsFooter mail={mail} onReply={onReply} />
+        </div>
+      </section>
+    </PageLayout>
   )
 }
