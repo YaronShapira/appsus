@@ -3,6 +3,7 @@ const { useState, useEffect, useRef, Fragment } = React
 import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
 import loadImageFromInput from '../services/upload.service.js'
+import TodoInput from './todo-input.jsx'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
@@ -82,15 +83,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         addNoteParams.type = 'note-video'
     }
 
-    function onToDoList() {
-        console.log('TODO')
-        setIsWriting(true)
-        addNoteParams.type = 'note-todo'
-        // mainTextAreaRef.current.placeholder = 'List item 1'
-        // mainTextAreaRef.current.classList.add('todo-input')
-        // mainTextAreaRef.current.focus()
-    }
-
     function addNote() {
         if (isEditing) setIsEditing(false)
 
@@ -144,10 +136,21 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         }, 100)
     }
 
+    console.log(addNoteParams)
+
     function getTextAreaRows() {
         if (isEditing) return 3
         if (isWriting) return 2
         return 1
+    }
+
+    function onToDoList() {
+        console.log('TODO')
+        setIsWriting(true)
+        addNoteParams.type = 'note-todo'
+        // mainTextAreaRef.current.placeholder = 'List item 1'
+        // mainTextAreaRef.current.classList.add('todo-input')
+        // mainTextAreaRef.current.focus()
     }
 
     return (
@@ -166,19 +169,20 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 )}
 
                 <div className='main-input'>
-                    {addNoteParams.type !== 'todo-list' && (
-                        <textarea
-                            type='title'
-                            placeholder='Take a note...'
-                            id='txt'
-                            name='txt'
-                            rows={getTextAreaRows()}
-                            value={addNoteParams.info.txt || addNoteParams.link}
-                            onChange={handleChange}
-                            onClick={() => setIsWriting(true)}
-                            ref={mainTextAreaRef}
-                        />
-                    )}
+                    <textarea
+                        type='title'
+                        placeholder='Take a note...'
+                        id='txt'
+                        name='txt'
+                        rows={getTextAreaRows()}
+                        value={addNoteParams.info.txt || addNoteParams.link}
+                        onChange={handleChange}
+                        onClick={() => setIsWriting(true)}
+                        ref={mainTextAreaRef}
+                        hidden={addNoteParams.type === 'note-todo' ? true : false}
+                    />
+                    {addNoteParams.type === 'note-todo' && <TodoInput index={1} />}
+
                     {!isWriting && (
                         <div className='inline-utils'>
                             <button className='btn btn-rnd-s' onClick={onToDoList}>
