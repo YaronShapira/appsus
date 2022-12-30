@@ -16,6 +16,7 @@ export function SideBarMail({ isOpen }) {
   }, [])
 
   function onFolder(folderTo) {
+    navigate('/mail')
     folder.current = folderTo
     searchParams.set('folder', folder.current)
     setSearchParams([...searchParams.entries()])
