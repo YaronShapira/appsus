@@ -8,7 +8,7 @@ export function SideBar() {
   // dynamic path
   const [sidebarLoc, setSidebarLoc] = useState('home')
   const location = useLocation()
-  // const [currActive, setActive] = useState('')
+  const params = useParams()
 
   // hover effect
   const [isOpen, setIsOpen] = useState(false)
@@ -54,13 +54,13 @@ export function SideBar() {
   }
 
   function sidebarFor(isOpen) {
-    switch (location.pathname) {
-      case '/note':
-        return <SideBarNote isOpen={isOpen} />
-      case '/mail':
-        return <SideBarMail isOpen={isOpen} />
-      default:
-        return getHomeSideBar()
+    console.log('sidebarLoc:', sidebarLoc)
+    if (sidebarLoc.includes('mail')) {
+      return <SideBarMail isOpen={isOpen} />
+    } else if (sidebarLoc.includes('note')) {
+      return <SideBarNote isOpen={isOpen} />
+    } else {
+      return getHomeSideBar()
     }
   }
 

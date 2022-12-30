@@ -1,12 +1,20 @@
 const { useState, useEffect, useRef } = React
 import { mailService } from '../services/mail.service.js'
 
-export function MailCompose({ sendMail }) {
+export function MailCompose({ sendMail, draftMail }) {
   const [newMailToEdit, setNewMailToEdit] = useState(mailService.getEmptyMail())
 
   const [isMailEdited, setIsMailEdited] = useState(false)
 
-  function onBtnCompose() {
+  function onBtnToggleCompose() {
+    setIsMailEdited(!isMailEdited)
+  }
+
+  function onDraftMail() {
+    if (newMailToEdit.to) {
+      draftMail(newMailToEdit)
+      setNewMailToEdit(mailService.getEmptyMail())
+    }
     setIsMailEdited(!isMailEdited)
   }
 
@@ -25,7 +33,7 @@ export function MailCompose({ sendMail }) {
   return (
     <section className='mail-compose'>
       <button
-        onClick={onBtnCompose}
+        onClick={onBtnToggleCompose}
         className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
         <i className={`fa-solid fa-pencil`}></i>
       </button>
@@ -34,13 +42,13 @@ export function MailCompose({ sendMail }) {
           <section className='compose-mail-form-header flex align-center justify-between'>
             <h5>New Mail</h5>
             <div className='footer-tools'>
-              <button type='button' className='btn-rnd-s'>
+              <button onClick={onDraftMail} type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-window-minimize'></i>
               </button>
               <button type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
               </button>
-              <button onClick={onBtnCompose} type='button' className='btn-rnd-s'>
+              <button onClick={onBtnToggleCompose} type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-xmark'></i>
               </button>
             </div>
@@ -83,7 +91,7 @@ export function MailCompose({ sendMail }) {
               Send
             </button>
             <section className='footer-tools'>
-              <button onClick={onBtnCompose} type='button' className='btn-rnd-l-s'>
+              <button onClick={onBtnToggleCompose} type='button' className='btn-rnd-l-s'>
                 <i className='fa-solid fa-trash'></i>
               </button>
             </section>

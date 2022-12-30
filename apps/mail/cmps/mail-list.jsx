@@ -7,8 +7,6 @@ export function MailList({
   onMailRemoved,
   onMailToNotes,
   onToggleRead,
-  isMarked,
-  setIsMarked,
 }) {
   return (
     <ul className='mail-list flex flex-column'>
@@ -22,8 +20,6 @@ export function MailList({
               onMailStarred={onMailStarred}
               onMailToNotes={onMailToNotes}
               onToggleRead={onToggleRead}
-              isMarked={isMarked}
-              setIsMarked={setIsMarked}
             />
           </li>
         )

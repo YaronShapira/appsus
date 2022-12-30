@@ -12,6 +12,32 @@ export function MailPreview({
 }) {
   const navigate = useNavigate()
 
+  function onActions(ev, action, value) {
+    ev.stopPropagation()
+    switch (action) {
+      case 'remove':
+        onMailRemoved(value)
+        break
+      case 'note':
+        onMailToNotes(value)
+        break
+      case 'trash':
+        onMailRemoved(value)
+        break
+      case 'star':
+        onMailStarred(value)
+        break
+      case 'check':
+        onCheckMail(value, ev)
+        break
+      case 'read':
+        onToggleRead(value, ev)
+        break
+      default:
+        break
+    }
+  }
+
   function onExpandedMsg(mailId) {
     onToggleRead(mail)
     navigate(`/mail/${mailId}`)
@@ -27,11 +53,11 @@ export function MailPreview({
         type='checkbox'
         name='check-email'
         onChange={(ev) => {
-          onCheckMail(mail.id, ev)
+          onActions(ev, 'check', mail.id)
         }}></input>
       <button
         onClick={(ev) => {
-          onMailStarred(mail, ev)
+          onActions(ev, 'star', mail)
         }}
         className='btn-rnd-l-s'>
         {mail.isStared ? (
@@ -47,21 +73,21 @@ export function MailPreview({
       <div className='hover-actions'>
         <button
           onClick={(ev) => {
-            onMailRemoved(mail.id, ev)
+            onActions(ev, 'trash', mail)
           }}
           className='btn-rnd-l'>
           <i className='fa-solid fa-trash'></i>
         </button>
         <button
           onClick={(ev) => {
-            onMailToNotes(mail.id, ev)
+            onActions(ev, 'note', mail.id)
           }}
           className='btn-rnd-l'>
           <i className='fa-regular fa-paper-plane'></i>
         </button>
         <button
           onClick={(ev) => {
-            onToggleRead(mail, ev)
+            onActions(ev, 'read', mail)
           }}
           className='btn-rnd-l'>
           {mail.isRead ? (

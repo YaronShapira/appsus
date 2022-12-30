@@ -1,4 +1,4 @@
-const { Route, Routes } = ReactRouterDOM
+const { Route, Routes, Switch } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
 
 import { AppHeader } from './cmps/app-header.jsx'
@@ -8,6 +8,7 @@ import { MailIndex } from './apps/mail/views/mail-index.jsx'
 import { NoteIndex } from './apps/note/views/note-index.jsx'
 import { SideBar } from './cmps/side-bar.jsx'
 import { MailDetails } from './apps/mail/views/mail-details.jsx'
+import { PageLayout } from './cmps/page-layout.jsx'
 
 export function App() {
   return (
