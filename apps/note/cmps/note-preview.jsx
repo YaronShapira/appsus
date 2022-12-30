@@ -36,6 +36,12 @@ export default function NotePreview({ note, setNotes }) {
     function onDeleteNote(ev) {
         ev.stopPropagation()
         const recoveryNote = structuredClone(note)
+        if (note.status !== 'trash') {
+            note.status = 'trash'
+            renderNoteAndSave(recoveryNote)
+            setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
+            return
+        }
         noteService.deleteNote(note.id).catch(err => {
             console.log(err)
             setNotes(prevNotes => [...prevNotes, recoveryNote])
@@ -71,7 +77,7 @@ export default function NotePreview({ note, setNotes }) {
             })
         })
         setNotes(oldNotes => {
-            // oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = note
+            // oldNotes[oldNotes.findIndex(currNote => currNote.id === note.id)] = structuredClone(note)
             return [...oldNotes]
         })
     }
@@ -82,8 +88,8 @@ export default function NotePreview({ note, setNotes }) {
         note.style = { ...note.style }
         note.style.backgroundColor = bgColor
         note.style.color = color
-        setCurrNote({ ...note })
-        // renderNoteAndSave(recoveryNote)
+        // setCurrNote({ ...note })
+        renderNoteAndSave(recoveryNote)
     }
     function DynamicNote(props) {
         switch (note.type) {

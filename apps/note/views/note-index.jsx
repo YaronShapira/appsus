@@ -16,17 +16,17 @@ export function NoteIndex() {
 
     function loadNotes() {
         console.log('LOADING NOTES')
-        setTimeout(() => {
-            noteService.getNotes(filterBy).then(setNotes)
-        }, 10)
+        noteService.getNotes(filterBy).then(setNotes)
     }
 
     useEffect(() => {
-        loadNotes({
-            ...filterBy,
-            txt: searchParams.get('q') || '',
-            status: searchParams.get('folder') || 'notes',
-        })
+        setTimeout(() => {
+            loadNotes({
+                ...filterBy,
+                txt: searchParams.get('q') || '',
+                status: searchParams.get('folder') || 'notes',
+            })
+        }, 10)
     }, [])
 
     useEffect(() => {
