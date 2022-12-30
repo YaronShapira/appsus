@@ -1,9 +1,13 @@
 const { useState, useEffect, useRef, Fragment } = React
 
+import initMap from '../services/map.service.js'
+import mapService from '../services/map.service.js'
 import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
 import loadImageFromInput from '../services/upload.service.js'
 import TodoInput from './todo-input.jsx'
+
+const GOOGLE_MAPS_API_KEY = 'AIzaSyDmpvKdpRUOG89zdH_1oS3xJsMTEPPj4Cw'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
@@ -15,6 +19,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const mainTextAreaRef = useRef(null)
     const micRecorderRef = useRef(null)
     const uploadAudioInputRef = useRef(null)
+    const mapRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
@@ -182,6 +187,13 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         addNoteParams.todos.splice(index, 1)
     }
 
+    function onMap() {
+        initMap(mapRef.current)
+        addNoteParams.type = 'note-map'
+
+        setIsWriting(true)
+    }
+
     return (
         <Fragment>
             <div className={`add-note ${isInputOpened ? 'add-note-modal' : ''}`} ref={addNoteBoxRef}>
@@ -196,6 +208,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         onChange={handleChange}
                     />
                 )}
+                <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
 
                 <div className='main-input'>
                     <textarea
@@ -242,6 +255,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                             </button>
                             <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
                                 <i className='fa-solid fa-image'></i>
+                            </button>
+                            <button className='btn btn-rnd-s' onClick={onMap}>
+                                <i className='fa-solid fa-location-dot'></i>
                             </button>
                             <input
                                 type='file'
