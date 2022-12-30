@@ -1,10 +1,10 @@
 const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 export function SearchHeader() {
-  const [searchTxt, setSearchTxt] = useState({ txt: '' })
-  const [searchParams, setSearchParams] = useSearchParams()
-  const debouncedSearchTerm = useDebounce(searchTxt, 1000)
-  useEffect(() => {}, [searchTxt])
+    const [searchTxt, setSearchTxt] = useState({ txt: '' })
+    const [searchParams, setSearchParams] = useSearchParams()
+    const debouncedSearchTerm = useDebounce(searchTxt, 500)
+    useEffect(() => {}, [searchTxt])
 
   function handleSearch({ target }) {
     let { value } = target
