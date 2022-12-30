@@ -1,10 +1,15 @@
 const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 export function SearchHeader() {
-    const [searchTxt, setSearchTxt] = useState({ txt: '' })
-    const [searchParams, setSearchParams] = useSearchParams()
-    const debouncedSearchTerm = useDebounce(searchTxt, 500)
-    useEffect(() => {}, [searchTxt])
+  const [searchTxt, setSearchTxt] = useState({ txt: '' })
+  const [searchParams, setSearchParams] = useSearchParams()
+  const debouncedSearchTerm = useDebounce(searchTxt, 500)
+
+  useEffect(() => {
+    if (searchParams.get('q')) {
+      setSearchTxt({ txt: searchParams.get('q') })
+    }
+  }, [])
 
   function handleSearch({ target }) {
     let { value } = target
@@ -41,10 +46,14 @@ export function SearchHeader() {
     )
     return debouncedValue
   }
-
   return (
     <section className='search-header'>
-      <input type='text' placeholder='Search here..' onChange={handleSearch} />
+      <input
+        value={searchTxt.txt}
+        type='text'
+        placeholder='Search here..'
+        onChange={handleSearch}
+      />
     </section>
   )
 }

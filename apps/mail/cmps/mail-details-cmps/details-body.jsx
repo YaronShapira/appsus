@@ -15,7 +15,6 @@ export function DetailsBody({ mail, onMailStarred }) {
     }).format(date)
   }
 
-  console.log('mail:', mail)
   if (!mail) return <section>Loading...</section>
   return (
     <section className='mail-msg'>

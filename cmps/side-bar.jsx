@@ -54,7 +54,6 @@ export function SideBar() {
   }
 
   function sidebarFor(isOpen) {
-    console.log('sidebarLoc:', sidebarLoc)
     if (sidebarLoc.includes('mail')) {
       return <SideBarMail isOpen={isOpen} />
     } else if (sidebarLoc.includes('note')) {

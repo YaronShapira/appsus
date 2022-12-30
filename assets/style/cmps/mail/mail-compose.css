@@ -2,6 +2,7 @@
   position: absolute;
   bottom: 1.5em;
   right: 2em;
+  z-index: 2;
 }
 .mail-compose .btn-mail-compose {
   z-index: 1;
