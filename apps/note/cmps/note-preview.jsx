@@ -4,12 +4,15 @@ import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
+import NoteRecording from './note-recording.jsx'
 import NoteTxt from './note-txt.jsx'
+import NoteVideo from './note-video.jsx'
 import VideoCmp from './video-cmp.jsx'
 
 const { useState, useRef } = React
 
 export default function NotePreview({ note, setNotes }) {
+    const [currNote, setCurrNote] = useState(note)
     const [isEditing, setIsEditing] = useState(false)
 
     function onDuplicateNote(ev) {
@@ -76,36 +79,44 @@ export default function NotePreview({ note, setNotes }) {
         note.style = { ...note.style }
         note.style.backgroundColor = bgColor
         note.style.color = color
-        renderNoteAndSave(recoveryNote)
+        setCurrNote({ ...note })
+        // renderNoteAndSave(recoveryNote)
     }
     function DynamicNote(props) {
+        console.log(note.type)
         switch (note.type) {
             case 'note-txt':
                 return <NoteTxt {...props} />
             case 'note-img':
                 return <NoteImg {...props} />
             case 'note-video':
-                break
+                return <NoteVideo {...props} />
             case 'note-todos':
                 break
-
+            case 'note-recording':
+                return <NoteRecording {...props} />
+                break
             default:
                 break
         }
     }
 
+    if (note.audio) {
+        console.log('TEST')
+    }
+
     return (
         <Fragment>
-            {/* <DynamicNote
+            <DynamicNote
                 note={note}
                 setIsEditing={setIsEditing}
                 onDeleteNote={onDeleteNote}
                 setColor={setColor}
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
-            /> */}
+            />
 
-            <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
+            {/* <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
                 {note.src && <ImgCmp src={note.src} />}
                 {note.link && <VideoCmp link={note.link} />}
                 <h5>{note.title}</h5>
@@ -117,7 +128,7 @@ export default function NotePreview({ note, setNotes }) {
                     onDuplicateNote={onDuplicateNote}
                     onPin={onPin}
                 />
-            </article>
+            </article> */}
 
             {isEditing && (
                 <Fragment>

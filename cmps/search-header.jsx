@@ -3,28 +3,47 @@ const { useSearchParams } = ReactRouterDOM
 export function SearchHeader() {
   const [searchTxt, setSearchTxt] = useState({ txt: '' })
   const [searchParams, setSearchParams] = useSearchParams()
-  useEffect(() => {
-    if (searchParams.get('q')) {
-      setSearchTxt({ txt: searchParams.get('q') })
-    } else {
-      setSearchTxt({ txt: '' })
-    }
-  }, [searchParams])
+  const debouncedSearchTerm = useDebounce(searchTxt, 1000)
+  useEffect(() => {}, [searchTxt])
 
   function handleSearch({ target }) {
     let { value } = target
-    setSearchTxt((prevSearchTxt) => ({ ...prevSearchTxt, txt: value }))
-    setSearchParams({ q: target.value })
+    setSearchTxt((prevReview) => ({ ...prevReview, txt: value }))
+  }
+
+  useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        setSearchParams({ q: searchTxt.txt })
+      }
+    },
+    [debouncedSearchTerm] // Only call effect if debounced search term changes
+  )
+
+  function useDebounce(value, delay) {
+    // State and setters for debounced value
+    const [debouncedValue, setDebouncedValue] = useState(value)
+    useEffect(
+      () => {
+        // Update debounced value after delay
+        const handler = setTimeout(() => {
+          setDebouncedValue(value)
+        }, delay)
+        // Cancel the timeout if value changes (also on delay change or unmount)
+        // This is how we prevent debounced value from updating if value is changed ...
+        // .. within the delay period. Timeout gets cleared and restarted.
+        return () => {
+          clearTimeout(handler)
+        }
+      },
+      [value, delay] // Only re-call effect if value or delay changes
+    )
+    return debouncedValue
   }
 
   return (
     <section className='search-header'>
-      <input
-        type='text'
-        placeholder='Search here..'
-        value={searchTxt.txt}
-        onChange={handleSearch}
-      />
+      <input type='text' placeholder='Search here..' onChange={handleSearch} />
     </section>
   )
 }

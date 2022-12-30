@@ -29,5 +29,13 @@ export function NoteList({ notes, setNotes }) {
     )
 }
 
-// TODO: add pin func
-// TODO: add image, video
+// TODO: Note todos, audio, canvas, map
+// TODO: support filtering by search and by type
+// TODO: instead of delete, trash.
+// TODO: add archive
+// TODO: polish the add note box (colors, btns) (make it change colors)
+// TODO: add yellow color instead of this ugly green
+// TODO: layout...
+// TODO: add note to mail func
+// TODO: add mail to note func
+// TODO:

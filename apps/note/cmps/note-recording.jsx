@@ -1,7 +1,7 @@
 import NoteHoversBtns from './note-hovers-btns.jsx'
 const { useRef } = React
 
-export default function NoteVideo({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin }) {
+export default function NoteRecording({ note, setIsEditing, onDeleteNote, setColor, onDuplicateNote, onPin }) {
     const noteArticleRef = useRef(null)
     function onHover() {
         noteArticleRef.current.classList.add('z-2')
@@ -18,7 +18,11 @@ export default function NoteVideo({ note, setIsEditing, onDeleteNote, setColor, 
             onClick={() => setIsEditing(true)}
             onMouseEnter={onHover}
             onMouseLeave={onHoverLeave}>
-            <iframe src={note.link} frameBorder='0' allowFullScreen></iframe>
+            <audio
+                controls={true}
+                src={note.audio}
+                className='audio-player'
+                controlsList='nodownload noplaybackrate'></audio>
             <h5>{note.title}</h5>
             <p>{note.info.txt}</p>
 

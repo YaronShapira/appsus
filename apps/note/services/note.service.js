@@ -54,6 +54,7 @@ function getDefaultNote() {
         src: '',
         style: {},
         link: '',
+        audio: '',
     }
 }
 

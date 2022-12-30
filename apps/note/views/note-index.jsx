@@ -7,7 +7,6 @@ import AddNote from '../cmps/add-note.jsx'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
-    // console.log(notes)
 
     useEffect(() => {
         noteService.getNotes().then(setNotes)
