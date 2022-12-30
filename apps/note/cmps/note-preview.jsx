@@ -1,10 +1,12 @@
 const { Fragment } = React
+import Loader from '../../../cmps/loader.jsx'
 import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
 import NoteRecording from './note-recording.jsx'
+import NoteTodos from './note-todos.jsx'
 import NoteTxt from './note-txt.jsx'
 import NoteVideo from './note-video.jsx'
 import VideoCmp from './video-cmp.jsx'
@@ -91,6 +93,7 @@ export default function NotePreview({ note, setNotes }) {
             case 'note-video':
                 return <NoteVideo {...props} />
             case 'note-todos':
+                return <NoteTodos {...props} />
                 break
             case 'note-recording':
                 return <NoteRecording {...props} />
@@ -110,6 +113,7 @@ export default function NotePreview({ note, setNotes }) {
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
             />
+
             {isEditing && <AddNote note={note} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />}
         </Fragment>
     )
