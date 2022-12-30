@@ -73,7 +73,7 @@ export function MailPreview({
       <div className='hover-actions'>
         <button
           onClick={(ev) => {
-            onActions(ev, 'trash', mail.id)
+            onActions(ev, 'trash', mail)
           }}
           className='btn-rnd-l'>
           <i className='fa-solid fa-trash'></i>

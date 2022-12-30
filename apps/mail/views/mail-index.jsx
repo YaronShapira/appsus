@@ -16,18 +16,16 @@ export function MailIndex() {
     setFilterBy((prevFilterBy) => {
       return {
         ...prevFilterBy,
-        txt: searchParams.get('q') + '',
+        txt: searchParams.get('q') + '' || '',
         status: searchParams.get('folder') || 'inbox',
       }
     })
     loadMails({
       ...filterBy,
-      txt: searchParams.get('q'),
+      txt: searchParams.get('q') || '',
       status: searchParams.get('folder') || 'inbox',
     })
   }, [searchParams])
-
-  console.log('filterBy:', filterBy)
 
   function loadMails(filterBy) {
     mailService.query(filterBy).then((mails) => {
@@ -63,16 +61,35 @@ export function MailIndex() {
     console.log('mailId:', mailId)
   }
 
-  function onMailRemoved(mailId) {
-    mailService.remove(mailId).catch((err) => {
-      loadMails(filterBy)
-      console.log('err onRemoveMail:', err)
-    })
+  function onMailRemoved(mail) {
+    const mailId = mail.id
+
+    if (mail.status === 'trash') {
+      mailService.remove(mailId).catch((err) => {
+        loadMails(filterBy)
+        console.log('err onRemoveMail:', err)
+      })
+    } else {
+      let prevMailStatus = mail.status
+      mail.status = 'trash'
+      mailService.save(mail).catch((mail) => {
+        mail.status = prevMailStatus
+        loadMails(filterBy)
+      })
+    }
+
     const updatedMails = mails.filter((mail) => mail.id !== mailId)
     setMails(updatedMails)
   }
 
+  function draftMail(mail) {
+    mailService.save(mail).then(() => {
+      loadMails(filterBy)
+    })
+  }
+
   function sendMail(mail) {
+    mail.status = 'send'
     mailService.save(mail).then(() => {
       loadMails(filterBy)
     })
@@ -82,7 +99,7 @@ export function MailIndex() {
 
   return (
     <section className='mail-index'>
-      <MailCompose sendMail={sendMail} />
+      <MailCompose sendMail={sendMail} draftMail={draftMail} />
       {mails && (
         <MailList
           mails={mails}

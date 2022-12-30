@@ -28,6 +28,39 @@ textarea:focus::-webkit-input-placeholder {
   transition: background-color 0.5s 0.05s, color 0.25s 0.25s;
   color: var(--clrbg);
 }
+/* checkbox */
+
+input[type='checkbox'] {
+  position: relative;
+}
+
+input[type='checkbox']::before {
+  content: '';
+  display: block;
+  position: absolute;
+  text-align: center;
+  height: 1rem;
+  width: 1rem;
+  inset: 0;
+  margin: auto;
+  background-color: var(--clr2);
+  font-family: 'Montserrat';
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+input[type='checkbox']:checked::before {
+  content: '';
+  display: block;
+  position: absolute;
+  text-align: center;
+  height: 1rem;
+  width: 1rem;
+  inset: 0;
+  margin: auto;
+  background-color: var(--clr1);
+  font-family: 'Montserrat';
+  border-radius: 2px;
+}
 
 /* RANGE INPUTS */
 
