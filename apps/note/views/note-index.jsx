@@ -6,6 +6,7 @@ import { noteService } from '../services/note.service.js'
 import AddNote from '../cmps/add-note.jsx'
 import { PageLayout } from '../../../cmps/page-layout.jsx'
 import Loader from '../../../cmps/loader.jsx'
+const { Fragment } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -17,13 +18,15 @@ export function NoteIndex() {
     }, [])
     return (
         <PageLayout>
-            {!notes || (notes.length === 0 && <Loader />)}
-            {notes && notes.length > 0 && (
-                <div className='note-index'>
-                    <AddNote setNotes={setNotes} />
-                    <NoteList notes={notes} setNotes={setNotes} />
-                </div>
-            )}
+            <div className='note-index'>
+                {!notes || (notes.length === 0 && <Loader />)}
+                {notes && notes.length > 0 && (
+                    <Fragment>
+                        <AddNote setNotes={setNotes} />
+                        <NoteList notes={notes} setNotes={setNotes} />
+                    </Fragment>
+                )}
+            </div>
         </PageLayout>
     )
 }
