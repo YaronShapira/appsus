@@ -26,9 +26,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             })
         }
 
-        if (addNoteParams.type === 'note-todo') {
+        if (field.startsWith('todo')) {
             return setAddNoteParams(prev => {
-                const todoIdx = field.at(-1) - 1 // arrays are zero based
+                const todoIdx = field.at(-1)
                 if (!prev.todos[todoIdx]) {
                     prev.todos.push({ value, isChecked: false })
                 }
@@ -192,17 +192,20 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         ref={mainTextAreaRef}
                         hidden={addNoteParams.type === 'note-todo' ? true : false}
                     />
-                    {addNoteParams.type === 'note-todo' &&
-                        [...Array(addNoteParams.todos.length + 1)].map((_, idx) => {
-                            return (
-                                <TodoInput
-                                    index={idx}
-                                    handleChange={handleChange}
-                                    addNoteParams={addNoteParams}
-                                    key={idx}
-                                />
-                            )
-                        })}
+                    {addNoteParams.type === 'note-todo' && (
+                        <div className='todo-input-list'>
+                            {[...Array(addNoteParams.todos.length + 1)].map((_, idx) => {
+                                return (
+                                    <TodoInput
+                                        index={idx}
+                                        handleChange={handleChange}
+                                        addNoteParams={addNoteParams}
+                                        key={idx}
+                                    />
+                                )
+                            })}
+                        </div>
+                    )}
 
                     {!isWriting && (
                         <div className='inline-utils'>

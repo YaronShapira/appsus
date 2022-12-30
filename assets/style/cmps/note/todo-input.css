@@ -1,3 +1,7 @@
+.todo-input-list {
+    width: 100%;
+}
+
 .todo-input-wrapper {
     border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
@@ -5,9 +9,12 @@
     border-radius: 0px;
     display: flex;
     padding: 0 1.5rem;
-    margin-bottom: 1rem;
 }
 .todo-input {
     padding: 0 !important;
     margin: 0;
+}
+
+.todo-input-wrapper:last-of-type {
+    margin-bottom: 1rem;
 }
