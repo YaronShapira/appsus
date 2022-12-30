@@ -1,27 +1,27 @@
 /* LAYOUT */
-.mail-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr;
+.mail-details-preview.full {
+  margin-right: 2em;
+  border-radius: 2em;
+  overflow: hidden;
+  border-radius: var(--br-l);
+  background-color: var(--clrbg-light-a);
+  height: calc(100vh - var(--header-height) - 2em);
+}
+.mail-details-preview {
+  --avatar-size: 38px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: brightness(150%);
+  height: calc(70vh - var(--header-height) - 2em);
 }
 .msg-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr auto;
+  height: 100%;
   overflow-y: auto;
 }
 
-/* basics for container */
-.mail-details {
-  --avatar-size: 38px;
-  margin: 2em;
-  border-radius: 2em;
-  overflow: hidden;
-  border-radius: var(--br-l);
-  background-color: var(--clrbg-light-a);
-  height: calc(100vh - var(--header-height) - 4em);
-  overflow-y: hidden;
-}
 .mail-details-header,
 .mail-details-footer {
   padding: 1.5em 2em;

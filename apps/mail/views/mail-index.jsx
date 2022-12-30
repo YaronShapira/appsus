@@ -4,7 +4,7 @@ const { useSearchParams } = ReactRouterDOM
 import { PageLayout } from '../../../cmps/page-layout.jsx'
 import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
-
+import Loader from '../../../cmps/loader.jsx'
 import { mailService } from '../services/mail.service.js'
 
 export function MailIndex() {
@@ -14,6 +14,14 @@ export function MailIndex() {
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
 
   useEffect(() => {
+    loadMails({
+      ...filterBy,
+      txt: searchParams.get('q') || '',
+      status: searchParams.get('folder') || 'inbox',
+    })
+  }, [])
+
+  useEffect(() => {
     setFilterBy((prevFilterBy) => {
       return {
         ...prevFilterBy,
@@ -21,12 +29,11 @@ export function MailIndex() {
         status: searchParams.get('folder') || 'inbox',
       }
     })
-    loadMails({
-      ...filterBy,
-      txt: searchParams.get('q') || '',
-      status: searchParams.get('folder') || 'inbox',
-    })
   }, [searchParams])
+
+  useEffect(() => {
+    loadMails(filterBy)
+  }, [filterBy])
 
   function loadMails(filterBy) {
     mailService.query(filterBy).then((mails) => {
@@ -96,12 +103,11 @@ export function MailIndex() {
     })
   }
 
-  console.log('mails:', mails)
-
   return (
     <PageLayout>
       <section className='mail-index'>
         <MailCompose sendMail={sendMail} draftMail={draftMail} />
+        {!mails || (!mails.length && <Loader />)}
         {mails && (
           <MailList
             mails={mails}
