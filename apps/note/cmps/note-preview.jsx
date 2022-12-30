@@ -5,6 +5,7 @@ import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
+import NoteMap from './note-map.jsx'
 import NoteRecording from './note-recording.jsx'
 import NoteTodos from './note-todos.jsx'
 import NoteTxt from './note-txt.jsx'
@@ -94,11 +95,11 @@ export default function NotePreview({ note, setNotes }) {
                 return <NoteVideo {...props} />
             case 'note-todo':
                 return <NoteTodos {...props} />
-                break
             case 'note-recording':
             case 'note-audio':
                 return <NoteRecording {...props} />
-                break
+            case 'note-map':
+                return <NoteMap {...props} />
             default:
                 break
         }

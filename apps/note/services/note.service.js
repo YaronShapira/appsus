@@ -56,6 +56,7 @@ function getDefaultNote() {
         link: '',
         audio: '',
         todos: [],
+        loc: {},
     }
 }
 

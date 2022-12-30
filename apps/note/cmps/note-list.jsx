@@ -7,6 +7,7 @@ export function NoteList({ notes, setNotes }) {
 
     const pinnedNotes = notes.filter(note => note.isPinned)
     const unPinnedNotes = notes.filter(note => !note.isPinned)
+
     return (
         <div className='note-lists'>
             {pinnedNotes.length > 0 && (

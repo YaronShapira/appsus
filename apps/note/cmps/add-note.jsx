@@ -1,13 +1,10 @@
 const { useState, useEffect, useRef, Fragment } = React
 
-import initMap from '../services/map.service.js'
-import mapService from '../services/map.service.js'
+import { mapService } from '../services/map.service.js'
 import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
 import loadImageFromInput from '../services/upload.service.js'
 import TodoInput from './todo-input.jsx'
-
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDmpvKdpRUOG89zdH_1oS3xJsMTEPPj4Cw'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
@@ -66,8 +63,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         })
         setIsWriting(true)
     }
-
-    console.log(addNoteParams)
 
     function useOutsideAlerter(ref) {
         useEffect(() => {
@@ -188,7 +183,13 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function onMap() {
-        initMap(mapRef.current)
+        // mapService.initMap(mapRef.current).then(res => console.log(res))
+        let pos = {}
+        mapService.getCurrPos().then(res => {
+            pos = res
+            mapService.initMap(mapRef.current, pos)
+            addNoteParams.loc = pos
+        })
         addNoteParams.type = 'note-map'
 
         setIsWriting(true)
@@ -197,6 +198,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     return (
         <Fragment>
             <div className={`add-note ${isInputOpened ? 'add-note-modal' : ''}`} ref={addNoteBoxRef}>
+                <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
                 {addNoteParams.src && <img src={addNoteParams.src} />}
                 {isWriting && (
                     <input
@@ -208,7 +210,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                         onChange={handleChange}
                     />
                 )}
-                <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
 
                 <div className='main-input'>
                     <textarea
