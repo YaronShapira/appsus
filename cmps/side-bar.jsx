@@ -8,6 +8,7 @@ export function SideBar() {
   // dynamic path
   const [sidebarLoc, setSidebarLoc] = useState('home')
   const location = useLocation()
+  // const [currActive, setActive] = useState('')
 
   // hover effect
   const [isOpen, setIsOpen] = useState(false)
@@ -51,6 +52,7 @@ export function SideBar() {
       </nav>
     )
   }
+
   function sidebarFor(isOpen) {
     switch (location.pathname) {
       case '/note':

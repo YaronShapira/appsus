@@ -241,8 +241,319 @@ function getDummyMails() {
       from: 'notifications@github.com',
       subject: `Tommy and 39 others made changes in your shared folders
       `,
-      body: `Activity in Shared Folders
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident modi dicta ea voluptates aliquam labore, dolor sint quod soluta minus quos possimus beatae esse maiores sit fugit minima pariatur maxime amet iusto omnis veritatis accusantium rem numquam. Similique harum dolore tenetur tempore asperiores aperiam maxime ex exercitationem distinctio! Dolores, sapiente dolorum possimus ut illo iste, enim dolore, quasi quibusdam dignissimos praesentium quam voluptate? Nihil quisquam praesentium quo recusandae laborum in fuga natus adipisci quibusdam impedit sunt officiis iste facere, itaque excepturi voluptas molestiae. Cum commodi esse veniam enim, suscipit, sunt ducimus recusandae totam ab, consectetur magnam reprehenderit molestias quaerat doloremque temporibus magni dolores perspiciatis odit earum nihil expedita voluptas! Minus perspiciatis ipsa veniam eos, aperiam laudantium sapiente non excepturi, perferendis, nobis cum voluptatum. Vel reiciendis numquam voluptas debitis adipisci laboriosam eum aliquam earum dolorem perferendis molestiae consectetur assumenda quaerat reprehenderit, dolores eligendi suscipit omnis quod iure maxime tempore aut saepe recusandae! Architecto, earum voluptate numquam quia consequatur non est illo dolorem recusandae omnis praesentium corrupti exercitationem error ut quasi deserunt iusto, dicta voluptatem eos corporis itaque ipsum. Vitae, dolorem maiores! Voluptatum eius eveniet corporis officia culpa ratione temporibus! Mollitia, magni iste veniam error voluptas non libero consectetur laudantium voluptatibus? Suscipit.`,
+      body: `<div id="m_7707452252046326481main" style="background:#f7f6f3;text-align:center;padding:20px;font-variant:normal;font-weight:normal;font-family:Arial;font-size:14px;color:black">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+          <tbody><tr style="font-family:Arial;font-size:12px;text-align:center">
+              <td style="padding-right:25px" width="10%"><img src="https://ci4.googleusercontent.com/proxy/2jc_RUTw3rlWVQ-6iuX4-y06wDzEObT2fBJFFT5rgfAvF9U0XIBW0qHnxQHjHjA6835LPrMIYe-mrgCVEh1fiiPwmxcFAIhvJxR27CjM=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mcc_new_logo_email.png" class="CToWUd" data-bit="iit"></td>
+          </tr>
+          <tr style="font-family:Arial;font-size:12px;text-align:center">
+              <td><br></td>
+          </tr>
+          <tr style="font-family:Arial;font-size:22px;color:#444444;text-align:right" align="right">
+              <td>שלום <u></u>נעם חיים דהן<u></u></td>
+          </tr>
+      </tbody></table><br>&nbsp;<div style="background-color:white;padding:5px;font-size:30px;font-weight:normal;border-right:1px solid #e1e2dd">
+        
+          
+          <a href="https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid=2446&amp;mid=437984" alt="" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134878000&amp;usg=AOvVaw0iPftNU9RLwNLEOckdJYQo">
+            <img src="https://ci5.googleusercontent.com/proxy/tgOQgdahNoCJEQvPYOPFNuEb6eUP3UHddobEZWF-8xd0mr3DmHWKirKBs_nMT7AeZHGlQ6dFXiourJz_lUkT6XVy69ph81bnCTgA7w=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/ask_bmail_281222.jpg" alt="" class="CToWUd" data-bit="iit">
+          </a>
+          
+          
+          
+          <p style="margin:0">מבצע דגמי מיצובישי עם הטבה לבחירתך
+      </p>
+      </div>
+      <div style="background-color:white;font-size:18px;color:#7e8895;padding:1px 0;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        
+          
+          <a href="https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid=2446&amp;mid=437984" alt="" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw2B1uesqeF1jX5WVkJg1Fqs">
+            
+          </a>
+          
+          
+          
+          <p align="center">לראשונה ניתן לבחור: הנחה בלבד או הנחה וחבילת "בראש שקט" הכוללת שירותים, בדיקות וטיפולים ל- 3 שנים, על מגוון דגמים. בתוקף עד 17.1.23</p>
+      <p><a href="https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,317896?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw2B1uesqeF1jX5WVkJg1Fqs"><img style="border:0px;display:block;margin-left:auto;margin-right:auto" src="https://ci5.googleusercontent.com/proxy/8U-zzBVkieiIs2dwILvsH9NvXL_yIqNkLHlWy2gSijFq9GAvg3TQfratoXACPsZ311DMXNwMFlJDMhLuKtMcO14QqEz63hZUvkijPFlXYKbNqOX_peCiqehsK4g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_car_nadlan_090320.png" alt="פרטים בקרוב" width="150" height="30" class="CToWUd" data-bit="iit"></a></p>
+      </div>
+      <br>&nbsp;<br>&nbsp;<table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318778?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318778?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw1njFPL2cUB5OHcU67ja1F1"><img src="https://ci3.googleusercontent.com/proxy/k3fDzFb7UhyQwWEbNHtsMGkyOZVqgZAKH7nNhh_JO5gGOYJGRuSHK-fU7XerEYA3rGk1gMC_pl_OFVXVxj8kB1KCILIAMZoWGl_fJaqXSsWwC-M=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/story_shely_mail_261222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! STORY</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            רשת חנויות מולטי-ברנד המציעה פריטים של מותגי אופנה מובילים תוך מתן חשיבות לשמירה על איכות הסביבה. מכבדים את הנטען בסניפים ובאונליין
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318778?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318778?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw1njFPL2cUB5OHcU67ja1F1"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318780?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318780?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw09gZrvn-0VYl7hcle3eegP"><img src="https://ci3.googleusercontent.com/proxy/ZU4xoZ5j2YtPiSNjjyLjLexIkBe4b3_MwLfoBS2JjycdlFWoirizDYH6-OaPbOFv4cb2NRTyvVUXdadBKzedheUobJ1yiS-N7RgABSvW1m8dRW0ZT_Kz-Q=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/scotchsoda_shely_mail_271222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! SCOTCH &amp; SODA</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            מותג הידוע בעיצובים קלאסיים, המשלבים פרינטים מקוריים עם בדים איכותיים. מכבדים את הכרטיס הנטען בסניפים וברכישה אונליין
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318780?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318780?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw09gZrvn-0VYl7hcle3eegP"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td></tr><tr><td colspan="2" valign="top"><br>&nbsp;</td></tr><tr></tr><tr><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318787?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318787?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw0hW7DCWiyS3A_jyUQNsm_J"><img src="https://ci4.googleusercontent.com/proxy/Hm_puFUgTcEtVcvJXl-5HU0jka0olVCI_-avmMkrfIu_EVfdYebllD4oQohuOohf4c_zU_HVDNHzuxcsaqQiaP9r_RBtSzJfWRr955Zc1sPtZQ=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/word_shely_mail_281222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! WORD</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            רשת חנויות המציעה מותגים בינלאומיים ומובילה את אופנת ה-״סטריט״ עם פריטים לגברים, נשים וילדים. מכבדים את הנטען בסניפים
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318787?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318787?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw0hW7DCWiyS3A_jyUQNsm_J"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318781?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318781?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134879000&amp;usg=AOvVaw17ewrnbbygOis--KqIJuFm"><img src="https://ci3.googleusercontent.com/proxy/_ZN2qSki6K5XSiQgCLsM1JIlB35Fv2E3LeIJ_92v9ijA8hQt4tj3PwtPa8LphO1IGf_whe2ME7Jon--wuNkao6MaUoc3nIXZRfqdukG10twyRYXM9Ib5=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/allsaints_shely_mail_271222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! ALL SAINTS</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            מותג המציע פריטים ייחודיים בסגנון קז׳ואל המשלבים גוונים של שחור, עם עור ועיצובים א־סימטריים מקוריים בחיבור חזק לעולם המוזיקה
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318781?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318781?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw2ISeXzy31e2t-HGobLrm5G"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td></tr><tr><td colspan="2" valign="top"><br>&nbsp;</td></tr><tr></tr><tr><td colspan="2" valign="top">
+              <table cellpadding="0" cellspacing="0" width="548px" style="color:#7e8895;text-align:center;font-family:arial;font-size:14pt">
+                  
+                  <tbody><tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000">הנחה + תשלום בנטען על קוסמטיקה טבעית</span><br><span>100 ₪ הנחה בקנייה, מעל 400 ₪, על כל אתר Rocio המציע מוצרי קוסמטיקה, כלי עיסוי, אביזרים ומארזים מפנקים. בנוסף, תשלום עם הנטען&nbsp;</span><br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,318728?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318728?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw1XPeFfm82HtoLMJKPaBx_f">פרטים נוספים</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000"><span>מחירים מיוחדים + תשלום בנטען ב"נאוטיקה הום"</span></span> <br><span>הנחות וכפל מבצעים על חלוק מגבת במגוון גדלים וצבעים ועל שמיכת פוך במילוי פלומה בגדלים שונים. הנחה נוספת בתשלום עם הכרטיס הנטען&nbsp;</span><br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,317600?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,317600?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw2_s4lWurRV5U3Oe1NQ4cj6">לפרטים נוספים</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000">הטבה + תשלום בנטען לטיפוח הפנים</span><br><span>מתנה בכל רכישה באתר הקוסמטיקה PELLE: סבון פנים קולגן בגודל 250ml (בשווי 150 ₪).&nbsp;</span><span>הנחה נוספת בתשלום עם הכרטיס הנטען</span><br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,316999?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,316999?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw1YIZlOJhTjWhAOfXZfq8XN">לפרטים נוספים</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><div align="right">
+      <p style="text-align:center"><span style="color:#000000"><span>הטבה + תשלום בנטען לניחוח נעים במיוחד</span></span><br>&nbsp;<span>סבון רביעי חינם ברכישת שלושה סבונים באתר REMEDY המציע מוצרים טבעיים, מארזי מתנה ועוד. הנחה נוספת בתשלום עם הכרטיס הנטען&nbsp;</span><br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,318727?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318727?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw35RP6vKuFyxtetAcYJZ0MF">לפרטים נוספים</a></p>
+      </div></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+              </tbody></table>
+      </td></tr><tr><td colspan="2" valign="top"><br>&nbsp;</td></tr><tr></tr><tr><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318737?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318737?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw39r3IU697CxpbSs_lZh9Ip"><img src="https://ci4.googleusercontent.com/proxy/h5iE09k-Wua2PFdVsErE5QiUEKlRQp24rKrG_1I3mNyloRYB5aEr6SG_rbfCHBzB6VgYsvMe5aUQW79bFOEfluLHhiu-Fd0tacqmNtN-LoISnpLHVQ=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/ruzilia_shely_mail_251222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! RUZILIA</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            נרות טבעיים בניחוחות מיוחדים. המוצרים מגיעים במגוון במארזים משמחים: נרות יצוקים בכלי זכוכית ובכלי בטון המיוצרים בעבודת יד
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318737?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318737?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw39r3IU697CxpbSs_lZh9Ip"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318858?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318858?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw0YJCRwRM-U5O5wnA9dr3Iw"><img src="https://ci5.googleusercontent.com/proxy/z5p5KogcxOEQ_liP5KQ5t_E2ZmnfxuijGoJtoIE3GbnO4-_0So4ISL0z9tKZLEupjecE_EcCFz6Xvb3QDruRc0HL-U-OyPozy_xSfu9IYFtn=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/moy_shely_mail_261222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חדש בכרטיס הנטען! MOY - אופנת ילדים</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            אתר לרכישה אונליין המציע קולקציית בגדי תינוקות לבנים ולבנות מבדים אורגניים איכותיים, סטים, מארזי לידה, מצעים שוברי קניה ועוד
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318858?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318858?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw0YJCRwRM-U5O5wnA9dr3Iw"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td></tr><tr><td colspan="2" valign="top"><br>&nbsp;</td></tr><tr></tr><tr><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/category_9?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/category_9?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134880000&amp;usg=AOvVaw3KGoPW7yEBBeJhwoIG6GkE"><img src="https://ci4.googleusercontent.com/proxy/8pzG0FxX_X0xhIeeYX73NhL_JfcYn3gYF1Nryz81LbKlCnQCSgry_IqoDyuYaPN2T9nn--0d5t7GCxj53VgwmSuH2po6HzYVqe08PjO7DK_8Aw=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/logo_woman_mail_061222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חגיגות יום האישה בארץ ובחו"ל – ההרשמה בעיצומה</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            אירוע בוקר או ערב ב"ג'ונה" נתניה, חופשה ב"קלאב הוטל" אילת הכוללת אירועים, הופעות, שי והפתעות ונופשים מאורגנים באתונה או בלונדון
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/category_9?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/category_9?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw2ShpjmjR9tYsAgbX2JvQJf"> <img src="https://ci5.googleusercontent.com/proxy/fBuo4tXapYCC_2SD05A28ZkmCww8J5cynbu1CrW0siBly2m0JOWiaMz3kKctX-24QvJ3Yh0iowNKokycPt0QvOB0isSBr_xyv939yNRrd8pawNZU1GDfmg=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tarbut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td><td valign="top" width="320px">
+      <table align="center" width="260" height="400" cellspacing="0" cellpadding="5" border="0" style="width:260px;display:inline-block;padding-bottom:20px;padding-top:10px;background-color:white;border-bottom:1px solid #e1e2dd;border-right:1px solid #e1e2dd">
+        <tbody><tr>
+          <td valign="top" align="center" height="110">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318629?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318629?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw28gbPSETItfft1tNCGtf2S"><img src="https://ci4.googleusercontent.com/proxy/F1UJCBd6A1XGuBGfDO9M6eg9Rmzb_ZFx0h9PBfwslZyGMrpgzCSZ7DXu7obEQ2KZ78M1Q5TreX9CsQQC_lDwwvFw65Z88oqye4ZN3BkM1rN3SdRRGA=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/ort_jerusalem_mail_281222.jpg" alt="" border="0" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="220" height="70" style="font-family:Arial,sans-serif" dir="rtl">
+            <h3 style="font-weight:normal;font-size:23px;text-align:center;margin:0" dir="rtl">חופשה חורפית מלאת אטרקציות בירושלים</h3>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center" width="250" height="120" style="font-weight:normal;font-family:Arial,sans-serif;font-size:16px;color:#7e8895" dir="rtl">
+            לילה במלון "יהודה" ע"ב לינה וארוחת בוקר כולל כרטיס לתערוכת Winter Lights בגן הבוטני וכרטיס לאטרקציה "מעלית הזמן" ב- 840 ₪ לזוג
+          </td>
+        </tr>
+          <tr>
+          <td valign="top" align="center" width="40">
+            <a style="text-decoration:none" href="https://www.mcc.co.il/site/pg/mcc_item_new,318629?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,318629?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw28gbPSETItfft1tNCGtf2S"> <img src="https://ci6.googleusercontent.com/proxy/tkDl0jmeMi2zBf59B_u00f9ITOdBUBI92mZ2B-_2slPi-iXg5b4zdQrVykavaWg5hDgo0SO8p2mkpwlz2llzqD2x7bKj4gFXXpx1xosDT0wtmuW5NL5SdLTV09g=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/flags/mail_btn_tzarchanut_090320.png" alt="more details" class="CToWUd" data-bit="iit"></a>
+          </td>
+        </tr>
+      </tbody></table>
+      </td></tr><tr><td colspan="2" valign="top"><br>&nbsp;</td></tr><tr></tr><tr><td colspan="2" valign="top">
+              <table cellpadding="0" cellspacing="0" width="548px" style="color:#7e8895;text-align:center;font-family:arial;font-size:14pt">
+                  
+                  <tbody><tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><div>
+      <p><span style="color:#000000">מרתון Playtika תל אביב 2023</span><br>10% הנחה במעמד חיוב כרטיס אשראי "חבר" בהרשמה למרוץ עם 6 מסלולים לבחירתכם. יום שישי, 24.2.23 שדרות רוקח ת"א.<br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,317068?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,317068?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw3Xon4zBkMAXDJLYQaLoLZU">לפרטים נוספים</a></p>
+      </div></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000">עמותת "אח בוגר אחות בוגרת"</span> <br><span>עמותה עם סניפים בפריסה ארצית, הפועלת לליווי של ילדים/ות ונערים/ות במצבי סיכון, באמצעות הצמדת חונכים אישיים שעברו סדנאות הכשרה&nbsp;</span><br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,319014?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,319014?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw2FSNh2irJj1znUGxQU7PSQ">לפרטים נוספים</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000">הטבות מהנות של ישראכרט בחודש דצמבר</span> <br>הנחות שוות שיש לכם עם כרטיסי אשראי "חבר" - ישראכרט או אמקס, בפעילויות פנאי, המופע NEXT, מוזיאון השעווה, קולנוע, מקדונלדס ועוד&nbsp;<br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,316852?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,316852?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw0CW7sBr_becqn4q-2SRIgY">לפרטים נוספים&nbsp;</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci4.googleusercontent.com/proxy/bZYqncuSUSGkJASUjD50dQZfWjg3gF8h6UsA9ikiWBS4CSUFn8kZREeqz0UlkuPI8HQqFfBx7NadYruTzQOJjzZcLTt2t_CHvJzBPSifiK0Fn9Toc6ye=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><p><span style="color:#000000">מודעים לסביבה - נייר זה מיותר!</span> <br>מעוניינים לצמצם את כמות העלונים בתיבת הדואר? ניתן ללחוץ על בקשת הסרה מדיוור ולבקש הפסקת קבלת עלונים מודפסים ממועדון "חבר"&nbsp;<br><a href="https://www.mcc.co.il/site/pg/mcc_item_new,255896?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/site/pg/mcc_item_new,255896?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw2RrN6uY7snyWKjjxJOwPSS">לפרטים נוספים&nbsp;</a></p></td>
+                  </tr>
+                  
+                  <tr style="background-color:#f7f6f3">
+                      <td dir="rtl"><img src="https://ci3.googleusercontent.com/proxy/Jhi68Pq_PfjUzSiB7VRva7IIO4MLXQTUxbJt0fQTkrxw-RvZ0QFKgeKNs3jy4jJ_KCJsCdsbcKp3CG5Xa4ZlhoL8ATFbjX3Ewb1GUF7XlwtknGZ4zoo0NUQISpI_IsYXgQo_3pI8-eEre9k=s0-d-e1-ft#https://www.mcc.co.il/pics/site_home/mail_separating_icon_060220.png?eid=2446&amp;mid=437984" alt="" class="CToWUd" data-bit="iit"></td>
+                  </tr>
+                  
+              </tbody></table>
+      </td></tr></tbody></table>
+      <br>&nbsp;<p style="text-align:right"><strong>* נא לא להשיב למייל זה. להסרתך מרשימת הדיוור האינטרנטי יש ללחוץ על האפשרות "להסרה מרשימת התפוצה" המופיעה בתחתית העמוד.</strong></p><p><br></p>
+      
+      
+      <table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+          <tbody><tr style="font-family:Arial;font-size:12px;text-align:center">
+              <td>
+                  <table align="center" style="margin:0 auto 10px auto;font-family:Arial;font-size:12px">
+                      <tbody><tr>
+                          <td><a style="color:#363636" href="https://www.mcc.co.il/signin.aspx?eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/signin.aspx?eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw0qxaYal5r785W2vhUNOfEx">לאתר מועדון חבר צרכנות</a></td>
+                          <td> | </td>
+                          <td><a href="https://www.mcc.co.il/noemail.aspx?email=8f34737f6e90406dfc1e0263996a56a8,noyemdahan@gmail.com&amp;eid=2446&amp;mid=437984" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mcc.co.il/noemail.aspx?email%3D8f34737f6e90406dfc1e0263996a56a8,noyemdahan@gmail.com%26eid%3D2446%26mid%3D437984&amp;source=gmail&amp;ust=1672479134881000&amp;usg=AOvVaw2dJf5VzsC_XBtDjfr3Ufjj">לחץ להסרה מרשימות התפוצה</a></td>
+                     </tr>
+                  </tbody></table>
+              </td>
+          </tr>
+      </tbody></table>
+      </div>`,
       isRead: false,
       sentAt: Date.now() - 1200000,
       to: loggedinUser.email,
