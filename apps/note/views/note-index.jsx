@@ -1,4 +1,6 @@
 const { useState, useEffect } = React
+const { useSearchParams, NavLink, useNavigate } = ReactRouterDOM
+const { Fragment } = React
 
 import { NoteList } from '../cmps/note-list.jsx'
 import { noteService } from '../services/note.service.js'
@@ -6,16 +8,41 @@ import { noteService } from '../services/note.service.js'
 import AddNote from '../cmps/add-note.jsx'
 import { PageLayout } from '../../../cmps/page-layout.jsx'
 import Loader from '../../../cmps/loader.jsx'
-const { Fragment } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    const [searchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+
+    function loadNotes() {
+        console.log('LOADING NOTES')
+        setTimeout(() => {
+            noteService.getNotes(filterBy).then(setNotes)
+        }, 10)
+    }
 
     useEffect(() => {
-        setTimeout(() => {
-            noteService.getNotes().then(setNotes)
-        }, 1000)
+        loadNotes({
+            ...filterBy,
+            txt: searchParams.get('q') || '',
+            status: searchParams.get('folder') || 'notes',
+        })
     }, [])
+
+    useEffect(() => {
+        setFilterBy(prevFilterBy => {
+            return {
+                ...prevFilterBy,
+                txt: searchParams.get('q') + '' || '',
+                status: searchParams.get('folder') || 'notes',
+            }
+        })
+    }, [searchParams])
+
+    useEffect(() => {
+        loadNotes(filterBy)
+    }, [filterBy])
+
     return (
         <PageLayout>
             <div className='note-index'>

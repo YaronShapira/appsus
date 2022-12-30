@@ -5,6 +5,7 @@ export function SideBarNote({ isOpen }) {
     const [filterBy, setFilterBy] = useState('notes')
     const [searchParams, setSearchParams] = useSearchParams()
     const folder = useRef('notes')
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (searchParams.has('folder')) {
@@ -16,7 +17,7 @@ export function SideBarNote({ isOpen }) {
     function onFolder(folderTo) {
         folder.current = folderTo
         navigate({
-            pathname: '/mail',
+            pathname: '/note',
             search: `?q=${searchParams.get('q')}&folder=${folder.current}`,
         })
     }

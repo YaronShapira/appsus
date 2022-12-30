@@ -8,13 +8,23 @@ export const noteService = {
     getDefaultNote,
     deleteNote,
     duplicateNote,
+    getDefaultFilter,
 }
 
 const NOTES_KEY = 'notesDB'
 _createNotes()
 
-function getNotes() {
-    return storageService.query(NOTES_KEY)
+function getNotes(filterBy) {
+    return storageService.query(NOTES_KEY).then(notes => {
+        if (filterBy.txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
+            notes = notes.filter(note => regex.test(note.info.txt) || regex.test(note.title))
+        }
+        if (filterBy.status) {
+            notes = notes.filter(note => note.status === filterBy.status)
+        }
+        return notes
+    })
 }
 
 function duplicateNote(note) {
@@ -57,7 +67,11 @@ function getDefaultNote() {
         audio: '',
         todos: [],
         loc: {},
+        status: 'notes',
     }
+}
+function getDefaultFilter() {
+    return { txt: '', status: 'notes' }
 }
 
 function _createNote(txt, title = '') {
@@ -107,6 +121,7 @@ function _createNotes() {
                 },
                 style: {},
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -118,6 +133,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#3269ff', color: 'white' },
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -129,6 +145,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#8cc40f', color: 'black' },
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -140,6 +157,7 @@ function _createNotes() {
                 },
                 style: {},
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -151,6 +169,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#ae3b76', color: 'white' },
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -162,6 +181,7 @@ function _createNotes() {
                 },
                 style: {},
                 src: '',
+                status: 'archive',
             },
             {
                 id: utilService.makeId(),
@@ -173,6 +193,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#fe7745', color: 'black' },
                 src: '',
+                status: 'archive',
             },
             {
                 id: utilService.makeId(),
@@ -184,6 +205,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#0e121a', color: '#798193' },
                 src: '',
+                status: 'trash',
             },
             {
                 id: utilService.makeId(),
@@ -195,6 +217,7 @@ function _createNotes() {
                 },
                 style: {},
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -206,6 +229,7 @@ function _createNotes() {
                 },
                 style: {},
                 src: '',
+                status: 'notes',
             },
             {
                 id: utilService.makeId(),
@@ -217,6 +241,7 @@ function _createNotes() {
                 },
                 style: { backgroundColor: '#b82af3', color: 'white' },
                 src: '',
+                status: 'notes',
             },
         ]
     }
