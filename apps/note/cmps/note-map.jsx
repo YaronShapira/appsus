@@ -12,8 +12,6 @@ export default function NoteMap({ note, setIsEditing, onDeleteNote, setColor, on
         noteArticleRef.current.classList.remove('z-2')
     }
 
-    console.log(note)
-
     useEffect(() => {
         mapService.initMap(mapRef.current, note.loc)
     }, [])

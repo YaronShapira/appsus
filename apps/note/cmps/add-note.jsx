@@ -183,7 +183,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function onMap() {
-        // mapService.initMap(mapRef.current).then(res => console.log(res))
         let pos = {}
         mapService.getCurrPos().then(res => {
             pos = res
