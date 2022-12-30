@@ -9,6 +9,7 @@
 @import 'base/forms.css';
 @import 'base/tags.css';
 @import 'base/buttons.css';
+@import 'base/loader.css';
 
 /* Common Components */
 @import 'cmps/app-header.css';

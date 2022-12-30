@@ -5,12 +5,15 @@ import { noteService } from '../services/note.service.js'
 
 import AddNote from '../cmps/add-note.jsx'
 import { PageLayout } from '../../../cmps/page-layout.jsx'
+import Loader from '../../../cmps/loader.jsx'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState([])
 
   useEffect(() => {
-    noteService.getNotes().then(setNotes)
+    setTimeout(() => {
+      noteService.getNotes().then(setNotes)
+    }, 1000)
   }, [])
   return (
     <PageLayout>

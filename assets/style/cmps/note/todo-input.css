@@ -9,6 +9,7 @@
     border-radius: 0px;
     display: flex;
     padding: 0 1.5rem;
+    align-items: center;
 }
 .todo-input {
     padding: 0 !important;
@@ -17,4 +18,13 @@
 
 .todo-input-wrapper:last-of-type {
     margin-bottom: 1rem;
+}
+.todo-input-wrapper input[type='checkbox'] {
+    background: black;
+    /* width: 10px; */
+    width: 5%;
+    height: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
