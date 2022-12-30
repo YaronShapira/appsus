@@ -29,7 +29,7 @@ export function NoteList({ notes, setNotes }) {
     )
 }
 
-// TODO: Note todos, audio, canvas, map
+// TODO: Note canvas, map
 // TODO: support filtering by search and by type
 // TODO: instead of delete, trash.
 // TODO: add archive

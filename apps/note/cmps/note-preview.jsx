@@ -96,6 +96,7 @@ export default function NotePreview({ note, setNotes }) {
                 return <NoteTodos {...props} />
                 break
             case 'note-recording':
+            case 'note-audio':
                 return <NoteRecording {...props} />
                 break
             default:

@@ -9,7 +9,6 @@ export default function NoteTodos({ note, setIsEditing, onDeleteNote, setColor, 
     function onHoverLeave() {
         noteArticleRef.current.classList.remove('z-2')
     }
-    console.log(note)
 
     return (
         <article

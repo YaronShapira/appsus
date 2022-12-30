@@ -14,6 +14,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const uploadImgInputRef = useRef(null)
     const mainTextAreaRef = useRef(null)
     const micRecorderRef = useRef(null)
+    const uploadAudioInputRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
@@ -42,13 +43,26 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function onUploadImg(ev) {
-        loadImageFromInput(ev, img => {
+        uploadService.loadImageFromInput(ev, img => {
             addNoteParams.src = img.src
             addNoteParams.type = 'note-img'
             setAddNoteParams({ ...addNoteParams })
         })
         setIsWriting(true)
     }
+
+    function onUploadAudio(ev) {
+        uploadService.loadAudioFromInput(ev, audio => {
+            console.log('LOADED')
+            addNoteParams.audio = audio.src
+            addNoteParams.type = 'note-audio'
+            console.log('type', addNoteParams)
+            setAddNoteParams({ ...addNoteParams })
+        })
+        setIsWriting(true)
+    }
+
+    console.log(addNoteParams)
 
     function useOutsideAlerter(ref) {
         useEffect(() => {
@@ -223,6 +237,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                             <button className='btn btn-rnd-s' onClick={onYoutube}>
                                 <i className='fa-brands fa-youtube'></i>
                             </button>
+                            <button className='btn btn-rnd-s' onClick={() => uploadAudioInputRef.current.click()}>
+                                <i className='fa-solid fa-music'></i>
+                            </button>
                             <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
                                 <i className='fa-solid fa-image'></i>
                             </button>
@@ -234,6 +251,15 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                                 hidden
                                 ref={uploadImgInputRef}
                                 onChange={onUploadImg}
+                            />
+                            <input
+                                type='file'
+                                className='file-input btn'
+                                name='audio'
+                                id='image'
+                                hidden
+                                ref={uploadAudioInputRef}
+                                onChange={onUploadAudio}
                             />
                         </div>
                     )}
