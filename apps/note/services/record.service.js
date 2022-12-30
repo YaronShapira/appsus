@@ -12,6 +12,12 @@ export const recordAudio = () => {
                 mediaRecorder.start()
             }
 
+            const terminateRecording = () => {
+                console.log('TERMINATING')
+                if (mediaRecorder.state === 'inactive') return
+                mediaRecorder.stop()
+            }
+
             const stop = () => {
                 return new Promise(resolve => {
                     mediaRecorder.addEventListener('stop', () => {
@@ -29,7 +35,7 @@ export const recordAudio = () => {
                 })
             }
 
-            resolve({ start, stop })
+            resolve({ start, stop, terminateRecording })
         })
     })
 }

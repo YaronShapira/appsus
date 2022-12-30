@@ -83,7 +83,6 @@ export default function NotePreview({ note, setNotes }) {
         // renderNoteAndSave(recoveryNote)
     }
     function DynamicNote(props) {
-        console.log(note.type)
         switch (note.type) {
             case 'note-txt':
                 return <NoteTxt {...props} />
@@ -101,10 +100,6 @@ export default function NotePreview({ note, setNotes }) {
         }
     }
 
-    if (note.audio) {
-        console.log('TEST')
-    }
-
     return (
         <Fragment>
             <DynamicNote
@@ -115,8 +110,13 @@ export default function NotePreview({ note, setNotes }) {
                 onDuplicateNote={onDuplicateNote}
                 onPin={onPin}
             />
+            {isEditing && <AddNote note={note} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />}
+        </Fragment>
+    )
+}
 
-            {/* <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
+{
+    /* <article style={note.style} className='note-preview' onClick={() => setIsEditing(true)}>
                 {note.src && <ImgCmp src={note.src} />}
                 {note.link && <VideoCmp link={note.link} />}
                 <h5>{note.title}</h5>
@@ -128,16 +128,5 @@ export default function NotePreview({ note, setNotes }) {
                     onDuplicateNote={onDuplicateNote}
                     onPin={onPin}
                 />
-            </article> */}
-
-            {isEditing && (
-                <Fragment>
-                    <div className='add-note-modal'>
-                        <AddNote note={note} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />
-                    </div>
-                    <div className='dark-overlay'></div>
-                </Fragment>
-            )}
-        </Fragment>
-    )
+            </article> */
 }

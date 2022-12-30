@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef } = React
+const { useState, useEffect, useRef, Fragment } = React
 
 import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
@@ -8,6 +8,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(isEditing || false)
     const [isRecording, setIsRecording] = useState(false)
+    const [isInputOpened, setIsInputOpened] = useState(isEditing || false)
     const addNoteBoxRef = useRef(null)
     const uploadImgInputRef = useRef(null)
     const mainTextAreaRef = useRef(null)
@@ -28,14 +29,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         })
     }
 
-    function updateParamsSrc(img) {
-        addNoteParams.src = img.src
-        addNoteParams.type = 'note-img'
-        setAddNoteParams({ ...addNoteParams })
-    }
-
     function onUploadImg(ev) {
-        loadImageFromInput(ev, updateParamsSrc)
+        loadImageFromInput(ev, img => {
+            addNoteParams.src = img.src
+            addNoteParams.type = 'note-img'
+            setAddNoteParams({ ...addNoteParams })
+        })
         setIsWriting(true)
     }
 
@@ -44,8 +43,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             // Alert if clicked on outside of element
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    clearSlate()
                     if (isEditing) setIsEditing(false)
+
+                    clearSlate()
                 }
             }
 
@@ -59,13 +59,18 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function clearSlate() {
+        setIsInputOpened(false)
         setIsWriting(false)
         setIsRecording(false)
+        setIsInputOpened(false)
         setAddNoteParams(noteService.getDefaultNote())
         mainTextAreaRef.current.placeholder = 'Take a note...'
         mainTextAreaRef.current.name = 'txt'
         mainTextAreaRef.current.id = 'txt'
         addNoteParams.type = 'note-txt'
+        if (micRecorderRef.current) {
+            micRecorderRef.current.terminateRecording()
+        }
     }
 
     function onYoutube() {
@@ -80,12 +85,13 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     function onToDoList() {
         console.log('TODO')
         setIsWriting(true)
-        mainTextAreaRef.current.focus()
+        addNoteParams.type = 'note-todo'
+        // mainTextAreaRef.current.placeholder = 'List item 1'
+        // mainTextAreaRef.current.classList.add('todo-input')
+        // mainTextAreaRef.current.focus()
     }
 
     function addNote() {
-        // if (isRecording) saveRecording()
-
         if (isEditing) setIsEditing(false)
 
         const newNote = structuredClone(addNoteParams)
@@ -97,12 +103,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             .then(newNoteFromDB => {
                 newNote.id = newNoteFromDB.id
                 setNotes(prev => [...prev])
-                console.log('?')
             })
             .catch(err => {
                 console.log(err)
                 setNotes(noteService.getNotes())
             })
+
         if (!isEditing) {
             return setNotes(prev => [newNote, ...prev])
         }
@@ -114,21 +120,22 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
     function onRecord() {
         ;(async () => {
-            setIsWriting(true)
-            setIsRecording(true)
+            setIsInputOpened(true)
+            addNoteParams.type = 'note-recording'
             mainTextAreaRef.current.placeholder = 'Listening'
             const recorder = await recordAudio()
             micRecorderRef.current = recorder
             recorder.start()
+            setIsWriting(true)
+            setIsRecording(true)
         })()
     }
 
     async function stopRecording() {
-        clearSlate()
         const audio = await micRecorderRef.current.stop()
         var reader = new FileReader()
         reader.readAsDataURL(audio.audioBlob)
-        addNoteParams.type = 'note-recording'
+
         setTimeout(() => {
             addNoteParams.audio = reader.result
             const dataLength = 'data:audio/wav;base64'.length
@@ -137,83 +144,87 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         }, 100)
     }
 
-    async function saveRecording() {
-        const audio = await micRecorderRef.current.stop()
-        addNoteParams.audio = audio
-        console.log(addNoteParams)
-        audio.play()
+    function getTextAreaRows() {
+        if (isEditing) return 3
+        if (isWriting) return 2
+        return 1
     }
 
     return (
-        <div className='add-note' ref={addNoteBoxRef}>
-            {addNoteParams.src && <img src={addNoteParams.src} />}
-            {isWriting && (
-                <input
-                    type='title'
-                    placeholder='Title'
-                    id='title'
-                    name='title'
-                    value={addNoteParams.title}
-                    onChange={handleChange}
-                />
-            )}
+        <Fragment>
+            <div className={`add-note ${isInputOpened ? 'add-note-modal' : ''}`} ref={addNoteBoxRef}>
+                {addNoteParams.src && <img src={addNoteParams.src} />}
+                {isWriting && (
+                    <input
+                        type='title'
+                        placeholder='Title'
+                        id='title'
+                        name='title'
+                        value={addNoteParams.title}
+                        onChange={handleChange}
+                    />
+                )}
 
-            <div className='main-input'>
-                <textarea
-                    type='title'
-                    placeholder='Take a note...'
-                    id='txt'
-                    name='txt'
-                    rows={isEditing ? 3 : isWriting ? 2 : 1}
-                    value={addNoteParams.info.txt || addNoteParams.link}
-                    onChange={handleChange}
-                    onClick={() => setIsWriting(true)}
-                    ref={mainTextAreaRef}
-                />
-                {!isWriting && (
-                    <div className='inline-utils'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-list' onClick={stopRecording}></i>
-                        </button>
-                        <button className='btn btn-rnd-s' onClick={onRecord}>
-                            <i className='fa-solid fa-microphone'></i>
-                        </button>
-                        <button className='btn btn-rnd-s' onClick={onYoutube}>
-                            <i className='fa-brands fa-youtube'></i>
-                        </button>
-                        <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
-                            <i className='fa-solid fa-image'></i>
-                        </button>
-                        <input
-                            type='file'
-                            className='file-input btn'
-                            name='image'
-                            id='image'
-                            hidden
-                            ref={uploadImgInputRef}
-                            onChange={onUploadImg}
+                <div className='main-input'>
+                    {addNoteParams.type !== 'todo-list' && (
+                        <textarea
+                            type='title'
+                            placeholder='Take a note...'
+                            id='txt'
+                            name='txt'
+                            rows={getTextAreaRows()}
+                            value={addNoteParams.info.txt || addNoteParams.link}
+                            onChange={handleChange}
+                            onClick={() => setIsWriting(true)}
+                            ref={mainTextAreaRef}
                         />
+                    )}
+                    {!isWriting && (
+                        <div className='inline-utils'>
+                            <button className='btn btn-rnd-s' onClick={onToDoList}>
+                                <i className='fa-solid fa-list'></i>
+                            </button>
+                            <button className='btn btn-rnd-s' onClick={onRecord}>
+                                <i className='fa-solid fa-microphone'></i>
+                            </button>
+                            <button className='btn btn-rnd-s' onClick={onYoutube}>
+                                <i className='fa-brands fa-youtube'></i>
+                            </button>
+                            <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
+                                <i className='fa-solid fa-image'></i>
+                            </button>
+                            <input
+                                type='file'
+                                className='file-input btn'
+                                name='image'
+                                id='image'
+                                hidden
+                                ref={uploadImgInputRef}
+                                onChange={onUploadImg}
+                            />
+                        </div>
+                    )}
+                </div>
+                {isWriting && (
+                    <div className='utils'>
+                        <div className='btns'>
+                            <button className='btn btn-rnd-s'>
+                                <i className='fa-solid fa-pencil'></i>
+                            </button>
+                            <button className='btn btn-rnd-s'>
+                                <i className='fa-solid fa-palette'></i>
+                            </button>
+                            <button className='btn btn-rnd-s'>
+                                <i className='fa-solid fa-location-dot'></i>
+                            </button>
+                        </div>
+                        <button className='btn add-btn btn-primary' onClick={isRecording ? stopRecording : addNote}>
+                            {isRecording ? 'Stop' : 'Save'}
+                        </button>
                     </div>
                 )}
             </div>
-            {isWriting && (
-                <div className='utils'>
-                    <div className='btns'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
-                        </button>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-palette'></i>
-                        </button>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-location-dot'></i>
-                        </button>
-                    </div>
-                    <button className='btn add-btn btn-primary' onClick={isRecording ? stopRecording : addNote}>
-                        {isRecording ? 'Stop' : 'Save'}
-                    </button>
-                </div>
-            )}
-        </div>
+            {isInputOpened && <div className='dark-overlay'></div>}
+        </Fragment>
     )
 }
