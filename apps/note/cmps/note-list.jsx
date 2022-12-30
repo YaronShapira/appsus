@@ -31,8 +31,6 @@ export function NoteList({ notes, setNotes }) {
 }
 
 // TODO: Note canvas
-// TODO: instead of delete, trash.
-// TODO: move to archive
 // TODO: polish the add note box (colors, btns) (make it change colors)
 // TODO: add yellow color instead of this ugly green
 // TODO: layout...

@@ -5,12 +5,15 @@ import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
 import loadImageFromInput from '../services/upload.service.js'
 import TodoInput from './todo-input.jsx'
+import NotePalette from './note-palette.jsx'
+import AddNoteBtns from './add-note-btns.jsx'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(isEditing || false)
     const [isRecording, setIsRecording] = useState(false)
     const [isInputOpened, setIsInputOpened] = useState(isEditing || false)
+    const [isInPalette, setIsInPalette] = useState(false)
     const addNoteBoxRef = useRef(null)
     const uploadImgInputRef = useRef(null)
     const mainTextAreaRef = useRef(null)
@@ -194,9 +197,24 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         setIsWriting(true)
     }
 
+    function onDraw() {
+        console.log('CANVAS')
+    }
+
+    function setColor(ev, bgColor, color) {
+        ev.stopPropagation()
+        addNoteParams.style.backgroundColor = bgColor
+        addNoteParams.style.color = color
+        setAddNoteParams({ ...addNoteParams })
+        console.log(addNoteParams)
+    }
+
     return (
         <Fragment>
-            <div className={`add-note ${isInputOpened ? 'add-note-modal' : ''}`} ref={addNoteBoxRef}>
+            <div
+                className={`add-note ${isInputOpened ? 'add-note-modal' : ''}`}
+                ref={addNoteBoxRef}
+                style={addNoteParams.style.backgroundColor && { backgroundColor: addNoteParams.style.backgroundColor }}>
                 <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
                 {addNoteParams.src && <img src={addNoteParams.src} />}
                 {isWriting && (
@@ -241,57 +259,34 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
                     {!isWriting && (
                         <div className='inline-utils'>
-                            <button className='btn btn-rnd-s' onClick={onToDoList}>
-                                <i className='fa-solid fa-list'></i>
-                            </button>
-                            <button className='btn btn-rnd-s' onClick={onRecord}>
-                                <i className='fa-solid fa-microphone'></i>
-                            </button>
-                            <button className='btn btn-rnd-s' onClick={onYoutube}>
-                                <i className='fa-brands fa-youtube'></i>
-                            </button>
-                            <button className='btn btn-rnd-s' onClick={() => uploadAudioInputRef.current.click()}>
-                                <i className='fa-solid fa-music'></i>
-                            </button>
-                            <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
-                                <i className='fa-solid fa-image'></i>
-                            </button>
-                            <button className='btn btn-rnd-s' onClick={onMap}>
-                                <i className='fa-solid fa-location-dot'></i>
-                            </button>
-                            <input
-                                type='file'
-                                className='file-input btn'
-                                name='image'
-                                id='image'
-                                hidden
-                                ref={uploadImgInputRef}
-                                onChange={onUploadImg}
-                            />
-                            <input
-                                type='file'
-                                className='file-input btn'
-                                name='audio'
-                                id='image'
-                                hidden
-                                ref={uploadAudioInputRef}
-                                onChange={onUploadAudio}
+                            <AddNoteBtns
+                                onToDoList={onToDoList}
+                                onDraw={onDraw}
+                                onRecord={onRecord}
+                                onYoutube={onYoutube}
+                                uploadAudioInputRef={uploadAudioInputRef}
+                                uploadImgInputRef={uploadImgInputRef}
+                                onMap={onMap}
                             />
                         </div>
                     )}
                 </div>
                 {isWriting && (
                     <div className='utils'>
-                        <div className='btns'>
-                            <button className='btn btn-rnd-s'>
-                                <i className='fa-solid fa-pencil'></i>
-                            </button>
-                            <button className='btn btn-rnd-s'>
+                        <div className='inline-utils'>
+                            <button className='btn btn-rnd-s' onClick={() => setIsInPalette(prev => !prev)}>
                                 <i className='fa-solid fa-palette'></i>
                             </button>
-                            <button className='btn btn-rnd-s'>
-                                <i className='fa-solid fa-location-dot'></i>
-                            </button>
+                            <NotePalette isInPalette={isInPalette} setColor={setColor} />
+                            <AddNoteBtns
+                                onToDoList={onToDoList}
+                                onDraw={onDraw}
+                                onRecord={onRecord}
+                                onYoutube={onYoutube}
+                                uploadAudioInputRef={uploadAudioInputRef}
+                                uploadImgInputRef={uploadImgInputRef}
+                                onMap={onMap}
+                            />
                         </div>
                         <button className='btn add-btn btn-primary' onClick={isRecording ? stopRecording : addNote}>
                             {isRecording ? 'Stop' : 'Save'}
@@ -300,6 +295,24 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 )}
             </div>
             {isInputOpened && <div className='dark-overlay'></div>}
+            <input
+                type='file'
+                className='file-input btn'
+                name='image'
+                id='image'
+                hidden
+                ref={uploadImgInputRef}
+                onChange={onUploadImg}
+            />
+            <input
+                type='file'
+                className='file-input btn'
+                name='audio'
+                id='audio'
+                hidden
+                ref={uploadAudioInputRef}
+                onChange={onUploadAudio}
+            />
         </Fragment>
     )
 }
