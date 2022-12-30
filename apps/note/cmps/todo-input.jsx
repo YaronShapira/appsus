@@ -1,7 +1,8 @@
 const { Fragment, useState } = React
 
 export default function TodoInput({ index, handleChange, addNoteParams }) {
-    const [checked, setChecked] = useState(false)
+    const isToDoExists = addNoteParams.todos[index] ? true : false
+    const [checked, setChecked] = useState(addNoteParams.todos[index] ? addNoteParams.todos[index].isChecked : false)
 
     function onCheckBox() {
         setChecked(prev => {
@@ -9,7 +10,8 @@ export default function TodoInput({ index, handleChange, addNoteParams }) {
             return !prev
         })
     }
-    console.log('TEST', addNoteParams)
+
+    console.log(addNoteParams)
     return (
         <div className='todo-input-wrapper'>
             {!addNoteParams.todos[index] ? (
@@ -17,7 +19,7 @@ export default function TodoInput({ index, handleChange, addNoteParams }) {
                     <i className='fa-solid fa-plus'></i>
                 </button>
             ) : (
-                <input type='checkbox' onChange={onCheckBox} />
+                <input type='checkbox' onChange={onCheckBox} checked={checked} />
             )}
             <input
                 type='text'

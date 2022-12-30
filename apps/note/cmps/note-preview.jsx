@@ -92,7 +92,7 @@ export default function NotePreview({ note, setNotes }) {
                 return <NoteImg {...props} />
             case 'note-video':
                 return <NoteVideo {...props} />
-            case 'note-todos':
+            case 'note-todo':
                 return <NoteTodos {...props} />
                 break
             case 'note-recording':

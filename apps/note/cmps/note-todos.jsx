@@ -9,6 +9,7 @@ export default function NoteTodos({ note, setIsEditing, onDeleteNote, setColor, 
     function onHoverLeave() {
         noteArticleRef.current.classList.remove('z-2')
     }
+    console.log(note)
 
     return (
         <article
@@ -18,9 +19,19 @@ export default function NoteTodos({ note, setIsEditing, onDeleteNote, setColor, 
             onClick={() => setIsEditing(true)}
             onMouseEnter={onHover}
             onMouseLeave={onHoverLeave}>
-            TODO
             <h5>{note.title}</h5>
-            <p>{note.info.txt}</p>
+            {note.todos.map(todo => {
+                return (
+                    <div key={todo.value} className='note-todo-list'>
+                        {todo.isChecked ? (
+                            <i className='fa-solid fa-square-check'></i>
+                        ) : (
+                            <i className='fa-regular fa-square'></i>
+                        )}
+                        <p>{todo.value}</p>
+                    </div>
+                )
+            })}
             <NoteHoversBtns
                 onDeleteNote={onDeleteNote}
                 setColor={setColor}

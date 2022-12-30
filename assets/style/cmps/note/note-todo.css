@@ -1,0 +1,7 @@
+.note-todo-list {
+    display: flex;
+    align-items: center;
+}
+.note-todo-list p {
+    margin-left: 0.5rem;
+}

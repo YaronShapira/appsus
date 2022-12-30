@@ -147,7 +147,6 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         }, 100)
     }
 
-    console.log(addNoteParams)
 
     function getTextAreaRows() {
         if (isEditing) return 3
