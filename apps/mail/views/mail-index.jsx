@@ -14,10 +14,20 @@ export function MailIndex() {
 
   useEffect(() => {
     setFilterBy((prevFilterBy) => {
-      return { ...prevFilterBy, txt: searchParams.get('q') + '' }
+      return {
+        ...prevFilterBy,
+        txt: searchParams.get('q') + '',
+        status: searchParams.get('folder') || 'inbox',
+      }
     })
-    loadMails({ ...filterBy, txt: searchParams.get('q') })
+    loadMails({
+      ...filterBy,
+      txt: searchParams.get('q'),
+      status: searchParams.get('folder') || 'inbox',
+    })
   }, [searchParams])
+
+  console.log('filterBy:', filterBy)
 
   function loadMails(filterBy) {
     mailService.query(filterBy).then((mails) => {
@@ -27,11 +37,8 @@ export function MailIndex() {
       }
     })
   }
-  function onSetFilter(filterBy) {
-    setFilterBy(filterBy)
-  }
-  function onMailStarred(mail, ev) {
-    ev && ev.stopPropagation()
+
+  function onMailStarred(mail) {
     mail.isStared = !mail.isStared
     mailService.save(mail).catch(() => {
       loadMails(filterBy)
@@ -39,26 +46,24 @@ export function MailIndex() {
     setMails((prev) => [...prev])
   }
 
-  function onMailToNotes(mailId, ev) {
-    ev && ev.stopPropagation()
+  function onMailToNotes(mailId) {
     console.log('mailId:', mailId)
   }
 
-  function onToggleRead(mail, ev) {
-    ev && ev.stopPropagation()
-
+  function onToggleRead(mail) {
     mail.isRead = !mail.isRead
-    mailService.save(mail).then((mail) => {})
     setMails((prev) => [...prev])
+    mailService.save(mail).catch((mail) => {
+      mail.isRead = !mail.isRead
+      setMails((prev) => [...prev])
+    })
   }
 
-  function onCheckMail(mailId, ev) {
-    ev && ev.stopPropagation()
+  function onCheckMail(mailId) {
     console.log('mailId:', mailId)
   }
 
-  function onMailRemoved(mailId, ev) {
-    ev && ev.stopPropagation()
+  function onMailRemoved(mailId) {
     mailService.remove(mailId).catch((err) => {
       loadMails(filterBy)
       console.log('err onRemoveMail:', err)

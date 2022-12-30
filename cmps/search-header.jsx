@@ -14,7 +14,8 @@ export function SearchHeader() {
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        setSearchParams({ q: searchTxt.txt })
+        searchParams.set('q', searchTxt.txt)
+        setSearchParams([...searchParams.entries()])
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes

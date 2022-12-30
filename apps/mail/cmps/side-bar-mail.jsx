@@ -1,25 +1,23 @@
 import { eventBusService } from '../../../services/event-bus.service.js'
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 const { useSearchParams, NavLink } = ReactRouterDOM
 
 export function SideBarMail({ isOpen }) {
-  const [filterBy, setFilterBy] = useState({ filter: 'inbox' })
+  // const [filterBy, setFilterBy] = useState()
   const [searchParams, setSearchParams] = useSearchParams()
-
-  function onFolder(folder) {
-    setSearchParams([...searchParams.entries(), ['folder', 2]])
-  }
+  const folder = useRef('inbox')
 
   useEffect(() => {
-    console.log('searchParams:', searchParams.get('q'))
-    // setSearchParams({ ...searchParams.get('q'), filter: 'inbox' })
+    if (searchParams.has('folder')) {
+      folder.current = searchParams.get('folder')
+    }
   }, [])
 
-  function handleFilter(filter) {
-    let { value } = filter
-    setFilterBy((prevFilter) => ({ ...prevFilter, filter: value }))
-    setSearchParams({ q: filter.value })
+  function onFolder(folderTo) {
+    folder.current = folderTo
+    searchParams.set('folder', folder.current)
+    setSearchParams([...searchParams.entries()])
   }
 
   return (
@@ -30,32 +28,39 @@ export function SideBarMail({ isOpen }) {
             onClick={() => {
               onFolder('inbox')
             }}
-            className='icon-label active'>
-            {/* <NavLink
-              to={`/mail?${
-                searchParams.get('q') ? 'q=' + searchParams.get('q') + '&inbox' : 'inbox'
-              }`}>
-              <i className='fa-solid fa-inbox'></i>
-              <span className='sidebar-item-txt'>Inbox</span>
-            </NavLink> */}
+            className={`icon-label ${folder.current === 'inbox' && 'active'}`}>
             <i className='fa-solid fa-inbox'></i>
             <span className='sidebar-item-txt'>Inbox</span>
           </div>
         </li>
         <li>
-          <div className='icon-label'>
-            <NavLink to='/mail/draft'>
-              <i className='fa-regular fa-clipboard'></i>
-              <span className='sidebar-item-txt'>Draft</span>
-            </NavLink>
+          <div
+            onClick={() => {
+              onFolder('sent')
+            }}
+            className={`icon-label ${folder.current === 'sent' && 'active'}`}>
+            <i className='fa-regular fa-paper-plane'></i>
+            <span className='sidebar-item-txt'>Sent</span>
           </div>
         </li>
         <li>
-          <div className='icon-label'>
-            <NavLink to='/mail/trash'>
-              <i className='fa-regular fa-trash-can'></i>
-              <span className='sidebar-item-txt'>Trash</span>
-            </NavLink>
+          <div
+            onClick={() => {
+              onFolder('draft')
+            }}
+            className={`icon-label ${folder.current === 'draft' && 'active'}`}>
+            <i className='fa-regular fa-clipboard'></i>
+            <span className='sidebar-item-txt'>Draft</span>
+          </div>
+        </li>
+        <li>
+          <div
+            onClick={() => {
+              onFolder('trash')
+            }}
+            className={`icon-label ${folder.current === 'trash' && 'active'}`}>
+            <i className='fa-regular fa-trash-can'></i>
+            <span className='sidebar-item-txt'>Trash</span>
           </div>
         </li>
       </ul>

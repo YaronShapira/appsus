@@ -1436,6 +1436,7 @@ function getEmptyMail() {
     sender: loggedinUser.fullname,
     isStared: false,
     isRead: false,
+    status: 'sent',
   }
 }
 
