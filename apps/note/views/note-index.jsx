@@ -8,19 +8,22 @@ import { PageLayout } from '../../../cmps/page-layout.jsx'
 import Loader from '../../../cmps/loader.jsx'
 
 export function NoteIndex() {
-  const [notes, setNotes] = useState([])
+    const [notes, setNotes] = useState([])
 
-  useEffect(() => {
-    setTimeout(() => {
-      noteService.getNotes().then(setNotes)
-    }, 1000)
-  }, [])
-  return (
-    <PageLayout>
-      <div className='note-index'>
-        <AddNote setNotes={setNotes} />
-        <NoteList notes={notes} setNotes={setNotes} />
-      </div>
-    </PageLayout>
-  )
+    useEffect(() => {
+        setTimeout(() => {
+            noteService.getNotes().then(setNotes)
+        }, 1000)
+    }, [])
+    return (
+        <PageLayout>
+            {!notes || (notes.length === 0 && <Loader />)}
+            {notes && notes.length > 0 && (
+                <div className='note-index'>
+                    <AddNote setNotes={setNotes} />
+                    <NoteList notes={notes} setNotes={setNotes} />
+                </div>
+            )}
+        </PageLayout>
+    )
 }

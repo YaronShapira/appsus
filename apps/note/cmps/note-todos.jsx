@@ -18,10 +18,9 @@ export default function NoteTodos({ note, setIsEditing, onDeleteNote, setColor, 
             onClick={() => setIsEditing(true)}
             onMouseEnter={onHover}
             onMouseLeave={onHoverLeave}>
-            <iframe src={note.link} frameBorder='0' allowFullScreen></iframe>
+            TODO
             <h5>{note.title}</h5>
             <p>{note.info.txt}</p>
-
             <NoteHoversBtns
                 onDeleteNote={onDeleteNote}
                 setColor={setColor}
