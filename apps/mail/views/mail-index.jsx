@@ -6,7 +6,7 @@ import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
 import Loader from '../../../cmps/loader.jsx'
 import { mailService } from '../services/mail.service.js'
-import { eventBusService } from '../../../services/event-bus.service.js'
+import { eventBusService, showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function MailIndex() {
   const [isMarked, setIsMarked] = useState(false)
@@ -51,6 +51,8 @@ export function MailIndex() {
     mailService.save(mail).catch(() => {
       loadMails(filterBy)
     })
+    let msg = mail.isStared ? 'Mail Stared' : 'Mail Unstared'
+    showSuccessMsg(msg)
     setMails((prev) => [...prev])
     eventBusService.emit('recount-mails', 'Stared')
   }
@@ -77,11 +79,13 @@ export function MailIndex() {
     const mailId = mail.id
 
     if (mail.status === 'trash') {
+      showSuccessMsg('Mail Moved to Trash')
       mailService.remove(mailId).catch((err) => {
         loadMails(filterBy)
         console.log('err onRemoveMail:', err)
       })
     } else {
+      showSuccessMsg('Mail Removed')
       let prevMailStatus = mail.status
       mail.status = 'trash'
       mailService.save(mail).catch((mail) => {
@@ -95,6 +99,7 @@ export function MailIndex() {
   }
 
   function draftMail(mail) {
+    showSuccessMsg('Mail Saved to Draft')
     eventBusService.emit('recount-mails', 'Draft')
     mailService.save(mail).then(() => {
       loadMails(filterBy)
@@ -102,6 +107,7 @@ export function MailIndex() {
   }
 
   function sendMail(mail) {
+    showSuccessMsg('Mail Sent')
     eventBusService.emit('recount-mails', 'Sent')
     mail.status = 'sent'
     mailService.save(mail).then(() => {
