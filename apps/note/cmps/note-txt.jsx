@@ -14,7 +14,7 @@ export default function NoteTxt({ note, setIsEditing, onDeleteNote, setColor, on
         <article
             style={note.style}
             ref={noteArticleRef}
-            className='note-preview'
+            className='note-preview '
             onClick={() => setIsEditing(true)}
             onMouseEnter={onHover}
             onMouseLeave={onHoverLeave}>

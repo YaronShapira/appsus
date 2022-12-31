@@ -3,10 +3,11 @@
     border: 1px solid var(--clr-txt-m);
     outline: none;
     color: var(--clr-txt);
-    background-color: var(--clrbg-light);
+    background-color: var(--clrbg-a);
     max-width: 600px;
     margin: 0 auto;
     display: block;
+    box-shadow: 3px 1px 4px 2px black;
 }
 
 .add-note :is(input, textarea) {

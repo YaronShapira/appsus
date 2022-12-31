@@ -31,7 +31,6 @@ export function NoteList({ notes, setNotes }) {
 }
 
 // TODO: Note canvas
-// TODO: polish the add note box (colors, btns) (make it change colors)
 // TODO: add yellow color instead of this ugly green
 // TODO: layout...
 // TODO: add note to mail func
