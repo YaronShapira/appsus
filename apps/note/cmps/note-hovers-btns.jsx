@@ -10,6 +10,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
     function onPalette(ev) {
         ev.stopPropagation()
         setIsInPalette(prev => !prev)
+        console.log('TEST')
     }
 
     function onHamburger(ev) {
@@ -20,7 +21,8 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
     }
 
     function removeHamburger() {
-        setIsHamburgerOpen(prev => !prev)
+        setTimeout(() => setIsHamburgerOpen(prev => !prev), 100)
+        console.log('REMOVING')
         document.removeEventListener('mousedown', removeHamburger)
     }
 

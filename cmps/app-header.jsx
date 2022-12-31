@@ -22,7 +22,7 @@ export function AppHeader() {
     }
 
     function removeHamburger() {
-        setIsHamburgerOpen(prev => !prev)
+        setTimeout(() => setIsHamburgerOpen(prev => !prev), 100)
         document.removeEventListener('mousedown', removeHamburger)
     }
 
