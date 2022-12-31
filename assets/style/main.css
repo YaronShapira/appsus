@@ -18,6 +18,7 @@
 @import 'cmps/main-content.css';
 @import 'cmp/app-container.css';
 @import 'cmp/home.css';
+@import 'cmp/user-msg.css';
 
 /* Note Componenets */
 @import 'cmps/note/add-note.css';

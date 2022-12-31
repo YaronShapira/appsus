@@ -9,17 +9,16 @@ import { MailDetails } from './apps/mail/views/mail-details.jsx'
 import UserMsg from './cmps/user-msg.jsx'
 
 export function App() {
-    return (
-        <Router>
-            <main className='app main-content'>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/mail' element={<MailIndex />} />
-                    <Route path='/mail/:mailId' element={<MailDetails />} />
-                    <Route path='/note' element={<NoteIndex />} />
-                </Routes>
-                <UserMsg />
-            </main>
-        </Router>
-    )
+  return (
+    <Router>
+      <main className='app main-content'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/mail' element={<MailIndex />} />
+          <Route path='/mail/:mailId' element={<MailDetails />} />
+          <Route path='/note' element={<NoteIndex />} />
+        </Routes>
+      </main>
+    </Router>
+  )
 }

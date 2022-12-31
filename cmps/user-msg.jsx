@@ -6,7 +6,7 @@ import { utilService } from '../services/util.service.js'
 export default function UserMsg() {
   const [msg, setMsg] = useState(null)
   const timeoutIdRef = useRef(null)
-  const messageCmp = useRef()
+  const elMsg = useRef()
   useEffect(() => {
     const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
       setMsg(msg)
@@ -16,28 +16,30 @@ export default function UserMsg() {
         timeoutIdRef.current = null
       }
 
-      timeoutIdRef.current = setTimeout(onCloseMsg, 3000)
+      timeoutIdRef.current = setTimeout(onCloseMsg, 1500)
     })
 
     return unsubscribe
   }, [])
 
   useEffect(() => {
-    if (messageCmp.current) {
-      utilService.animateCSS(messageCmp.current, 'fadeInDown')
+    if (elMsg.current) {
+      utilService.animateCSS(elMsg.current, 'fadeInDown')
     }
   }, [msg])
 
   function onCloseMsg() {
-    utilService.animateCSS(messageCmp.current, 'fadeOutDown')
+    utilService.animateCSS(elMsg.current, 'fadeOutUp')
     setTimeout(() => setMsg(null), 500)
   }
 
   if (!msg) return <span></span>
   return (
-    <div className={'user-msg-modal ' + msg.type} ref={messageCmp}>
+    <div className={'user-msg-modal animate__faster' + msg.type}>
       {/* <button onClick={onCloseMsg}>X</button> */}
-      {msg.txt}
+      <span className='user-msg-txt' ref={elMsg}>
+        {msg.txt}
+      </span>
     </div>
   )
 }
