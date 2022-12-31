@@ -1,5 +1,7 @@
 const { useState, useEffect, useRef } = React
 import { eventBusService, showSuccessMsg } from '../../../services/event-bus.service.js'
+
+import { uploadService } from '../../../services/upload.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ sendMail, draftMail }) {
@@ -7,6 +9,7 @@ export function MailCompose({ sendMail, draftMail }) {
   const [isExpandedMsgWindow, setIsExpandedMsgWindow] = useState(false)
   const [isMailEdited, setIsMailEdited] = useState(false)
   const [isMailMinimized, setIsMailMinimized] = useState(false)
+  const uploadImgInputRef = useRef(null)
 
   function onMinimizeMsgWindow() {
     setIsMailMinimized(!isMailMinimized)
@@ -44,10 +47,50 @@ export function MailCompose({ sendMail, draftMail }) {
     setIsExpandedMsgWindow(false)
     // showSuccessMsg('Mail successfully sent')
   }
+  function onMinimizeMsgWindow() {
+    setIsMailMinimized(!isMailMinimized)
+    setIsExpandedMsgWindow(false)
+  }
+
+  function onExpandMsgWindow() {
+    setIsExpandedMsgWindow(!isExpandedMsgWindow)
+    setIsMailMinimized(false)
+  }
+
+  function onBtnToggleCompose() {
+    setIsMailEdited(!isMailEdited)
+    setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
+  }
+
+  function onDraftMail() {
+    if (newMailToEdit.to) {
+      draftMail(newMailToEdit)
+      setNewMailToEdit(mailService.getEmptyMail())
+    }
+    setIsMailEdited(!isMailEdited)
+    setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
+  }
+
+  function onSendMail(ev) {
+    ev.preventDefault()
+    sendMail(newMailToEdit)
+    setIsMailEdited(!isMailEdited)
+    setNewMailToEdit(mailService.getEmptyMail())
+    setIsExpandedMsgWindow(false)
+  }
 
   function handleForm({ target }) {
     let { type, name: field, value } = target
     setNewMailToEdit((prevMailToEdit) => ({ ...prevMailToEdit, [field]: value }))
+  }
+
+  function onUploadImg(ev) {
+    console.log(ev.target.files[0])
+    uploadService.loadImageFromInput(ev, (img) => {
+      console.log(img.src)
+    })
   }
 
   return (
@@ -132,6 +175,16 @@ export function MailCompose({ sendMail, draftMail }) {
               id='body'
               onChange={handleForm}
             />
+
+            <input
+              type='file'
+              className='file-input btn'
+              name='image'
+              id='image'
+              hidden
+              ref={uploadImgInputRef}
+              onChange={onUploadImg}
+            />
           </div>
           <div className='compose-mail-form-footer flex align-center justify-between'>
             <button className='btn-primary' title='Send' type='submit'>
@@ -140,7 +193,7 @@ export function MailCompose({ sendMail, draftMail }) {
             <section className='footer-tools'>
               <button
                 title='Upload Image'
-                onClick={onBtnToggleCompose}
+                onClick={() => uploadImgInputRef.current.click()}
                 type='button'
                 className='btn-rnd-l-s'>
                 <i className='fa-solid fa-image'></i>

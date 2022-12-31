@@ -3,12 +3,11 @@ const { useState, useEffect, useRef, Fragment } = React
 import { mapService } from '../services/map.service.js'
 import { noteService } from '../services/note.service.js'
 import { recordAudio } from '../services/record.service.js'
-import loadImageFromInput from '../services/upload.service.js'
+import { canvasService } from '../services/canvas.service.js'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import TodoInput from './todo-input.jsx'
 import NotePalette from './note-palette.jsx'
 import AddNoteBtns from './add-note-btns.jsx'
-import { canvasService } from '../services/canvas.service.js'
-import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
   const [addNoteParams, setAddNoteParams] = useState(
