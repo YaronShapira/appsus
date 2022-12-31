@@ -12,6 +12,7 @@ export function MailPreview({
   onMailRemoved,
   onMailToNotes,
   onToggleRead,
+  isAllChecked,
 }) {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -63,9 +64,11 @@ export function MailPreview({
         }}
         className={`mail-preview ${mail.isRead ? 'read' : ''}`}>
         <input
+          defaultChecked={isAllChecked}
           type='checkbox'
           name='check-email'
-          onChange={(ev) => {
+          onClick={(ev) => {
+            ev.stopPropagation()
             onActions(ev, 'check', mail.id)
           }}></input>
         <button

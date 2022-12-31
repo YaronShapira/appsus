@@ -36,16 +36,17 @@
   background-color: var(--clr-txt);
   color: var(--clrbg);
   /* padding: 0em 2em 1.5em; */
+  min-width: 100%;
   position: absolute;
-  top: 0%;
-  left: 0%;
-  transform: translate(-100%, -100%);
-  transform: translate(calc(-100% + 3.33em), calc(-100% +1.5em));
-  min-width: 640px;
+  top: -20%;
+  right: 0%;
+  transform: translateY(-100%);
+  min-width: 270px;
   z-index: 2;
   box-shadow: 0px 20px 30px 0px var(--clrbg-a);
   border-radius: var(--br-l);
 }
+
 .compose-mail-form form {
   height: 100%;
   width: 100%;
@@ -192,7 +193,30 @@
   background-color: var(--clr2-hover);
 }
 
-@media (min-width: 550px) {
+@media (min-width: 400px) {
+  .compose-mail-form {
+    transition: 0.5s top;
+    background-color: var(--clrbg-light);
+    background-color: var(--clr-txt);
+    color: var(--clrbg);
+    /* padding: 0em 2em 1.5em; */
+    min-width: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    margin: auto;
+    transform: translate(-100%, -100%);
+    transform: translate(calc(-100% + 3.33em), calc(-100% +1.5em));
+    min-width: 300px;
+    z-index: 2;
+    box-shadow: 0px 20px 30px 0px var(--clrbg-a);
+    border-radius: var(--br-l);
+  }
+}
+@media (min-width: 820px) {
+  .compose-mail-form {
+    min-width: 640px;
+  }
   .mail-compose {
     transition: background 0.5s;
     position: absolute;

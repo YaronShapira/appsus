@@ -11,8 +11,11 @@ import { eventBusService, showSuccessMsg } from '../../../services/event-bus.ser
 export function MailIndex() {
   const [isMarked, setIsMarked] = useState(false)
   const [mails, setMails] = useState([])
+  const [isAllChecked, setIsAllChecked] = useState(undefined)
   const [searchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+  const currCheckedIds = useRef([])
+
   useEffect(() => {
     loadMails({
       ...filterBy,
@@ -21,6 +24,10 @@ export function MailIndex() {
       isStared: searchParams.get('isStared') || false,
     })
   }, [])
+
+  useEffect(() => {
+    loadMails(filterBy)
+  }, [isAllChecked])
 
   useEffect(() => {
     setFilterBy((prevFilterBy) => {
@@ -70,8 +77,17 @@ export function MailIndex() {
     })
   }
 
-  function onCheckMail(mailId) {
-    console.log('mailId:', mailId)
+  function onCheckMail(mailId, ev) {
+    ev.stopPropagation()
+    // not done yet
+    setIsMarked(!isMarked)
+    if (!currCheckedIds.current.includes(mailId)) {
+      currCheckedIds.current.push(mailId)
+    } else {
+      const newChecked = currCheckedIds.current.filter((id) => id !== mailId)
+      currCheckedIds.current = newChecked
+    }
+    console.log('currCheckedIds.current:', currCheckedIds.current)
   }
 
   function onMailRemoved(mail) {
@@ -115,9 +131,26 @@ export function MailIndex() {
     })
   }
 
+  function handleAllMailsCheckbox(ev) {
+    setIsAllChecked(!isAllChecked)
+  }
+  console.log('isAllChecked:', isAllChecked)
+
   return (
     <PageLayout>
       <section className='mail-index app-container'>
+        <section className='mail-index-header flex align-center justify-between'>
+          <div className='check-all'>
+            <input
+              type='checkbox'
+              name='checkAll'
+              id='checkAll'
+              onChange={(ev) => {
+                handleAllMailsCheckbox(ev)
+              }}
+            />
+          </div>
+        </section>
         <MailCompose sendMail={sendMail} draftMail={draftMail} />
         {!mails || (!mails.length && <Loader />)}
         {mails && (
@@ -128,8 +161,7 @@ export function MailIndex() {
             onMailStarred={onMailStarred}
             onMailToNotes={onMailToNotes}
             onToggleRead={onToggleRead}
-            isMarked={isMarked}
-            setIsMarked={setIsMarked}
+            isAllChecked={isAllChecked}
           />
         )}
       </section>

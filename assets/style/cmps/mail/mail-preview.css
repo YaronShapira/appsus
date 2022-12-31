@@ -83,7 +83,7 @@
     /* gap: 10px; */
     display: grid;
     grid-template-columns:
-      repeat(2, minmax(max-content, 60px)) 200px minmax(150px, auto) 1fr
+      repeat(2, minmax(max-content, 3em)) 200px minmax(150px, auto) 1fr
       minmax(max-content, auto);
     grid-auto-flow: column;
     align-items: center;
