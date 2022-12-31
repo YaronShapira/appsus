@@ -1,8 +1,8 @@
 .mail-compose {
   transition: background 0.5s;
   position: absolute;
-  bottom: 1.5em;
-  right: 2em;
+  bottom: 4em;
+  right: 1em;
   z-index: 2;
 }
 
@@ -170,4 +170,14 @@
 .compose-mail-form-footer .btn-rnd-s:hover {
   /* color: var(--clr-txt); */
   background-color: var(--clr2-hover);
+}
+
+@media (min-width: 550px) {
+  .mail-compose {
+    transition: background 0.5s;
+    position: absolute;
+    bottom: 1.5em;
+    right: 2em;
+    z-index: 2;
+  }
 }

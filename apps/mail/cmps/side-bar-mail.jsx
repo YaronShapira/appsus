@@ -54,7 +54,11 @@ export function SideBarMail({ isOpen }) {
               <i className='fa-solid fa-inbox'></i>
             </button>
             {isOpen && <span className='side-bar-label'>Inbox</span>}
-            {isOpen && <span className='side-bar-label-count'>{mailsCount['Inbox']}</span>}
+            {isOpen && (
+              <div className='side-bar-label-count'>
+                <span>{mailsCount['Inbox']}</span>
+              </div>
+            )}
           </div>
         </li>
         <li>
@@ -68,7 +72,11 @@ export function SideBarMail({ isOpen }) {
             </button>
 
             {isOpen && <span className='side-bar-label'>Stared</span>}
-            {isOpen && <span className='side-bar-label-count'>{mailsCount['Stared']}</span>}
+            {isOpen && (
+              <div className='side-bar-label-count'>
+                <span>{mailsCount['Stared']}</span>
+              </div>
+            )}
           </div>
         </li>
         <li>
@@ -84,7 +92,11 @@ export function SideBarMail({ isOpen }) {
               {/* <span className='sidebar-item-txt'>Sent</span> */}
             </button>
             {isOpen && <span className='side-bar-label'>Sent</span>}
-            {isOpen && <span className='side-bar-label-count'>{mailsCount['Sent']}</span>}
+            {isOpen && (
+              <div className='side-bar-label-count'>
+                <span>{mailsCount['Sent']}</span>
+              </div>
+            )}
           </div>
         </li>
         <li>
@@ -99,7 +111,11 @@ export function SideBarMail({ isOpen }) {
               <i className='fa-regular fa-clipboard'></i>
             </button>
             {isOpen && <span className='side-bar-label'>Draft</span>}
-            {isOpen && <span className='side-bar-label-count'>{mailsCount['Draft']}</span>}
+            {isOpen && (
+              <div className='side-bar-label-count'>
+                <span>{mailsCount['Draft']}</span>
+              </div>
+            )}
           </div>
         </li>
         <li>
@@ -112,7 +128,11 @@ export function SideBarMail({ isOpen }) {
               <i className='fa-regular fa-trash-can'></i>
             </button>
             {isOpen && <span className='side-bar-label'>Trash</span>}
-            {isOpen && <span className='side-bar-label-count'>{mailsCount['Trash']}</span>}
+            {isOpen && (
+              <div className='side-bar-label-count'>
+                <span>{mailsCount['Trash']}</span>
+              </div>
+            )}
           </div>
         </li>
       </ul>

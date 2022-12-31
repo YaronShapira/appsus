@@ -1,18 +1,13 @@
 /* LAYOUT */
-.mail-details-preview.full {
-  margin-right: 2em;
-  border-radius: 2em;
-  overflow: hidden;
-  border-radius: var(--br-l);
-  background-color: var(--clrbg-light-a);
-  height: calc(100vh - var(--header-height) - 2em);
-}
 .mail-details-preview {
   --avatar-size: 38px;
   display: flex;
   flex-direction: column;
   backdrop-filter: brightness(150%);
   height: calc(70vh - var(--header-height) - 2em);
+}
+.mail-details-preview.app-container {
+  height: calc(100vh - var(--header-height) - 2em);
 }
 .msg-container {
   display: grid;

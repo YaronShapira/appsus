@@ -60,7 +60,7 @@ export function DetailsPreview({ mail, display, onDisplayFullMsg }) {
   }
 
   return (
-    <section className={`mail-details-preview ${display === 'full' && 'full'}`}>
+    <section className={`mail-details-preview ${display === 'full' && 'app-container'}`}>
       <section className='msg-container'>
         <iframe ref={elIframeForPrint} className='ifm-content-toprint'></iframe>
         {display === 'full' && fullModeTopBar()}

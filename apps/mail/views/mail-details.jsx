@@ -19,7 +19,7 @@ export function MailDetails() {
   function loadContent() {
     if (!mail) {
       return (
-        <section className='mail-details'>
+        <section className='mail-details app-container'>
           <Loader />
         </section>
       )

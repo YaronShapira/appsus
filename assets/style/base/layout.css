@@ -1,19 +1,40 @@
 .app {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--header-height) 1fr max-content;
   grid-template-areas:
-    'header header'
-    'sidebar main';
+    'header'
+    'main'
+    'sidebar ';
 }
 .side-bar {
-    grid-area: sidebar;
-    min-height: calc(100vh - var(--header-height));
+  grid-area: sidebar;
 }
 .app-header {
-    grid-area: header;
+  grid-area: header;
 }
 .main-content {
   overflow-x: hidden;
   grid-area: main;
+}
+@media (min-width: 550px) {
+  .app {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: var(--header-height) 1fr;
+    grid-template-areas:
+      'header header'
+      'sidebar main';
+  }
+  .side-bar {
+    grid-area: sidebar;
+    min-height: calc(100vh - var(--header-height));
+  }
+  .app-header {
+    grid-area: header;
+  }
+  .main-content {
+    overflow-x: hidden;
+    grid-area: main;
+  }
 }
