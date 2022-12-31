@@ -3,12 +3,13 @@ const { useEffect, useState, useRef } = React
 import { eventBusService } from '../services/event-bus.service.js'
 import { SearchHeader } from './search-header.jsx'
 
-const { NavLink } = ReactRouterDOM
+const { NavLink, useNavigate } = ReactRouterDOM
 
 export function AppHeader() {
     const [isExpanded, setIsExpanded] = useState(false)
     const [isAppsNavOpen, setIsAppsNavOpen] = useState(false)
     const elAppsNavNavWrapper = useRef()
+    const navigate = useNavigate()
 
     function openSideBar() {
         setIsExpanded(prev => !prev)
@@ -67,19 +68,22 @@ export function AppHeader() {
                     <div className={`apps-nav ${isAppsNavOpen ? 'open' : ''}`}>
                         <ul>
                             <li>
-                                <button className='btn btn-rnd-l'>
+                                <a
+                                    className='btn btn-rnd-l'
+                                    target='_blank'
+                                    href='https://boydem.github.io/Miss-book/#/book'>
                                     {/* <span>Booky</span> */}
                                     <i className='fa-solid fa-book'></i>
-                                </button>
+                                </a>
                             </li>
                             <li>
-                                <button className='btn btn-rnd-l'>
+                                <button className='btn btn-rnd-l' onClick={() => navigate('/note')}>
                                     {/* <span>Keepy</span> */}
                                     <i className='fa-solid fa-note-sticky'></i>
                                 </button>
                             </li>
                             <li>
-                                <button className='btn btn-rnd-l'>
+                                <button className='btn btn-rnd-l' onClick={() => navigate('/mail')}>
                                     {/* <span>Maily</span> */}
                                     <i className='fa-regular fa-envelope'></i>
                                 </button>

@@ -57,7 +57,7 @@ export function MailCompose({ sendMail, draftMail }) {
   }
 
   function onUploadImg(ev) {
-    console.log(ev.target.files[0])
+    // console.log(ev.target.files[0])
     loadImageFromInput(ev, (img) => {
       //   console.log(img.src)
       setIsImageUploaded(img.src)
