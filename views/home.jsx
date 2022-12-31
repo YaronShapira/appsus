@@ -8,6 +8,7 @@ const { useRef, useEffect } = React
 export function Home() {
     const chartNotesRef = useRef(null)
     const chartMailsRef = useRef(null)
+    const chartBooksRef = useRef(null)
 
     function createChart(elementRef, notes) {
         new Chart(elementRef.current, {
@@ -40,6 +41,13 @@ export function Home() {
         Promise.all([notesMapPromise, mailsMapPromise]).then(values => {
             createChart(chartNotesRef, values[0])
             createChart(chartMailsRef, values[1])
+            createChart(chartBooksRef, {
+                'Books Read': 7,
+                'Books Purchased': 2,
+                'Books On Sale': 5,
+                'Books In Wishlist': 3,
+                'Books Unread': 5,
+            })
         })
     }, [])
 
@@ -51,7 +59,7 @@ export function Home() {
                 <div className='main-content'>
                     <div className='col'>
                         <div className='card'>
-                            <h6>Note Statistics</h6>
+                            <h6>Keepy Statistics</h6>
                             {/* <h4>5 Todos Left</h4>
                         <h4>2 Important Notes</h4>
                         <h4>7 Notes Archived</h4> */}
@@ -63,7 +71,7 @@ export function Home() {
                     </div>
                     <div className='col'>
                         <div className='card'>
-                            <h6>Mail Statistics</h6>
+                            <h6>Maily Statistics</h6>
                             {/* <h4>5 Unread Mails</h4>
                         <h4>6 Sent Mails</h4> */}
                             <canvas ref={chartMailsRef}></canvas>
@@ -74,9 +82,8 @@ export function Home() {
                     </div>
                     <div className='col'>
                         <div className='card'>
-                            <h6>Book Statistics</h6>
-                            <h4>12 Books In Wish List</h4>
-                            <h4>7 Books On Sale</h4>
+                            <h6>Booky Statistics</h6>
+                            <canvas ref={chartBooksRef}></canvas>
                         </div>
                         <NavLink to='/note' className='btn go-to-btn'>
                             Go To Booky
