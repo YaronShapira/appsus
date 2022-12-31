@@ -114,12 +114,17 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     }
 
     function addNote() {
+        if (addNoteParams.type === 'note-canvas') {
+            addNoteParams.canvas = canvasService.getCanvasDataURL()
+            console.log(addNoteParams)
+
+            canvasService.hideCanvas()
+        }
         if (isEditing) setIsEditing(false)
 
         const newNote = structuredClone(addNoteParams)
 
         clearSlate()
-
         noteService
             .saveNote(newNote)
             .then(newNoteFromDB => {

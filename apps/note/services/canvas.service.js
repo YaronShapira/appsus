@@ -1,5 +1,7 @@
 export const canvasService = {
     initCanvas,
+    getCanvasDataURL,
+    hideCanvas,
 }
 
 let gElCanvas
@@ -20,25 +22,30 @@ function initCanvas(canvasElement) {
     canvasElement.height = canvasElement.offsetHeight
 
     gElCanvas.style.background = '#eee'
-    gCtx.lineWidth = 5
     gCtx.fillStyle = 'black'
+    gCtx.lineWidth = 3
+    gCtx.lineCap = 'round'
+    gCtx.strokeStyle = 'black'
+    gCtx.fillStyle = 'white'
+    gCtx.fillRect(0, 0, canvasElement.width, canvasElement.height)
     addListeners()
+}
+
+function getCanvasDataURL() {
+    return gElCanvas.toDataURL(`image/png`)
+}
+
+function hideCanvas() {
+    gElCanvas.style.width = '0'
+    gElCanvas.style.height = '0'
+    gElCanvas.width = gElCanvas.offsetWidth
+    gElCanvas.height = gElCanvas.offsetHeight
 }
 function draw(pos) {
     const { x, y } = pos
-    gCtx.lineWidth = 10
-    gCtx.lineCap = 'round'
-    gCtx.strokeStyle = 'black'
-    console.log(x, y)
     gCtx.lineTo(x, y)
     gCtx.stroke()
 }
-function drawRect(x, y, size) {
-    gCtx.beginPath()
-    gCtx.strokeRect(x, y, size, size)
-    gCtx.fillRect(x, y, size, size)
-}
-
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
@@ -64,12 +71,14 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mouseout', onUp)
 }
 
 function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchcancel', onUp)
 }
 
 function getEvPos(ev) {

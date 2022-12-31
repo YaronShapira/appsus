@@ -3,6 +3,7 @@ import Loader from '../../../cmps/loader.jsx'
 import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
+import NoteCanvas from './note-canvas.jsx'
 import NoteHoversBtns from './note-hovers-btns.jsx'
 import NoteImg from './note-img.jsx'
 import NoteMap from './note-map.jsx'
@@ -17,8 +18,6 @@ const { useState, useRef } = React
 export default function NotePreview({ note, setNotes }) {
     const [currNote, setCurrNote] = useState(note)
     const [isEditing, setIsEditing] = useState(false)
-
-   
 
     function onDuplicateNote(ev) {
         ev.stopPropagation()
@@ -118,7 +117,10 @@ export default function NotePreview({ note, setNotes }) {
                 return <NoteRecording {...props} />
             case 'note-map':
                 return <NoteMap {...props} />
+            case 'note-canvas':
+                return <NoteCanvas {...props} />
             default:
+                console.log('Dynamic Note Problem')
                 break
         }
     }
