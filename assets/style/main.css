@@ -16,6 +16,7 @@
 @import 'cmps/side-bar.css';
 @import 'cmps/search-header.css';
 @import 'cmps/main-content.css';
+@import 'cmp/home.css';
 
 /* Note Componenets */
 @import 'cmps/note/add-note.css';

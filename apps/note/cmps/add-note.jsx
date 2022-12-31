@@ -288,7 +288,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                                 onMap={onMap}
                             />
                         </div>
-                        <button className='btn add-btn btn-primary' onClick={isRecording ? stopRecording : addNote}>
+                        <button className='btn add-btn' onClick={isRecording ? stopRecording : addNote}>
                             {isRecording ? 'Stop' : 'Save'}
                         </button>
                     </div>
