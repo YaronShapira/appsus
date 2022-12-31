@@ -75,3 +75,23 @@
     margin: 0 auto;
     padding: 1rem;
 }
+
+@media screen and (max-width: 550px) {
+    .main-input {
+        flex-direction: column;
+    }
+    .add-note .inline-utils {
+        justify-content: center;
+    }
+    .add-note .utils {
+        display: unset;
+    }
+    .utils .inline-utils > * {
+        margin-right: 0;
+        justify-self: center;
+    }
+    .add-btn {
+        display: block;
+        width: 100%;
+    }
+}
