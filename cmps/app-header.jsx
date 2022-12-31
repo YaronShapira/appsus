@@ -6,84 +6,80 @@ import { SearchHeader } from './search-header.jsx'
 const { NavLink } = ReactRouterDOM
 
 export function AppHeader() {
-    const [isExpanded, setIsExpanded] = useState(false)
-    const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [isAppsNavOpen, setIsAppsNavOpen] = useState(false)
+  const elAppsNavNavWrapper = useRef()
 
-    function openSideBar() {
-        setIsExpanded(prev => !prev)
-        eventBusService.emit('expand-side-bar', !isExpanded)
+  function openSideBar() {
+    setIsExpanded((prev) => !prev)
+    eventBusService.emit('expand-side-bar', !isExpanded)
+  }
+
+  function onAppsNav(ev) {
+    setIsAppsNavOpen((prev) => !prev)
+    document.addEventListener('ondown', removeAppsNav)
+  }
+
+  function removeAppsNav(ev) {
+    console.log('ev.target.parentNode:', ev.target.parentNode)
+    if (ev.target.parentNode !== elAppsNavNavWrapper.current) {
+      setIsAppsNavOpen((prev) => !prev)
+      document.removeEventListener('ondown', removeAppsNav)
     }
+  }
 
-    function onHamburger(ev) {
-        ev.stopPropagation()
-        setIsHamburgerOpen(prev => !prev)
+  return (
+    <header className='app-header'>
+      <button className='btn-sidebar btn-rnd-l' onClick={openSideBar}>
+        <i className='fa-solid fa-bars'></i>
+      </button>
+      <h3>Appsus</h3>
+      <SearchHeader />
+      <nav className='main-nav'>
+        <ul className='nav-links clean-list flex align-center'>
+          <li key={'home'}>
+            <NavLink to='/' className='nav-link'>
+              Home
+            </NavLink>
+          </li>
+          <li key={'mail'}>
+            <NavLink to='/mail' className='nav-link'>
+              Maily
+            </NavLink>
+          </li>
+          <li key={'note'}>
+            <NavLink to='/note' className='nav-link'>
+              Keepy
+            </NavLink>
+          </li>
+        </ul>
+        <div ref={elAppsNavNavWrapper} className='btn apps-nav-wrapper' onClick={onAppsNav}>
+          <i className='fa-solid fa-bars'></i>
 
-        document.addEventListener('mousedown', removeHamburger)
-    }
-
-    function removeHamburger() {
-        setTimeout(() => setIsHamburgerOpen(prev => !prev), 100)
-        document.removeEventListener('mousedown', removeHamburger)
-    }
-
-    return (
-        <header className='app-header'>
-            <button className='btn-sidebar btn-rnd-l' onClick={openSideBar}>
-                <i className='fa-solid fa-bars'></i>
-            </button>
-            <h3>Appsus</h3>
-            <SearchHeader />
-            <nav className='main-nav'>
-                <ul className='nav-links clean-list flex align-center'>
-                    <li key={'home'}>
-                        <NavLink to='/' className='nav-link'>
-                            Home
-                        </NavLink>
-                    </li>
-                    <li key={'mail'}>
-                        <NavLink to='/mail' className='nav-link'>
-                            Maily
-                        </NavLink>
-                    </li>
-                    <li key={'note'}>
-                        <NavLink to='/note' className='nav-link'>
-                            Keepy
-                        </NavLink>
-                    </li>
-                    <li key={'note'}>
-                        <NavLink to='https://boydem.github.io/Miss-book/#/book' className='nav-link'>
-                            Booky
-                        </NavLink>
-                    </li>
-                </ul>
-                <div className='btn hamburger-nav' onClick={onHamburger}>
-                    <i className='fa-solid fa-bars'></i>
-                    {isHamburgerOpen && (
-                        <div className='hamburger-nav-open'>
-                            <ul>
-                                <li>
-                                    <button className='btn btn-rnd-l'>
-                                        {/* <span>Booky</span> */}
-                                        <i className='fa-solid fa-book fa-3x'></i>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button className='btn btn-rnd-l'>
-                                        {/* <span>Keepy</span> */}
-                                        <i className='fa-solid fa-note-sticky fa-3x'></i>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button className='btn btn-rnd-l'>
-                                        {/* <span>Maily</span> */}
-                                        <i className='fa-regular fa-envelope fa-3x'></i>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            </nav>
-        </header>
-    )
+          <div className={`apps-nav ${isAppsNavOpen ? 'open' : ''}`}>
+            <ul>
+              <li>
+                <button className='btn btn-rnd-l'>
+                  {/* <span>Booky</span> */}
+                  <i className='fa-solid fa-book'></i>
+                </button>
+              </li>
+              <li>
+                <button className='btn btn-rnd-l'>
+                  {/* <span>Keepy</span> */}
+                  <i className='fa-solid fa-note-sticky'></i>
+                </button>
+              </li>
+              <li>
+                <button className='btn btn-rnd-l'>
+                  {/* <span>Maily</span> */}
+                  <i className='fa-regular fa-envelope'></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  )
 }
