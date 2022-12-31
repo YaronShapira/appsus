@@ -9,6 +9,8 @@ export function SideBarMail({ isOpen }) {
   const isStars = useRef(searchParams.get('isStared') || false)
   const navigate = useNavigate()
   const [mailsCount, setMailsCount] = useState({})
+  const tools = ['Inbox', 'Stared', 'Sent', 'Draft', 'Trash']
+
   useEffect(() => {
     if (searchParams.has('folder')) {
       folder.current = searchParams.get('folder')
@@ -42,99 +44,37 @@ export function SideBarMail({ isOpen }) {
   return (
     <nav className={`tools-nav ${isOpen ? 'open' : ''}`}>
       <ul>
-        <li>
-          <div
-            onClick={() => {
-              onFolder('inbox')
-            }}
-            className={`icon-label ${
-              folder.current === 'inbox' && !isStars.current ? 'active' : ''
-            }`}>
-            <button className='btn-rnd-l'>
-              <i className='fa-solid fa-inbox'></i>
-            </button>
-            {isOpen && <span className='side-bar-label'>Inbox</span>}
-            {isOpen && (
-              <div className='side-bar-label-count'>
-                <span>{mailsCount['Inbox']}</span>
+        {tools.map((tool) => {
+          const toolNameLower = tool.toLowerCase()
+          return (
+            <li key={toolNameLower}>
+              <div
+                onClick={() => {
+                  toolNameLower === 'stared' ? onStars() : onFolder(toolNameLower)
+                }}
+                className={`icon-label ${
+                  (folder.current === toolNameLower && !isStars.current) ||
+                  (isStars.current && toolNameLower === 'stared')
+                    ? 'active'
+                    : ''
+                }`}>
+                <button className='btn-rnd-l'>
+                  {toolNameLower === 'inbox' && <i className='fa-solid fa-inbox'></i>}
+                  {toolNameLower === 'stared' && <i className='fa-solid fa-star'></i>}
+                  {toolNameLower === 'sent' && <i className='fa-regular fa-paper-plane'></i>}
+                  {toolNameLower === 'draft' && <i className='fa-regular fa-clipboard'></i>}
+                  {toolNameLower === 'trash' && <i className='fa-regular fa-trash-can'></i>}
+                </button>
+                {isOpen && <span className='side-bar-label'>{tool}</span>}
+                {isOpen && (
+                  <div className='side-bar-label-count'>
+                    <span>{mailsCount[tool]}</span>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </li>
-        <li>
-          <div
-            onClick={() => {
-              onStars('inbox')
-            }}
-            className={`icon-label ${isStars.current ? 'active' : ''}`}>
-            <button className='btn-rnd-l'>
-              <i className='fa-solid fa-star'></i>
-            </button>
-
-            {isOpen && <span className='side-bar-label'>Stared</span>}
-            {isOpen && (
-              <div className='side-bar-label-count'>
-                <span>{mailsCount['Stared']}</span>
-              </div>
-            )}
-          </div>
-        </li>
-        <li>
-          <div
-            onClick={() => {
-              onFolder('sent')
-            }}
-            className={`icon-label ${
-              folder.current === 'sent' && !isStars.current ? 'active' : ''
-            }`}>
-            <button className='btn-rnd-l'>
-              <i className='fa-regular fa-paper-plane'></i>
-              {/* <span className='sidebar-item-txt'>Sent</span> */}
-            </button>
-            {isOpen && <span className='side-bar-label'>Sent</span>}
-            {isOpen && (
-              <div className='side-bar-label-count'>
-                <span>{mailsCount['Sent']}</span>
-              </div>
-            )}
-          </div>
-        </li>
-        <li>
-          <div
-            onClick={() => {
-              onFolder('draft')
-            }}
-            className={`icon-label ${
-              folder.current === 'draft' && !isStars.current ? 'active' : ''
-            }`}>
-            <button className='btn-rnd-l'>
-              <i className='fa-regular fa-clipboard'></i>
-            </button>
-            {isOpen && <span className='side-bar-label'>Draft</span>}
-            {isOpen && (
-              <div className='side-bar-label-count'>
-                <span>{mailsCount['Draft']}</span>
-              </div>
-            )}
-          </div>
-        </li>
-        <li>
-          <div
-            onClick={() => {
-              onFolder('trash')
-            }}
-            className={`icon-label ${folder.current === 'trash' && !isStars.current && 'active'}`}>
-            <button className='btn-rnd-l'>
-              <i className='fa-regular fa-trash-can'></i>
-            </button>
-            {isOpen && <span className='side-bar-label'>Trash</span>}
-            {isOpen && (
-              <div className='side-bar-label-count'>
-                <span>{mailsCount['Trash']}</span>
-              </div>
-            )}
-          </div>
-        </li>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

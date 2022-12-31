@@ -4,6 +4,7 @@
   bottom: 4em;
   right: 1em;
   z-index: 2;
+  box-shadow: 0px 30px 30px 20px var(--clrbg-a);
 }
 
 .mail-compose .btn-mail-compose {

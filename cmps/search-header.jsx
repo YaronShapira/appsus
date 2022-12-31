@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 export function SearchHeader() {
   const [searchTxt, setSearchTxt] = useState({ txt: '' })
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
   const debouncedSearchTerm = useDebounce(searchTxt, 500)
 
@@ -10,11 +11,6 @@ export function SearchHeader() {
       setSearchTxt({ txt: searchParams.get('q') })
     }
   }, [])
-
-  function handleSearch({ target }) {
-    let { value } = target
-    setSearchTxt((prevReview) => ({ ...prevReview, txt: value }))
-  }
 
   useEffect(
     () => {
@@ -25,6 +21,19 @@ export function SearchHeader() {
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   )
+
+  function hideSearchOptions() {
+    setIsSearchOpen(false)
+  }
+
+  function showSearchOptions() {
+    setIsSearchOpen(true)
+  }
+
+  function handleSearch({ target }) {
+    let { value } = target
+    setSearchTxt((prevReview) => ({ ...prevReview, txt: value }))
+  }
 
   function useDebounce(value, delay) {
     // State and setters for debounced value
@@ -46,14 +55,39 @@ export function SearchHeader() {
     )
     return debouncedValue
   }
+
+  console.log('isSearchOpen:', isSearchOpen)
+
   return (
     <section className='search-header'>
       <input
+        className={`header-search-input ${isSearchOpen ? `open` : ''}`}
         value={searchTxt.txt}
         type='text'
         placeholder='Search here..'
         onChange={handleSearch}
+        onFocus={showSearchOptions}
+        onBlur={hideSearchOptions}
       />
+      {isSearchOpen && (
+        <section className='search-options'>
+          <h4>Search Results:</h4>
+          <ul>
+            <li>
+              <a href='#'>Hello</a>
+            </li>
+            <li>
+              <a href='#'>Hello</a>
+            </li>
+            <li>
+              <a href='#'>Hello</a>
+            </li>
+            <li>
+              <a href='#'>Hello</a>
+            </li>
+          </ul>
+        </section>
+      )}
     </section>
   )
 }

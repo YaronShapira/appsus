@@ -34,7 +34,7 @@ export function SideBarNote({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-solid fa-lightbulb'></i>
             </button>
-            {isOpen && 'Notes'}
+            {isOpen && <span className='side-bar-label'>Notes</span>}
           </div>
         </li>
         <li>
@@ -46,7 +46,7 @@ export function SideBarNote({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-solid fa-box-archive'></i>
             </button>
-            {isOpen && 'Archive'}
+            {isOpen && <span className='side-bar-label'>Archive</span>}
           </div>
         </li>
         <li>
@@ -58,7 +58,7 @@ export function SideBarNote({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-regular fa-trash-can'></i>
             </button>
-            {isOpen && 'Trash'}
+            {isOpen && <span className='side-bar-label'>Trash</span>}
           </div>
         </li>
       </ul>
