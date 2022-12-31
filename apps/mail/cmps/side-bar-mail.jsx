@@ -8,13 +8,19 @@ export function SideBarMail({ isOpen }) {
   const folder = useRef('inbox')
   const isStars = useRef(searchParams.get('isStared') || false)
   const navigate = useNavigate()
-  const [mailsCount, setMailsCount] = useState()
+  const [mailsCount, setMailsCount] = useState({})
   useEffect(() => {
     if (searchParams.has('folder')) {
       folder.current = searchParams.get('folder')
     }
     loadMailsMap()
   }, [])
+
+  function loadMailsMap() {
+    mailService.getMailsCountMap().then((map) => {
+      setMailsCount(map)
+    })
+  }
 
   function onStars() {
     isStars.current = true
@@ -32,13 +38,7 @@ export function SideBarMail({ isOpen }) {
       search: `?q=${searchParams.get('q')}&folder=${folder.current}`,
     })
   }
-
-  function loadMailsMap() {
-    mailService.getMailsCountMap().then((map) => {
-      console.log('map:', map)
-    })
-  }
-
+  console.log('mailsCount:', mailsCount)
   return (
     <nav className={`tools-nav ${isOpen ? 'open' : ''}`}>
       <ul>
@@ -53,7 +53,8 @@ export function SideBarMail({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-solid fa-inbox'></i>
             </button>
-            {isOpen && 'Inbox'}
+            {isOpen && <span className='side-bar-label'>Inbox</span>}
+            {isOpen && <span className='side-bar-label-count'>{mailsCount['Inbox']}</span>}
           </div>
         </li>
         <li>
@@ -65,7 +66,9 @@ export function SideBarMail({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-solid fa-star'></i>
             </button>
-            {isOpen && 'Stared'}
+
+            {isOpen && <span className='side-bar-label'>Stared</span>}
+            {isOpen && <span className='side-bar-label-count'>{mailsCount['Stared']}</span>}
           </div>
         </li>
         <li>
@@ -80,7 +83,8 @@ export function SideBarMail({ isOpen }) {
               <i className='fa-regular fa-paper-plane'></i>
               {/* <span className='sidebar-item-txt'>Sent</span> */}
             </button>
-            {isOpen && 'Sent'}
+            {isOpen && <span className='side-bar-label'>Sent</span>}
+            {isOpen && <span className='side-bar-label-count'>{mailsCount['Sent']}</span>}
           </div>
         </li>
         <li>
@@ -94,7 +98,8 @@ export function SideBarMail({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-regular fa-clipboard'></i>
             </button>
-            {isOpen && 'Draft'}
+            {isOpen && <span className='side-bar-label'>Draft</span>}
+            {isOpen && <span className='side-bar-label-count'>{mailsCount['Draft']}</span>}
           </div>
         </li>
         <li>
@@ -106,7 +111,8 @@ export function SideBarMail({ isOpen }) {
             <button className='btn-rnd-l'>
               <i className='fa-regular fa-trash-can'></i>
             </button>
-            {isOpen && 'Trash'}
+            {isOpen && <span className='side-bar-label'>Trash</span>}
+            {isOpen && <span className='side-bar-label-count'>{mailsCount['Trash']}</span>}
           </div>
         </li>
       </ul>
