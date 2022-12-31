@@ -23,6 +23,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const mapRef = useRef(null)
     const canvasRef = useRef(null)
 
+    useEffect(() => {
+        if (addNoteParams.type === 'note-canvas') {
+            canvasService.initCanvas(canvasRef.current, addNoteParams.canvas)
+        }
+    }, [])
+
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
         let { value, name: field, type } = target

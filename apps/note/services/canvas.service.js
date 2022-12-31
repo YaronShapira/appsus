@@ -11,7 +11,7 @@ let gLastPos
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
-function initCanvas(canvasElement) {
+function initCanvas(canvasElement, canvasImageURL = '') {
     canvasElement.classList.add('canvas')
     gElCanvas = canvasElement
     gCtx = gElCanvas.getContext('2d')
@@ -27,8 +27,23 @@ function initCanvas(canvasElement) {
     gCtx.lineCap = 'round'
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = 'white'
-    gCtx.fillRect(0, 0, canvasElement.width, canvasElement.height)
     addListeners()
+
+    if (canvasImageURL) {
+        let img = new Image() // Create a new html img element
+        img.src = canvasImageURL // Set the img src
+        img.onload = () => {
+            renderImg(img)
+        }
+    } else {
+        // WHITE BG
+        gCtx.fillRect(0, 0, canvasElement.width, canvasElement.height)
+    }
+}
+
+function renderImg(img) {
+    // Draw the img on the canvas
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function getCanvasDataURL() {
