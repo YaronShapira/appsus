@@ -1,11 +1,11 @@
-const { Fragment } = React
 import NotePalette from './note-palette.jsx'
 
-const { useState } = React
+const { useState, useRef, Fragment } = React
 
 export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote, onPin, onArchive }) {
     const [isInPalette, setIsInPalette] = useState(false)
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
+    const hamburgerMenuRef = useRef(null)
 
     function onPalette(ev) {
         ev.stopPropagation()
@@ -15,6 +15,13 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
     function onHamburger(ev) {
         ev.stopPropagation()
         setIsHamburgerOpen(prev => !prev)
+
+        document.addEventListener('mousedown', removeHamburger)
+    }
+
+    function removeHamburger() {
+        setIsHamburgerOpen(prev => !prev)
+        document.removeEventListener('mousedown', removeHamburger)
     }
 
     return (
@@ -23,7 +30,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
                 <i className='fa-solid fa-ellipsis-vertical'></i>
             </button>
             {isHamburgerOpen && (
-                <div className='mobile-hamburger-menu' onClick={e => e.stopPropagation()}>
+                <div className='mobile-hamburger-menu' onClick={e => e.stopPropagation()} ref={hamburgerMenuRef}>
                     <ul>
                         <li onClick={onPin}>
                             <button>Pin Note</button>
