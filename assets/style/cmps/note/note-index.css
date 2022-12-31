@@ -1,6 +1,13 @@
 .note-index {
-  padding: 2em;
+    padding: 2em;
 }
 .note-index::-webkit-scrollbar {
-  display: none;
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+    .note-index {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 }

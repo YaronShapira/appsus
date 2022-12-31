@@ -9,9 +9,7 @@
     display: block;
     box-shadow: 3px 1px 4px 2px black;
 }
-.add-note :not(input, textarea) {
-    caret-color: transparent;
-}
+
 .add-note :is(input, textarea) {
     outline: none;
     border: none;
@@ -76,4 +74,30 @@
 .add-note img {
     margin: 0 auto;
     padding: 1rem;
+}
+
+@media screen and (max-width: 550px) {
+    .add-note {
+        max-width: 85vw;
+    }
+    .add-note * {
+        max-width: 85vw;
+    }
+    .main-input {
+        flex-direction: column;
+    }
+    .add-note .inline-utils {
+        justify-content: center;
+    }
+    .add-note .utils {
+        display: unset;
+    }
+    .utils .inline-utils > * {
+        margin-right: 0;
+        justify-self: center;
+    }
+    .add-btn {
+        display: block;
+        width: 100%;
+    }
 }

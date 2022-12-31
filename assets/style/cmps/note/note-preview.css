@@ -99,3 +99,13 @@
         opacity: 0;
     }
 }
+
+@media screen and (max-width: 550px) {
+    .note-preview {
+        margin: 0;
+    }
+    .note-preview p,
+    .note-preview h5 {
+        width: 95%;
+    }
+}
