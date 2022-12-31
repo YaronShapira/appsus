@@ -1,13 +1,16 @@
+import { mailService } from '../apps/mail/services/mail.service.js'
 import { noteService } from '../apps/note/services/note.service.js'
 import { PageLayout } from '../cmps/page-layout.jsx'
+
 const { useRef, useEffect } = React
 
 export function Home() {
     const chartNotesRef = useRef(null)
+    const chartMailsRef = useRef(null)
 
     function createChart(elementRef, notes) {
         new Chart(elementRef.current, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: Object.keys(notes),
                 datasets: [
@@ -15,6 +18,7 @@ export function Home() {
                         label: 'Notes Count',
                         data: Object.values(notes),
                         borderWidth: 1,
+                        backgroundColor: ['#36a2eb', '#ff6384', '#4bc0c0', '#ff9f40', '#9966ff', '#ffcd56', '#c9cbcf'],
                     },
                 ],
             },
@@ -32,6 +36,9 @@ export function Home() {
         noteService.getNotesCountMap().then(notes => {
             createChart(chartNotesRef, notes)
         })
+        mailService.getMailsCountMap().then(mails => {
+            createChart(chartMailsRef, mails)
+        })
         //
     }, [])
 
@@ -43,15 +50,16 @@ export function Home() {
                 <div className='main-content'>
                     <div className='card'>
                         <h6>Note Statistics</h6>
-                        <h4>5 Todos Left</h4>
+                        {/* <h4>5 Todos Left</h4>
                         <h4>2 Important Notes</h4>
-                        <h4>7 Notes Archived</h4>
-                        <canvas id='myChart' ref={chartNotesRef}></canvas>
+                        <h4>7 Notes Archived</h4> */}
+                        <canvas ref={chartNotesRef}></canvas>
                     </div>
                     <div className='card'>
                         <h6>Mail Statistics</h6>
-                        <h4>5 Unread Mails</h4>
-                        <h4>6 Sent Mails</h4>
+                        {/* <h4>5 Unread Mails</h4>
+                        <h4>6 Sent Mails</h4> */}
+                        <canvas ref={chartMailsRef}></canvas>
                     </div>
                     <div className='card'>
                         <h6>Book Statistics</h6>
