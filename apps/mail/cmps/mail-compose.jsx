@@ -1,18 +1,27 @@
 const { useState, useEffect, useRef } = React
+import { eventBusService } from '../../../services/event-bus.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ sendMail, draftMail }) {
   const [newMailToEdit, setNewMailToEdit] = useState(mailService.getEmptyMail())
   const [isExpandedMsgWindow, setIsExpandedMsgWindow] = useState(false)
   const [isMailEdited, setIsMailEdited] = useState(false)
+  const [isMailMinimized, setIsMailMinimized] = useState(false)
+
+  function onMinimizeMsgWindow() {
+    setIsMailMinimized(!isMailMinimized)
+    setIsExpandedMsgWindow(false)
+  }
 
   function onExpandMsgWindow() {
     setIsExpandedMsgWindow(!isExpandedMsgWindow)
+    setIsMailMinimized(false)
   }
 
   function onBtnToggleCompose() {
     setIsMailEdited(!isMailEdited)
     setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
   }
 
   function onDraftMail() {
@@ -22,6 +31,7 @@ export function MailCompose({ sendMail, draftMail }) {
     }
     setIsMailEdited(!isMailEdited)
     setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
   }
 
   function onSendMail(ev) {
@@ -43,25 +53,46 @@ export function MailCompose({ sendMail, draftMail }) {
         isExpandedMsgWindow ? 'expand' : ''
       }`}>
       <button
+        title='Compose Mail'
         onClick={onBtnToggleCompose}
-        className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
+        className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''} ${
+          isMailMinimized ? 'minimized' : ''
+        }`}>
         <i className={`fa-solid fa-pencil`}></i>
       </button>
       <section
         className={`compose-mail-form flex flex-column ${isMailEdited ? 'open' : ''} ${
           isExpandedMsgWindow ? 'expand' : ''
         }`}>
-        <form onSubmit={onSendMail} className='flex flex-column'>
+        <form
+          onSubmit={onSendMail}
+          className={`flex flex-column ${isMailMinimized ? 'minimized' : ''} `}>
           <section className='compose-mail-form-header flex align-center justify-between'>
-            <h5>New Mail</h5>
-            <div className='footer-tools'>
-              <button onClick={onDraftMail} type='button' className='btn-rnd-s'>
+            <h5>{}New Mail</h5>
+            <div className='header-tools'>
+              <button
+                onClick={onMinimizeMsgWindow}
+                title='Minimize'
+                type='button'
+                className='btn-rnd-s'>
                 <i className='fa-solid fa-window-minimize'></i>
               </button>
-              <button onClick={onExpandMsgWindow} type='button' className='btn-rnd-s'>
-                <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
+              <button
+                onClick={onExpandMsgWindow}
+                title='Expand'
+                type='button'
+                className='btn-rnd-s'>
+                {isExpandedMsgWindow ? (
+                  <i class='fa-solid fa-down-left-and-up-right-to-center'></i>
+                ) : (
+                  <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
+                )}
               </button>
-              <button onClick={onBtnToggleCompose} type='button' className='btn-rnd-s'>
+              <button
+                onClick={onBtnToggleCompose}
+                title='Close'
+                type='button'
+                className='btn-rnd-s'>
                 <i className='fa-solid fa-xmark'></i>
               </button>
             </div>
@@ -100,12 +131,23 @@ export function MailCompose({ sendMail, draftMail }) {
             />
           </div>
           <div className='compose-mail-form-footer flex align-center justify-between'>
-            <button className='btn-primary' type='submit'>
+            <button className='btn-primary' title='Send' type='submit'>
               Send
             </button>
             <section className='footer-tools'>
-              <button onClick={onBtnToggleCompose} type='button' className='btn-rnd-l-s'>
-                <i className='fa-solid fa-trash'></i>
+              <button
+                title='Upload Image'
+                onClick={onBtnToggleCompose}
+                type='button'
+                className='btn-rnd-l-s'>
+                <i className='fa-solid fa-image'></i>
+              </button>
+              <button
+                title='Sign'
+                onClick={onBtnToggleCompose}
+                type='button'
+                className='btn-rnd-l-s'>
+                <i className='fa-solid fa-signature'></i>
               </button>
             </section>
           </div>

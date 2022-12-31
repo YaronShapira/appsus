@@ -1,9 +1,10 @@
 .mail-compose {
   transition: background 0.5s;
   position: absolute;
-  bottom: 4em;
+  bottom: 0;
   right: 1em;
   z-index: 2;
+  box-shadow: 0px 30px 30px 20px var(--clrbg-a);
 }
 
 .mail-compose .btn-mail-compose {
@@ -64,6 +65,25 @@
   inset: 0;
   margin: auto;
   background: rgba(17, 17, 17, 0.781);
+}
+
+/* MINIMIZE */
+
+.compose-mail-form form.minimized > *:not(.compose-mail-form-header) {
+  display: none;
+}
+.compose-mail-form form.minimized .compose-mail-form-header {
+  position: fixed;
+  top: 0;
+  right: 1em;
+  z-index: 2;
+}
+.btn-mail-compose.open.minimized {
+  background-color: var(--clr2-hover);
+  color: var(--clrbg);
+}
+.compose-mail-form form.minimized h5 {
+  margin-inline-end: 2em;
 }
 
 .compose-mail-form.expand {
@@ -176,7 +196,7 @@
   .mail-compose {
     transition: background 0.5s;
     position: absolute;
-    bottom: 1.5em;
+    bottom: 0;
     right: 2em;
     z-index: 2;
   }

@@ -1,6 +1,6 @@
 import { utilService } from '../../../../services/util.service.js'
 
-export function DetailsBody({ mail, onMailStarred }) {
+export function DetailsBody({ mail, onMailStarred, isMailStared }) {
   function formatTime(timestamp) {
     return <h6 className='mail-time'>{timestamp}</h6>
   }
@@ -35,7 +35,11 @@ export function DetailsBody({ mail, onMailStarred }) {
               onMailStarred(ev, mail)
             }}
             className='btn-rnd-l-s'>
-            <i className='fa-solid fa-star'></i>
+            {isMailStared ? (
+              <i className='fa-solid fa-star'></i>
+            ) : (
+              <i className='fa-regular fa-star'></i>
+            )}
           </button>
         </div>
       </div>

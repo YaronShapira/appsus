@@ -7,7 +7,7 @@ export const PageLayout = ({ children }) => {
     <Fragment>
       <AppHeader />
       <SideBar />
-      {children}
+      <div className='overflow-wrapper'>{children}</div>
     </Fragment>
   )
 }
