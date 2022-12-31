@@ -204,7 +204,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         addNoteParams.type = 'note-canvas'
         setIsWriting(true)
 
-        canvasService.initCanvas(canvasRef.current)
+        setTimeout(() => canvasService.initCanvas(canvasRef.current), 10)
         // setAddNoteParams({ ...addNoteParams })
     }
 
@@ -224,7 +224,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 style={addNoteParams.style.backgroundColor && { backgroundColor: addNoteParams.style.backgroundColor }}>
                 <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
                 {addNoteParams.src && <img src={addNoteParams.src} />}
-                <canvas ref={canvasRef} hidden={addNoteParams.type !== 'note-canvas'} height='0px' />
+                <div className={`canvas-container ${addNoteParams.type === 'note-canvas' ? 'on' : ''}`}>
+                    <canvas ref={canvasRef} hidden={addNoteParams.type !== 'note-canvas'} height='0px' />
+                </div>
                 {isWriting && (
                     <input
                         type='title'

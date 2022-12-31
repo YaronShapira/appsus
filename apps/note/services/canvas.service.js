@@ -13,8 +13,14 @@ function initCanvas(canvasElement) {
     canvasElement.classList.add('canvas')
     gElCanvas = canvasElement
     gCtx = gElCanvas.getContext('2d')
+    // SIZING
+    canvasElement.style.width = '100%'
+    canvasElement.style.height = '100%'
+    canvasElement.width = canvasElement.offsetWidth
+    canvasElement.height = canvasElement.offsetHeight
+
     gElCanvas.style.background = '#eee'
-    gCtx.lineWidth = 0.5
+    gCtx.lineWidth = 5
     gCtx.fillStyle = 'black'
     addListeners()
 }
@@ -24,9 +30,8 @@ function draw(pos) {
     gCtx.lineCap = 'round'
     gCtx.strokeStyle = 'black'
     console.log(x, y)
-    // gCtx.lineTo(x, y)
-    // gCtx.stroke()
-    drawRect(x, y, 20)
+    gCtx.lineTo(x, y)
+    gCtx.stroke()
 }
 function drawRect(x, y, size) {
     gCtx.beginPath()
@@ -52,6 +57,7 @@ function onMove(ev) {
 
 function onUp() {
     gIsDrawing = false
+    gCtx.beginPath()
 }
 
 function addMouseListeners() {

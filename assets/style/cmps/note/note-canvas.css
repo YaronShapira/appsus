@@ -1,4 +1,15 @@
-.canvas {
-    height: 200px;
+.canvas-container {
     width: 100%;
+    /* height: 200px; */
+    position: relative;
+    caret-color: transparent;
+}
+
+
+canvas {
+    caret-color: transparent;
+}
+
+.canvas-container.on {
+    height: 200px;
 }
