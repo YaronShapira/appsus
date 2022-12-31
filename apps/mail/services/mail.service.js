@@ -16,9 +16,44 @@ export const mailService = {
   getEmptyMail,
   getNextMail,
   getDummyMails,
+  getMailsCountMap,
 }
 
 _createMails()
+
+function getMailsCountMap() {
+  return storageService.query(MAILS_DB).then((mails) => {
+    let countMap = { isStared: 0, isRead: 0, inbox: 0, sent: 0, draft: 0, trash: 0 }
+    mails.forEach((mail) => {
+      if (mail.isStared) {
+        countMap.isStared++
+      }
+      if (mail.isRead) {
+        countMap.isRead++
+      }
+      if (mail.status) {
+        switch (mail.status) {
+          case 'inbox':
+            countMap['inbox']++
+            break
+          case 'sent':
+            countMap['sent']++
+            break
+          case 'draft':
+            countMap['draft']++
+            break
+          case 'trash':
+            countMap['trash']++
+            break
+
+          default:
+            break
+        }
+      }
+    })
+    return countMap
+  })
+}
 
 function getDummyMails() {
   return [

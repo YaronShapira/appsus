@@ -1,3 +1,5 @@
+import { mailService } from '../services/mail.service.js'
+
 const { useState, useEffect, useRef } = React
 const { useSearchParams, NavLink, useNavigate } = ReactRouterDOM
 
@@ -6,11 +8,12 @@ export function SideBarMail({ isOpen }) {
   const folder = useRef('inbox')
   const isStars = useRef(searchParams.get('isStared') || false)
   const navigate = useNavigate()
-
+  const [mailsCount, setMailsCount] = useState()
   useEffect(() => {
     if (searchParams.has('folder')) {
       folder.current = searchParams.get('folder')
     }
+    loadMailsMap()
   }, [])
 
   function onStars() {
@@ -27,6 +30,12 @@ export function SideBarMail({ isOpen }) {
     navigate({
       pathname: '/mail',
       search: `?q=${searchParams.get('q')}&folder=${folder.current}`,
+    })
+  }
+
+  function loadMailsMap() {
+    mailService.getMailsCountMap().then((map) => {
+      console.log('map:', map)
     })
   }
 
