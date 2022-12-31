@@ -15,7 +15,6 @@ export function DetailsBody({ mail, onMailStarred, isMailStared }) {
     }).format(date)
   }
 
-  if (!mail) return <section>Loading...</section>
   return (
     <section className='mail-msg'>
       <div className='mail-msg-header flex align-center justify-between'>
@@ -45,6 +44,13 @@ export function DetailsBody({ mail, onMailStarred, isMailStared }) {
       </div>
       <div className='mail-msg-body'>
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(mail.body) }}></div>
+        <div className='attached-img'>
+          {mail.attachedImg && (
+            <div className='attached-container'>
+              <img src={mail.attachedImg} alt='attached' />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   )

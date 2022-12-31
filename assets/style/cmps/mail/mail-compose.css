@@ -193,6 +193,12 @@
   background-color: var(--clr2-hover);
 }
 
+.compose-mail-form .uploaded-img {
+  width: 33%;
+  border-radius: 0.5em;
+  margin-inline-start: 1em;
+}
+
 @media (min-width: 400px) {
   .compose-mail-form {
     transition: 0.5s top;

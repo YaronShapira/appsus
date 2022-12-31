@@ -22,7 +22,7 @@
 .msg-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr auto;
+  grid-template-rows: max-content max-content 1fr auto;
   height: 100%;
   overflow-y: auto;
 }
@@ -121,10 +121,18 @@
   padding: 0 0 2em 0;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
+.attached-container {
+}
+.attached-container > img {
+  width: 33%;
+  margin: auto;
+  border-radius: 0.5em;
+  box-shadow: 0px 10px 20px -10px var(--clrbg);
+}
 /* FOOTER */
 .mail-footer-actions > * {
   margin-inline-end: 1em;
