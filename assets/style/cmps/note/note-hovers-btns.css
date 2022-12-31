@@ -40,3 +40,42 @@
     background: var(--clr1);
     border-radius: 50%;
 }
+
+.mobile-hamburger {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+.mobile-hamburger-menu {
+    background: var(--clrbg);
+    position: absolute;
+    right: 0%;
+    top: 25px;
+    width: 100vw;
+    width: 170px;
+    z-index: 5;
+}
+.mobile-hamburger-menu ul li {
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border-bottom: 1px solid white;
+}
+.mobile-hamburger-menu ul li:last-of-type {
+    border-bottom: 0;
+}
+
+.mobile-hamburger-menu .pin {
+    width: unset;
+}
+.mobile-hamburger-menu .hover-utils {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+    /* width: 50vw; */
+}
+@media screen and (min-width: 550px) {
+    .mobile-hamburger {
+        display: none;
+    }
+}
