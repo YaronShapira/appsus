@@ -1547,7 +1547,7 @@ function getDefaultFilter() {
 }
 
 function getDefaultSort() {
-  return { sentAt: 1, isRead: false, isStared: false }
+  return { sentAt: 1, isStared: false }
 }
 
 function query(filterBy = getDefaultFilter(), sortBy = getDefaultSort()) {
