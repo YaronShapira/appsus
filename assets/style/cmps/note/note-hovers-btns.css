@@ -19,6 +19,12 @@
     justify-content: space-between;
     padding-top: 1em;
 }
+@media screen and (max-width: 550px) {
+    .hovers {
+        display: none;
+        pointer-events: none;
+    }
+}
 .hover-utils button {
 }
 .note-preview .pin {

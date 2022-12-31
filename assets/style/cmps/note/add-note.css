@@ -77,6 +77,12 @@
 }
 
 @media screen and (max-width: 550px) {
+    .add-note {
+        max-width: 85vw;
+    }
+    .add-note * {
+        max-width: 85vw;
+    }
     .main-input {
         flex-direction: column;
     }
