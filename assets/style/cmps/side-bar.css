@@ -29,7 +29,7 @@
   display: grid;
   grid-auto-flow: column;
   align-items: center;
-  grid-template-columns: max-content;
+  grid-template-columns: max-content 1fr auto;
 }
 .icon-label button {
   position: relative;
@@ -58,4 +58,12 @@
 }
 .icon-label.active i {
   color: var(--clr-txt);
+}
+
+/* label txt and count */
+.side-bar-label {
+}
+.side-bar-label-count {
+  justify-self: end;
+  padding-inline-end: 1em;
 }
