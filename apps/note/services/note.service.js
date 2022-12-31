@@ -140,31 +140,25 @@ function _createNote(txt, title = '') {
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
-        // notes = [
-        //     _createNote('Remember the wedding of Noa & Cody', 'Wedding'),
-        //     _createNote('Remember to do all the bonuses or else...', 'Extra Features'),
-        //     _createNote(
-        //         'My advice to you is get married: If you find a good wife you’ll be happy; if not, you’ll become a philosopher'
-        //     ),
-        //     _createNote(
-        //         'Chupa chups tootsie roll croissant marshmallow sugar plum chocolate bar',
-        //         'Chocolate'
-        //     ),
-        //     _createNote(
-        //         'If you want to be sure that you never forget your wife’s birthday, just try forgetting it once.'
-        //     ),
-        //     _createNote('Remember to flush after using the toilet'),
-        //     _createNote('Never go to bed mad. Stay up and fight'),
-        //     _createNote(
-        //         'Adults are always asking children what they want to be when they grow up because they’re looking for ideas'
-        //     ),
-        //     _createNote(
-        //         'When life gives you lemons, just say ‘fuck the lemons’, and bail',
-        //         'Funny Quote Number 52'
-        //     ),
-        //     _createNote('Never let your best friends get lonely, keep disturbing them.'),
-        //     _createNote('Friends buy you food. Best friends eat your food.', 'Truth'),
-        // ]
+        notes = [
+            _createNote('Remember the wedding of Noa & Cody', 'Wedding'),
+            _createNote('Remember to do all the bonuses or else...', 'Extra Features'),
+            _createNote(
+                'My advice to you is get married: If you find a good wife you’ll be happy; if not, you’ll become a philosopher'
+            ),
+            _createNote('Chupa chups tootsie roll croissant marshmallow sugar plum chocolate bar', 'Chocolate'),
+            _createNote(
+                'If you want to be sure that you never forget your wife’s birthday, just try forgetting it once.'
+            ),
+            _createNote('Remember to flush after using the toilet'),
+            _createNote('Never go to bed mad. Stay up and fight'),
+            _createNote(
+                'Adults are always asking children what they want to be when they grow up because they’re looking for ideas'
+            ),
+            _createNote('When life gives you lemons, just say ‘fuck the lemons’, and bail', 'Funny Quote Number 52'),
+            _createNote('Never let your best friends get lonely, keep disturbing them.'),
+            _createNote('Friends buy you food. Best friends eat your food.', 'Truth'),
+        ]
         notes = [
             {
                 id: utilService.makeId(),
@@ -258,7 +252,7 @@ function _createNotes() {
                 info: {
                     txt: 'Adults are always asking children what they want to be when they grow up because they’re looking for ideas',
                 },
-                style: { backgroundColor: '#0e121a', color: '#798193' },
+                style: { backgroundColor: '#3269ff', color: 'white' },
                 src: '',
                 status: 'trash',
             },
@@ -294,11 +288,103 @@ function _createNotes() {
                 info: {
                     txt: 'Friends buy you food. Best friends eat your food.',
                 },
-                style: { backgroundColor: '#b82af3', color: 'white' },
+                style: { backgroundColor: '#fe7745', color: 'black' },
+                src: '',
+                status: 'notes',
+            },
+            {
+                id: utilService.makeId(),
+                title: 'Truth',
+                type: 'note-txt',
+                isPinned: false,
+                info: {
+                    txt: 'This is trash!',
+                },
+                style: {},
+                src: '',
+                status: 'trash',
+            },
+            {
+                id: utilService.makeId(),
+                title: '',
+                type: 'note-txt',
+                isPinned: false,
+                info: {
+                    txt: 'Brb, letting 21 do something for me rn',
+                },
+                style: { backgroundColor: '#', color: 'white' },
+                src: '',
+                status: 'notes',
+            },
+            {
+                id: utilService.makeId(),
+                title: '',
+                type: 'note-txt',
+                isPinned: false,
+                info: {
+                    txt: 'Brb, letting 21 do something for me rn',
+                },
+                style: { backgroundColor: '#ae3b76', color: 'white' },
+                src: '',
+                status: 'notes',
+            },
+            {
+                id: utilService.makeId(),
+                title: 'Boring',
+                type: 'note-txt',
+                isPinned: true,
+                info: {
+                    txt: 'Just a boring note',
+                },
+                style: { backgroundColor: '#3269ff', color: 'white' },
+                src: '',
+                status: 'notes',
+            },
+            {
+                id: utilService.makeId(),
+                title: 'Todo list!',
+                type: 'note-todo',
+                isPinned: true,
+                info: {
+                    txt: '',
+                },
+                todos: [
+                    { value: 'Find a good teammate for sprint number 3', isChecked: true },
+                    { value: 'Find a good team for sprint number 4', isChecked: false },
+                ],
+                src: '',
+                status: 'notes',
+            },
+            {
+                id: utilService.makeId(),
+                title: 'Sweet sweet home',
+                type: 'note-map',
+                isPinned: false,
+                info: {
+                    txt: 'Alabama!',
+                },
+                src: '',
+                status: 'notes',
+                loc: { lat: 32.2984142, lng: 34.8513687 },
+            },
+            {
+                id: utilService.makeId(),
+                title: '',
+                type: 'note-video',
+                isPinned: true,
+                info: {
+                    txt: '',
+                },
+                link: 'https://www.youtube.com/embed/LlU4FuIJT2k',
                 src: '',
                 status: 'notes',
             },
         ]
     }
+
+    // notes = JSON.parse(dataJSON)
+    // Object.keys(data).forEach(function (k) {
+    //     localStorage.setItem(k, JSON.stringify(data[k]))
+    // })
     utilService.saveToStorage(NOTES_KEY, notes)
 }

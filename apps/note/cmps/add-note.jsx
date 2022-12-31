@@ -8,6 +8,7 @@ import TodoInput from './todo-input.jsx'
 import NotePalette from './note-palette.jsx'
 import AddNoteBtns from './add-note-btns.jsx'
 import { canvasService } from '../services/canvas.service.js'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
@@ -60,6 +61,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             addNoteParams.src = img.src
             addNoteParams.type = 'note-img'
             setAddNoteParams({ ...addNoteParams })
+            showSuccessMsg('Image Uploaded Successfully')
         })
         setIsWriting(true)
     }
@@ -71,6 +73,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             addNoteParams.type = 'note-audio'
             console.log('type', addNoteParams)
             setAddNoteParams({ ...addNoteParams })
+            showSuccessMsg('Audio Uploaded Successfully')
         })
         setIsWriting(true)
     }
@@ -126,6 +129,12 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
             canvasService.hideCanvas()
         }
+
+        if (addNoteParams.type === 'note-video') {
+            console.log('REP')
+            addNoteParams.link = addNoteParams.link.replace('watch?v=', 'embed/')
+            console.log(addNoteParams.link)
+        }
         if (isEditing) setIsEditing(false)
 
         const newNote = structuredClone(addNoteParams)
@@ -149,6 +158,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
             return [...oldNotes]
         })
+        showSuccessMsg('Note Added Successfully')
     }
 
     function onRecord() {
@@ -161,6 +171,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             recorder.start()
             setIsWriting(true)
             setIsRecording(true)
+            showSuccessMsg('Recording...')
         })()
     }
 
@@ -204,6 +215,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             pos = res
             mapService.initMap(mapRef.current, pos)
             addNoteParams.loc = pos
+            showSuccessMsg('Map Loaded Successfully')
         })
         addNoteParams.type = 'note-map'
 
@@ -225,6 +237,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         addNoteParams.style.color = color
         setAddNoteParams({ ...addNoteParams })
         console.log(addNoteParams)
+        showSuccessMsg('Changed Color')
     }
 
     return (

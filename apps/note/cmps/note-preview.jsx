@@ -34,6 +34,7 @@ export default function NotePreview({ note, setNotes }) {
                 setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== duplicatedNote.id))
             })
         setNotes(prevNotes => [duplicatedNote, ...prevNotes])
+        showSuccessMsg('Note Duplicated Successfully')
     }
     function onDeleteNote(ev) {
         ev.stopPropagation()
@@ -50,6 +51,7 @@ export default function NotePreview({ note, setNotes }) {
             setNotes(prevNotes => [...prevNotes, recoveryNote])
         })
         setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
+        showSuccessMsg('Note Deleted Successfully')
     }
 
     function onPin(ev) {
@@ -60,7 +62,7 @@ export default function NotePreview({ note, setNotes }) {
             setNotes(prev => [...prev])
         })
         setNotes(prev => [...prev])
-        showSuccessMsg('PINNED')
+        showSuccessMsg(`Note ${note.isPinned ? 'Pinned' : 'Unpinned'} Successfully`)
     }
 
     function saveNoteAndRender() {
@@ -93,6 +95,7 @@ export default function NotePreview({ note, setNotes }) {
         else note.status = 'archive'
         renderNoteAndSave(recoveryNote)
         setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
+        showSuccessMsg('Note Archived Successfully')
     }
 
     function setColor(ev, bgColor, color) {
@@ -103,6 +106,7 @@ export default function NotePreview({ note, setNotes }) {
         note.style.color = color
         // setCurrNote({ ...note })
         renderNoteAndSave(recoveryNote)
+        showSuccessMsg('Changed Color Successfully')
     }
     function DynamicNote(props) {
         switch (note.type) {
