@@ -7,6 +7,7 @@ import loadImageFromInput from '../services/upload.service.js'
 import TodoInput from './todo-input.jsx'
 import NotePalette from './note-palette.jsx'
 import AddNoteBtns from './add-note-btns.jsx'
+import { canvasService } from '../services/canvas.service.js'
 
 export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const [addNoteParams, setAddNoteParams] = useState(structuredClone(note) || noteService.getDefaultNote())
@@ -20,6 +21,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     const micRecorderRef = useRef(null)
     const uploadAudioInputRef = useRef(null)
     const mapRef = useRef(null)
+    const canvasRef = useRef(null)
 
     useOutsideAlerter(addNoteBoxRef)
     function handleChange({ target }) {
@@ -199,6 +201,11 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
     function onDraw() {
         console.log('CANVAS')
+        addNoteParams.type = 'note-canvas'
+        setIsWriting(true)
+
+        setTimeout(() => canvasService.initCanvas(canvasRef.current), 10)
+        // setAddNoteParams({ ...addNoteParams })
     }
 
     function setColor(ev, bgColor, color) {
@@ -217,6 +224,9 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 style={addNoteParams.style.backgroundColor && { backgroundColor: addNoteParams.style.backgroundColor }}>
                 <div id='map' ref={mapRef} hidden={addNoteParams.type !== 'note-map'}></div>
                 {addNoteParams.src && <img src={addNoteParams.src} />}
+                <div className={`canvas-container ${addNoteParams.type === 'note-canvas' ? 'on' : ''}`}>
+                    <canvas ref={canvasRef} hidden={addNoteParams.type !== 'note-canvas'} height='0px' />
+                </div>
                 {isWriting && (
                     <input
                         type='title'

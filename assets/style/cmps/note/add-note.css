@@ -9,7 +9,9 @@
     display: block;
     box-shadow: 3px 1px 4px 2px black;
 }
-
+.add-note :not(input, textarea) {
+    caret-color: transparent;
+}
 .add-note :is(input, textarea) {
     outline: none;
     border: none;
