@@ -1,34 +1,43 @@
-import { eventBusService } from '../services/event-bus.service.js'
 const { useState, useEffect, useRef } = React
 
+import { eventBusService } from '../services/event-bus.service.js'
+import { utilService } from '../services/util.service.js'
+
 export default function UserMsg() {
-    const [msg, setMsg] = useState(null)
-    const timeoutIdRef = useRef()
+  const [msg, setMsg] = useState(null)
+  const timeoutIdRef = useRef(null)
+  const messageCmp = useRef()
+  useEffect(() => {
+    const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
+      setMsg(msg)
 
-    console.log('INSIDE USER MSG')
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current)
+        timeoutIdRef.current = null
+      }
 
-    useEffect(() => {
-        const unsubscribe = eventBusService.on('show-user-msg', msg => {
-            console.log('Got msg', msg)
-            setMsg(msg)
-            if (timeoutIdRef.current) {
-                timeoutIdRef.current = null
-                clearTimeout(timeoutIdRef.current)
-            }
-            timeoutIdRef.current = setTimeout(closeMsg, 3000)
-        })
-        return unsubscribe
-    }, [])
+      timeoutIdRef.current = setTimeout(onCloseMsg, 3000)
+    })
 
-    function closeMsg() {
-        setMsg(null)
+    return unsubscribe
+  }, [])
+
+  useEffect(() => {
+    if (messageCmp.current) {
+      utilService.animateCSS(messageCmp.current, 'fadeInDown')
     }
+  }, [msg])
 
-    if (!msg) return <span></span>
-    return (
-        <section className={`user-msg ${msg.type}`}>
-            <button onClick={closeMsg}>x</button>
-            {msg.txt}
-        </section>
-    )
+  function onCloseMsg() {
+    utilService.animateCSS(messageCmp.current, 'fadeOutDown')
+    setTimeout(() => setMsg(null), 500)
+  }
+
+  if (!msg) return <span></span>
+  return (
+    <div className={'user-msg-modal ' + msg.type} ref={messageCmp}>
+      {/* <button onClick={onCloseMsg}>X</button> */}
+      {msg.txt}
+    </div>
+  )
 }
