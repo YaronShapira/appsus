@@ -20,13 +20,17 @@
   padding: 0 1em;
 }
 .msg-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content 1fr auto;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-y: auto;
 }
-
+.mail-msg {
+  flex: 1;
+}
+.msg-container:last-child {
+  margin-top: auto;
+}
 .mail-details-nav {
   background-color: var(--clr2-a);
   padding: 0.15em 1em;

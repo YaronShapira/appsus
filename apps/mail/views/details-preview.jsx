@@ -6,7 +6,7 @@ import { DetailsFooter } from '../cmps/mail-details-cmps/details-footer.jsx'
 import { DetailsHeader } from '../cmps/mail-details-cmps/details-header.jsx'
 import { mailService } from '../services/mail.service.js'
 
-export function DetailsPreview({ mail, display, onDisplayFullMsg }) {
+export function DetailsPreview({ mail, display }) {
   const [isReply, setReplyMode] = useState(false)
   const elMsgContainer = useRef()
   const elIframeForPrint = useRef()

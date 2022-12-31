@@ -121,6 +121,7 @@ export function MailIndex() {
   function draftMail(mail) {
     showSuccessMsg('Mail Saved to Draft')
     eventBusService.emit('recount-mails', 'Draft')
+    mail.status = 'draft'
     mailService.save(mail).then(() => {
       loadMails(filterBy)
     })
