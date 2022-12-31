@@ -6,15 +6,13 @@ import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
 import Loader from '../../../cmps/loader.jsx'
 import { mailService } from '../services/mail.service.js'
+import { eventBusService } from '../../../services/event-bus.service.js'
 
 export function MailIndex() {
   const [isMarked, setIsMarked] = useState(false)
   const [mails, setMails] = useState([])
   const [searchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-
-  console.log('searchP STARED', searchParams.get('isStared'))
-  console.log('searchP FOLDER', searchParams.get('folder'))
   useEffect(() => {
     loadMails({
       ...filterBy,
@@ -54,6 +52,7 @@ export function MailIndex() {
       loadMails(filterBy)
     })
     setMails((prev) => [...prev])
+    eventBusService.emit('recount-mails', 'Stared')
   }
 
   function onMailToNotes(mailId) {
@@ -74,6 +73,7 @@ export function MailIndex() {
   }
 
   function onMailRemoved(mail) {
+    eventBusService.emit('recount-mails', 'Trash')
     const mailId = mail.id
 
     if (mail.status === 'trash') {
@@ -95,13 +95,15 @@ export function MailIndex() {
   }
 
   function draftMail(mail) {
+    eventBusService.emit('recount-mails', 'Draft')
     mailService.save(mail).then(() => {
       loadMails(filterBy)
     })
   }
 
   function sendMail(mail) {
-    mail.status = 'send'
+    eventBusService.emit('recount-mails', 'Sent')
+    mail.status = 'sent'
     mailService.save(mail).then(() => {
       loadMails(filterBy)
     })

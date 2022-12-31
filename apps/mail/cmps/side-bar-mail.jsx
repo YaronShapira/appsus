@@ -1,3 +1,4 @@
+import { eventBusService } from '../../../services/event-bus.service.js'
 import { mailService } from '../services/mail.service.js'
 
 const { useState, useEffect, useRef } = React
@@ -15,6 +16,13 @@ export function SideBarMail({ isOpen }) {
     if (searchParams.has('folder')) {
       folder.current = searchParams.get('folder')
     }
+    eventBusService.on('recount-mails', (keyToRecount) => {
+      setMailsCount((prevMap) => {
+        let updatedVal = prevMap[keyToRecount]
+        updatedVal++
+        return { ...prevMap, [keyToRecount]: updatedVal }
+      })
+    })
     loadMailsMap()
   }, [])
 
@@ -40,7 +48,6 @@ export function SideBarMail({ isOpen }) {
       search: `?q=${searchParams.get('q')}&folder=${folder.current}`,
     })
   }
-  console.log('mailsCount:', mailsCount)
   return (
     <nav className={`tools-nav ${isOpen ? 'open' : ''}`}>
       <ul>

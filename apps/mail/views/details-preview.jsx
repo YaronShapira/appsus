@@ -4,6 +4,7 @@ const { Link, useParams, useNavigate, useSearchParams } = ReactRouterDOM
 import { DetailsBody } from '../cmps/mail-details-cmps/details-body.jsx'
 import { DetailsFooter } from '../cmps/mail-details-cmps/details-footer.jsx'
 import { DetailsHeader } from '../cmps/mail-details-cmps/details-header.jsx'
+import { mailService } from '../services/mail.service.js'
 
 export function DetailsPreview({ mail, display, onDisplayFullMsg }) {
   const [isReply, setReplyMode] = useState(false)
@@ -11,13 +12,21 @@ export function DetailsPreview({ mail, display, onDisplayFullMsg }) {
   const elIframeForPrint = useRef()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
+  const [isMailStared, setIsMailStared] = useState(false)
+  useEffect(() => {
+    if (mail) {
+      mail.isStared && setIsMailStared(true)
+    }
+    return () => {
+      setIsMailStared(false)
+    }
+  }, [])
 
   function onMailStarred(ev, mail) {
     ev.stopPropagation()
     mail.isStared = !mail.isStared
-    mailService.save(mail).then((mail) => {
-      loadMail()
-    })
+    mailService.save(mail).catch((err) => [console.log('had issue with starring the mail:', err)])
+    setIsMailStared((prev) => !prev)
   }
 
   function moveToFullMode() {
@@ -70,7 +79,12 @@ export function DetailsPreview({ mail, display, onDisplayFullMsg }) {
           display={display}
           moveToFullMode={moveToFullMode}
         />
-        <DetailsBody elMsgContainer={elMsgContainer} mail={mail} onMailStarred={onMailStarred} />
+        <DetailsBody
+          elMsgContainer={elMsgContainer}
+          mail={mail}
+          isMailStared={isMailStared}
+          onMailStarred={onMailStarred}
+        />
         <DetailsFooter mail={mail} onReply={onReply} />
       </section>
     </section>

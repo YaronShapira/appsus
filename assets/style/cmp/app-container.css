@@ -1,7 +1,6 @@
 .app-container {
   border-radius: 2em;
   margin: 0 1em;
-  overflow: hidden;
   border-radius: var(--br-l);
   background-color: var(--clrbg-light-a);
   height: calc(100vh - var(--header-height) - 3em);
@@ -13,13 +12,10 @@
   .app-container {
     margin-right: 2em;
     border-radius: 2em;
-    overflow: hidden;
     border-radius: var(--br-l);
     background-color: var(--clrbg-light-a);
     height: calc(100vh - var(--header-height) - 2em);
     overflow-y: auto;
-    ms-overflow-style: none;
     scrollbar-width: none;
-    height: calc(100vh - var(--header-height) - 2em);
   }
 }

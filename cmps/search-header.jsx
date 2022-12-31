@@ -56,8 +56,6 @@ export function SearchHeader() {
     return debouncedValue
   }
 
-  console.log('isSearchOpen:', isSearchOpen)
-
   return (
     <section className='search-header'>
       <input

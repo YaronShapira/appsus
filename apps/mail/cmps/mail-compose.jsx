@@ -1,18 +1,27 @@
 const { useState, useEffect, useRef } = React
+import { eventBusService } from '../../../services/event-bus.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ sendMail, draftMail }) {
   const [newMailToEdit, setNewMailToEdit] = useState(mailService.getEmptyMail())
   const [isExpandedMsgWindow, setIsExpandedMsgWindow] = useState(false)
   const [isMailEdited, setIsMailEdited] = useState(false)
+  const [isMailMinimized, setIsMailMinimized] = useState(false)
+
+  function onMinimizeMsgWindow() {
+    setIsMailMinimized(!isMailMinimized)
+    setIsExpandedMsgWindow(false)
+  }
 
   function onExpandMsgWindow() {
     setIsExpandedMsgWindow(!isExpandedMsgWindow)
+    setIsMailMinimized(false)
   }
 
   function onBtnToggleCompose() {
     setIsMailEdited(!isMailEdited)
     setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
   }
 
   function onDraftMail() {
@@ -22,6 +31,7 @@ export function MailCompose({ sendMail, draftMail }) {
     }
     setIsMailEdited(!isMailEdited)
     setIsExpandedMsgWindow(false)
+    setIsMailMinimized(false)
   }
 
   function onSendMail(ev) {
@@ -45,18 +55,26 @@ export function MailCompose({ sendMail, draftMail }) {
       <button
         title='Compose Mail'
         onClick={onBtnToggleCompose}
-        className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
+        className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''} ${
+          isMailMinimized ? 'minimized' : ''
+        }`}>
         <i className={`fa-solid fa-pencil`}></i>
       </button>
       <section
         className={`compose-mail-form flex flex-column ${isMailEdited ? 'open' : ''} ${
           isExpandedMsgWindow ? 'expand' : ''
         }`}>
-        <form onSubmit={onSendMail} className='flex flex-column'>
+        <form
+          onSubmit={onSendMail}
+          className={`flex flex-column ${isMailMinimized ? 'minimized' : ''} `}>
           <section className='compose-mail-form-header flex align-center justify-between'>
-            <h5>New Mail</h5>
+            <h5>{}New Mail</h5>
             <div className='header-tools'>
-              <button onClick={onDraftMail} title='Minimize' type='button' className='btn-rnd-s'>
+              <button
+                onClick={onMinimizeMsgWindow}
+                title='Minimize'
+                type='button'
+                className='btn-rnd-s'>
                 <i className='fa-solid fa-window-minimize'></i>
               </button>
               <button

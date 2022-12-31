@@ -17,6 +17,13 @@
   overflow-x: hidden;
   grid-area: main;
 }
+
+.overflow-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--header-height) - 3em);
+}
+
 @media (min-width: 550px) {
   .app {
     display: grid;
