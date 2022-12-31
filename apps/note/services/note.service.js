@@ -29,8 +29,56 @@ function getNotes(filterBy = getDefaultFilter()) {
 }
 
 function getNotesCountMap() {
-    return storageService.query(NOTES_KEY).then(res => {
-        console.log(res)
+    return storageService.query(NOTES_KEY).then(notes => {
+        let countMap = {
+            'Total Notes': notes.length,
+            Trash: 0,
+            Archive: 0,
+            Pinned: 0,
+            Text: 0,
+            Todo: 0,
+            Drawing: 0,
+            Video: 0,
+            Image: 0,
+            Audio: 0,
+        }
+        notes.forEach(note => {
+            if (note.Pinned) {
+                countMap.Pinned++
+            }
+            if (note.type === 'note-txt') {
+                countMap.Text++
+            }
+            if (note.type === 'note-todo') {
+                countMap.Todo++
+            }
+            if (note.type === 'note-canvas') {
+                countMap.Drawing++
+            }
+            if (note.type === 'note-video') {
+                countMap.Video++
+            }
+            if (note.type === 'note-audio') {
+                countMap.Audio++
+            }
+            if (note.type === 'note-img') {
+                countMap.Image++
+            }
+            if (note.status) {
+                switch (note.status) {
+                    case 'archive':
+                        countMap['Archive']++
+                        break
+                    case 'trash':
+                        countMap['Trash']++
+                        break
+
+                    default:
+                        break
+                }
+            }
+        })
+        return countMap
     })
 }
 

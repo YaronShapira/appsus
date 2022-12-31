@@ -5,15 +5,15 @@ const { useRef, useEffect } = React
 export function Home() {
     const chartNotesRef = useRef(null)
 
-    function createNotesChart() {
-        new Chart(chartNotesRef.current, {
+    function createChart(elementRef, notes) {
+        new Chart(elementRef.current, {
             type: 'bar',
             data: {
-                labels: ['Todos Left', 'Import Todos', 'Archived Todos'],
+                labels: Object.keys(notes),
                 datasets: [
                     {
                         label: 'Notes Count',
-                        data: [5, 2, 7],
+                        data: Object.values(notes),
                         borderWidth: 1,
                     },
                 ],
@@ -30,9 +30,9 @@ export function Home() {
 
     useEffect(() => {
         noteService.getNotesCountMap().then(notes => {
-            console.log(notes)
+            createChart(chartNotesRef, notes)
         })
-        // createNotesChart()
+        //
     }, [])
 
     return (

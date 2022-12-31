@@ -23,27 +23,27 @@ _createMails()
 
 function getMailsCountMap() {
   return storageService.query(MAILS_DB).then((mails) => {
-    let countMap = { isStared: 0, isRead: 0, inbox: 0, sent: 0, draft: 0, trash: 0 }
+    let countMap = { Stared: 0, Read: 0, Inbox: 0, Sent: 0, Draft: 0, Trash: 0 }
     mails.forEach((mail) => {
       if (mail.isStared) {
-        countMap.isStared++
+        countMap.Stared++
       }
       if (mail.isRead) {
-        countMap.isRead++
+        countMap.Read++
       }
       if (mail.status) {
         switch (mail.status) {
           case 'inbox':
-            countMap['inbox']++
+            countMap['Inbox']++
             break
           case 'sent':
-            countMap['sent']++
+            countMap['Sent']++
             break
           case 'draft':
-            countMap['draft']++
+            countMap['Draft']++
             break
           case 'trash':
-            countMap['trash']++
+            countMap['Trash']++
             break
 
           default:
