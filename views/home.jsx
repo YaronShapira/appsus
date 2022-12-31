@@ -1,17 +1,19 @@
+import { noteService } from '../apps/note/services/note.service.js'
 import { PageLayout } from '../cmps/page-layout.jsx'
 const { useRef, useEffect } = React
 
 export function Home() {
-    const chartOneRef = useRef(null)
-    function createChart() {
-        new Chart(chartOneRef.current, {
+    const chartNotesRef = useRef(null)
+
+    function createChart(elementRef, notes) {
+        new Chart(elementRef.current, {
             type: 'bar',
             data: {
-                labels: ['Todos Left', 'Import Todos', 'Archived Todos'],
+                labels: Object.keys(notes),
                 datasets: [
                     {
                         label: 'Notes Count',
-                        data: [5, 2, 7],
+                        data: Object.values(notes),
                         borderWidth: 1,
                     },
                 ],
@@ -27,7 +29,10 @@ export function Home() {
     }
 
     useEffect(() => {
-        createChart()
+        noteService.getNotesCountMap().then(notes => {
+            createChart(chartNotesRef, notes)
+        })
+        //
     }, [])
 
     return (
@@ -41,7 +46,7 @@ export function Home() {
                         <h4>5 Todos Left</h4>
                         <h4>2 Important Notes</h4>
                         <h4>7 Notes Archived</h4>
-                        <canvas id='myChart' ref={chartOneRef}></canvas>
+                        <canvas id='myChart' ref={chartNotesRef}></canvas>
                     </div>
                     <div className='card'>
                         <h6>Mail Statistics</h6>
