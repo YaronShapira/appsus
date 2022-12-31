@@ -24,7 +24,7 @@ _createMails()
 
 function removeMultiple(mailsToRemove) {
   query().then((mails) => {
-    console.log('mails:', mails)
+    // console.log('mails:', mails)
     let mailsAfterDelete = mails.filter((mail) => !mailsToRemove.includes(mail.id))
     storageService.saveToStorage(MAILS_DB, mailsAfterDelete)
   })
@@ -1559,7 +1559,7 @@ function query(filterBy = getDefaultFilter(), sortBy = getDefaultSort()) {
       )
     }
     if (filterBy.isStared) {
-      console.log('filterBy:', filterBy)
+      // console.log('filterBy:', filterBy)
       mails = mails.filter((mail) => mail.isStared === true)
     } else if (filterBy.status) {
       mails = mails.filter((mail) => mail.status === filterBy.status)

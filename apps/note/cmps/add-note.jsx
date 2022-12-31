@@ -69,10 +69,10 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
 
   function onUploadAudio(ev) {
     uploadService.loadAudioFromInput(ev, (audio) => {
-      console.log('LOADED')
+      // console.log('LOADED')
       addNoteParams.audio = audio.src
       addNoteParams.type = 'note-audio'
-      console.log('type', addNoteParams)
+      // console.log('type', addNoteParams)
       setAddNoteParams({ ...addNoteParams })
       showSuccessMsg('Audio Uploaded Successfully')
     })
@@ -126,15 +126,15 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
   function addNote() {
     if (addNoteParams.type === 'note-canvas') {
       addNoteParams.canvas = canvasService.getCanvasDataURL()
-      console.log(addNoteParams)
+      // console.log(addNoteParams)
 
       canvasService.hideCanvas()
     }
 
     if (addNoteParams.type === 'note-video') {
-      console.log('REP')
+      // console.log('REP')
       addNoteParams.link = addNoteParams.link.replace('watch?v=', 'embed/')
-      console.log(addNoteParams.link)
+      // console.log(addNoteParams.link)
     }
     if (isEditing) setIsEditing(false)
 
@@ -197,7 +197,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
   }
 
   function onToDoList() {
-    console.log('TODO')
+    // console.log('TODO')
     setIsWriting(true)
     addNoteParams.type = 'note-todo'
   }
@@ -225,7 +225,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
   }
 
   function onDraw() {
-    console.log('CANVAS')
+    // console.log('CANVAS')
     addNoteParams.type = 'note-canvas'
     setIsWriting(true)
 
@@ -238,7 +238,7 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     addNoteParams.style.backgroundColor = bgColor
     addNoteParams.style.color = color
     setAddNoteParams({ ...addNoteParams })
-    console.log(addNoteParams)
+    // console.log(addNoteParams)
     showSuccessMsg('Changed Color')
   }
 

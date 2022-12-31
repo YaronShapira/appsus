@@ -1,3 +1,4 @@
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 import NotePalette from './note-palette.jsx'
 
 const { useState, useRef, Fragment } = React
@@ -10,7 +11,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
     function onPalette(ev) {
         ev.stopPropagation()
         setIsInPalette(prev => !prev)
-        console.log('TEST')
+        // console.log('TEST')
     }
 
     function onHamburger(ev) {
@@ -22,7 +23,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
 
     function removeHamburger() {
         setTimeout(() => setIsHamburgerOpen(prev => !prev), 100)
-        console.log('REMOVING')
+        // console.log('REMOVING')
         document.removeEventListener('mousedown', removeHamburger)
     }
 
@@ -40,7 +41,7 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
                         <li onClick={onPalette}>
                             <button>Change Color</button>
                         </li>
-                        <li>
+                        <li onClick={() => showErrorMsg('This Feature Is Unavailable At This Time')}>
                             <button>Send As Mail</button>
                         </li>
                         <li onClick={onArchive}>
@@ -57,7 +58,9 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
             )}
             <div className='hovers' onMouseLeave={() => setIsInPalette(false)} onClick={e => e.stopPropagation()}>
                 <div className='select'>
-                    <button className='btn btn-rnd-s'>
+                    <button
+                        className='btn btn-rnd-s'
+                        onClick={() => showErrorMsg('This Feature Is Unavailable At This Time')}>
                         <i className='fa-solid fa-check'></i>
                     </button>
                 </div>
@@ -71,7 +74,9 @@ export default function NoteHoversBtns({ onDeleteNote, setColor, onDuplicateNote
                         <i className='fa-solid fa-palette'></i>
                     </button>
                     <NotePalette isInPalette={isInPalette} setColor={setColor} />
-                    <button className='btn btn-rnd-s'>
+                    <button
+                        className='btn btn-rnd-s'
+                        onClick={() => showErrorMsg('This Feature Is Unavailable At This Time')}>
                         <i className='fa-solid fa-envelope'></i>
                     </button>
                     <button className='btn btn-rnd-s' onClick={onArchive}>

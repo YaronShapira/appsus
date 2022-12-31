@@ -345,6 +345,7 @@ function _createNotes() {
                 title: 'Todo list!',
                 type: 'note-todo',
                 isPinned: true,
+                style: {},
                 info: {
                     txt: '',
                 },
@@ -360,6 +361,7 @@ function _createNotes() {
                 title: 'Sweet sweet home',
                 type: 'note-map',
                 isPinned: false,
+                style: {},
                 info: {
                     txt: 'Alabama!',
                 },
@@ -372,6 +374,7 @@ function _createNotes() {
                 title: '',
                 type: 'note-video',
                 isPinned: true,
+                style: {},
                 info: {
                     txt: '',
                 },

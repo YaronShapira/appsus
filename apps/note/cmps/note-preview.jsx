@@ -44,6 +44,7 @@ export default function NotePreview({ note, setNotes }) {
             note.isPinned = false
             renderNoteAndSave(recoveryNote)
             setNotes(prevNotes => prevNotes.filter(currNote => currNote.id !== note.id))
+            showSuccessMsg('Note Moved To Trash Successfully')
             return
         }
         noteService.deleteNote(note.id).catch(err => {
