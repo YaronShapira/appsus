@@ -1,4 +1,5 @@
 .note-index {
+    /* max-width: calc(100vw); */
     padding: 2em;
 }
 .note-index::-webkit-scrollbar {
