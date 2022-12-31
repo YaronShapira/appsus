@@ -51,9 +51,23 @@ export function MailCompose({ sendMail, draftMail }) {
 
     function onUploadImg(ev) {
         console.log(ev.target.files[0])
-        uploadService.loadImageFromInput(ev, img => {
+        loadImageFromInput(ev, img => {
             console.log(img.src)
         })
+    }
+
+    function loadImageFromInput(ev, onImageReady) {
+        const reader = new FileReader()
+        // After we read the file
+        reader.onload = event => {
+            let img = new Image() // Create a new html img element
+            img.src = event.target.result // Set the img src to the img file we read
+            img.onload = () => {
+                onImageReady(img)
+            }
+        }
+
+        reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
     }
 
     return (
