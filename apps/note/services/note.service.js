@@ -9,12 +9,13 @@ export const noteService = {
     deleteNote,
     duplicateNote,
     getDefaultFilter,
+    getNotesCountMap,
 }
 
 const NOTES_KEY = 'notesDB'
 _createNotes()
 
-function getNotes(filterBy) {
+function getNotes(filterBy = getDefaultFilter()) {
     return storageService.query(NOTES_KEY).then(notes => {
         if (filterBy.txt) {
             const regex = new RegExp(filterBy.txt, 'i')
@@ -24,6 +25,12 @@ function getNotes(filterBy) {
             notes = notes.filter(note => note.status === filterBy.status)
         }
         return notes
+    })
+}
+
+function getNotesCountMap() {
+    return storageService.query(NOTES_KEY).then(res => {
+        console.log(res)
     })
 }
 
