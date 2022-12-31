@@ -17,9 +17,18 @@ export const mailService = {
   getNextMail,
   getDummyMails,
   getMailsCountMap,
+  removeMultiple,
 }
 
 _createMails()
+
+function removeMultiple(mailsToRemove) {
+  query().then((mails) => {
+    console.log('mails:', mails)
+    let mailsAfterDelete = mails.filter((mail) => !mailsToRemove.includes(mail.id))
+    storageService.saveToStorage(MAILS_DB, mailsAfterDelete)
+  })
+}
 
 function getMailsCountMap() {
   return storageService.query(MAILS_DB).then((mails) => {
