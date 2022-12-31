@@ -3,11 +3,16 @@ import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ sendMail, draftMail }) {
   const [newMailToEdit, setNewMailToEdit] = useState(mailService.getEmptyMail())
-
+  const [isExpandedMsgWindow, setIsExpandedMsgWindow] = useState(false)
   const [isMailEdited, setIsMailEdited] = useState(false)
+
+  function onExpandMsgWindow() {
+    setIsExpandedMsgWindow(!isExpandedMsgWindow)
+  }
 
   function onBtnToggleCompose() {
     setIsMailEdited(!isMailEdited)
+    setIsExpandedMsgWindow(false)
   }
 
   function onDraftMail() {
@@ -16,6 +21,7 @@ export function MailCompose({ sendMail, draftMail }) {
       setNewMailToEdit(mailService.getEmptyMail())
     }
     setIsMailEdited(!isMailEdited)
+    setIsExpandedMsgWindow(false)
   }
 
   function onSendMail(ev) {
@@ -23,6 +29,7 @@ export function MailCompose({ sendMail, draftMail }) {
     sendMail(newMailToEdit)
     setIsMailEdited(!isMailEdited)
     setNewMailToEdit(mailService.getEmptyMail())
+    setIsExpandedMsgWindow(false)
   }
 
   function handleForm({ target }) {
@@ -31,21 +38,27 @@ export function MailCompose({ sendMail, draftMail }) {
   }
 
   return (
-    <section className='mail-compose'>
+    <section
+      className={`mail-compose ${isMailEdited ? 'open' : ''} ${
+        isExpandedMsgWindow ? 'expand' : ''
+      }`}>
       <button
         onClick={onBtnToggleCompose}
         className={`btn-rnd-l btn-mail-compose ${isMailEdited ? 'open' : ''}`}>
         <i className={`fa-solid fa-pencil`}></i>
       </button>
-      <section className={`compose-mail-form ${isMailEdited ? 'open' : ''}`}>
-        <form onSubmit={onSendMail}>
+      <section
+        className={`compose-mail-form flex flex-column ${isMailEdited ? 'open' : ''} ${
+          isExpandedMsgWindow ? 'expand' : ''
+        }`}>
+        <form onSubmit={onSendMail} className='flex flex-column'>
           <section className='compose-mail-form-header flex align-center justify-between'>
             <h5>New Mail</h5>
             <div className='footer-tools'>
               <button onClick={onDraftMail} type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-window-minimize'></i>
               </button>
-              <button type='button' className='btn-rnd-s'>
+              <button onClick={onExpandMsgWindow} type='button' className='btn-rnd-s'>
                 <i className='fa-solid fa-up-right-and-down-left-from-center'></i>
               </button>
               <button onClick={onBtnToggleCompose} type='button' className='btn-rnd-s'>
@@ -81,7 +94,7 @@ export function MailCompose({ sendMail, draftMail }) {
               value={newMailToEdit.body}
               placeholder='Your message...'
               name='body'
-              rows={10}
+              rows={15}
               id='body'
               onChange={handleForm}
             />
