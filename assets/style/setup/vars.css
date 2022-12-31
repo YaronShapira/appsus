@@ -27,4 +27,6 @@
   --header-height: 64px;
   /* sidebar width */
   --sidebar-width: 280px;
+
+  --bp-mobile: 550px;
 }

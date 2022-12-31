@@ -84,7 +84,7 @@ export function SideBar() {
   }
 
   return (
-    <aside ref={elAside} className={`side-bar flex flex-column ${isOpen ? 'open' : ''}`}>
+    <aside ref={elAside} className={`side-bar flex  ${isOpen ? 'open' : ''}`}>
       {sidebarFor(isOpen)}
     </aside>
   )

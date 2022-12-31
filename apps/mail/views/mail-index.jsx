@@ -109,7 +109,7 @@ export function MailIndex() {
 
   return (
     <PageLayout>
-      <section className='mail-index'>
+      <section className='mail-index app-container'>
         <MailCompose sendMail={sendMail} draftMail={draftMail} />
         {!mails || (!mails.length && <Loader />)}
         {mails && (
