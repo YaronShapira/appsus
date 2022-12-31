@@ -1,5 +1,6 @@
 const { Fragment } = React
 import Loader from '../../../cmps/loader.jsx'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
 import AddNote from './add-note.jsx'
 import ImgCmp from './img-cmp.jsx'
@@ -59,6 +60,7 @@ export default function NotePreview({ note, setNotes }) {
             setNotes(prev => [...prev])
         })
         setNotes(prev => [...prev])
+        showSuccessMsg('PINNED')
     }
 
     function saveNoteAndRender() {
