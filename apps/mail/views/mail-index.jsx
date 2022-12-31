@@ -18,12 +18,7 @@ export function MailIndex() {
   const currCheckedIds = useRef([])
 
   useEffect(() => {
-    loadMails({
-      ...filterBy,
-      txt: searchParams.get('q') || '',
-      status: searchParams.get('folder') || 'inbox',
-      isStared: searchParams.get('isStared') || false,
-    })
+    loadMails(filterBy)
   }, [])
 
   useEffect(() => {
