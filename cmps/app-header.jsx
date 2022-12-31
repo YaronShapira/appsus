@@ -50,6 +50,11 @@ export function AppHeader() {
                             Keepy
                         </NavLink>
                     </li>
+                    <li key={'note'}>
+                        <NavLink to='https://boydem.github.io/Miss-book/#/book' className='nav-link'>
+                            Booky
+                        </NavLink>
+                    </li>
                 </ul>
                 <div className='btn hamburger-nav' onClick={onHamburger}>
                     <i className='fa-solid fa-bars'></i>

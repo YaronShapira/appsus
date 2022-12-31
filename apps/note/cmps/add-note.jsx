@@ -152,13 +152,14 @@ export default function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             })
 
         if (!isEditing) {
+            showSuccessMsg('Note Added Successfully')
             return setNotes(prev => [newNote, ...prev])
         }
         setNotes(oldNotes => {
             oldNotes[oldNotes.findIndex(note => note.id === newNote.id)] = newNote
             return [...oldNotes]
         })
-        showSuccessMsg('Note Added Successfully')
+        showSuccessMsg('Note Edited Successfully')
     }
 
     function onRecord() {
