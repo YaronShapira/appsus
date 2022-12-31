@@ -1461,7 +1461,7 @@ function getCriteria() {
 }
 
 function getDefaultFilter() {
-  return { txt: '', status: 'inbox' }
+  return { txt: '', status: 'inbox', isStared: false }
 }
 
 function getDefaultSort() {
@@ -1476,9 +1476,13 @@ function query(filterBy = getDefaultFilter(), sortBy = getDefaultSort()) {
         (mail) => regex.test(mail.subject) || regex.test(mail.sender) || regex.test(mail.body)
       )
     }
-    if (filterBy.status) {
+    if (filterBy.isStared) {
+      console.log('filterBy:', filterBy)
+      mails = mails.filter((mail) => mail.isStared === true)
+    } else if (filterBy.status) {
       mails = mails.filter((mail) => mail.status === filterBy.status)
     }
+
     const sortedByTime = mails.sort((a, b) => {
       return (b.sentAt - a.sentAt) * sortBy.sentAt
     })

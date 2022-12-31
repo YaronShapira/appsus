@@ -1,5 +1,6 @@
 import { SideBarMail } from '../apps/mail/cmps/side-bar-mail.jsx'
 import { SideBarNote } from '../apps/note/cmps/side-bar-note.jsx'
+import { eventBusService } from '../services/event-bus.service.js'
 
 const { useParams, useLocation } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
@@ -12,16 +13,29 @@ export function SideBar() {
 
   // hover effect
   const [isOpen, setIsOpen] = useState(false)
+  const [isStrictOpen, setIsStrictOpen] = useState(false)
   const elAside = useRef()
+  const expandEventListener = useRef(() => {
+    setIsOpen((prev) => !prev)
+  })
+
+  function x() {}
+
   useEffect(() => {
-    elAside.current.addEventListener('mouseenter', () => {
-      setIsOpen(true)
-    })
-    elAside.current.addEventListener('mouseleave', () => {
-      setIsOpen(false)
+    eventBusService.on('expand-side-bar', (isStrictOpen) => {
+      setIsStrictOpen(isStrictOpen)
+      setIsOpen((prevOpen) => !prevOpen)
     })
   }, [])
-
+  useEffect(() => {
+    if (!isStrictOpen) {
+      elAside.current.addEventListener('mouseenter', expandEventListener.current)
+      elAside.current.addEventListener('mouseleave', expandEventListener.current)
+    } else {
+      elAside.current.removeEventListener('mouseenter', expandEventListener.current)
+      elAside.current.removeEventListener('mouseleave', expandEventListener.current)
+    }
+  }, [isStrictOpen])
   useEffect(() => {
     setSidebarLoc(location.pathname)
   }, [location.pathname])
@@ -32,20 +46,26 @@ export function SideBar() {
         <ul>
           <li>
             <div className='icon-label active'>
-              <i className='fa-solid fa-house'></i>
-              <span className='sidebar-item-txt'>Mail</span>
+              <button className='btn-rnd-l'>
+                <i className='fa-solid fa-house'></i>
+              </button>
+              {isOpen && 'Home'}
             </div>
           </li>
           <li>
             <div className='icon-label'>
-              <i className='fa-solid fa-magnifying-glass'></i>
-              <span className='sidebar-item-txt'>Add</span>
+              <button className='btn-rnd-l'>
+                <i className='fa-solid fa-magnifying-glass'></i>
+              </button>
+              {isOpen && 'Search'}
             </div>
           </li>
           <li>
             <div className='icon-label'>
-              <i className='fa-solid fa-user'></i>
-              <span className='sidebar-item-txt'>Remove</span>
+              <button className='btn-rnd-l'>
+                <i className='fa-solid fa-user'></i>
+              </button>
+              {isOpen && 'User'}
             </div>
           </li>
         </ul>
