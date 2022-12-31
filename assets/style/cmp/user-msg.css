@@ -1,0 +1,18 @@
+.user-msg-modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 22;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-msg-txt {
+  border-radius: var(--br-s);
+  margin: auto;
+  color: var(--clr-txt);
+  padding: 0.25em 1em;
+  background-color: var(--clr1);
+}
