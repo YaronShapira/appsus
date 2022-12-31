@@ -1,5 +1,5 @@
 const { useState, useEffect, useRef } = React
-import { eventBusService } from '../../../services/event-bus.service.js'
+import { eventBusService, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ sendMail, draftMail }) {
@@ -11,6 +11,7 @@ export function MailCompose({ sendMail, draftMail }) {
   function onMinimizeMsgWindow() {
     setIsMailMinimized(!isMailMinimized)
     setIsExpandedMsgWindow(false)
+    showSuccessMsg('Mail Minimized')
   }
 
   function onExpandMsgWindow() {
@@ -32,6 +33,7 @@ export function MailCompose({ sendMail, draftMail }) {
     setIsMailEdited(!isMailEdited)
     setIsExpandedMsgWindow(false)
     setIsMailMinimized(false)
+    showSuccessMsg('Mail saved to draft')
   }
 
   function onSendMail(ev) {
@@ -40,6 +42,7 @@ export function MailCompose({ sendMail, draftMail }) {
     setIsMailEdited(!isMailEdited)
     setNewMailToEdit(mailService.getEmptyMail())
     setIsExpandedMsgWindow(false)
+    // showSuccessMsg('Mail successfully sent')
   }
 
   function handleForm({ target }) {
