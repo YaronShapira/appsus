@@ -12,6 +12,7 @@ export function MailIndex() {
   const [isMarked, setIsMarked] = useState(false)
   const [mails, setMails] = useState([])
   const [isAllChecked, setIsAllChecked] = useState(undefined)
+  const [isMultiChecked, setIsMultiChecked] = useState(undefined)
   const [searchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
   const currCheckedIds = useRef([])
@@ -27,7 +28,7 @@ export function MailIndex() {
 
   useEffect(() => {
     loadMails(filterBy)
-  }, [isAllChecked])
+  }, [isMultiChecked])
 
   useEffect(() => {
     setFilterBy((prevFilterBy) => {
@@ -81,6 +82,9 @@ export function MailIndex() {
     ev.stopPropagation()
     // not done yet
     setIsMarked(!isMarked)
+    if (currCheckedIds.current.length >= 1) {
+      setIsMultiChecked(true)
+    }
     if (!currCheckedIds.current.includes(mailId)) {
       currCheckedIds.current.push(mailId)
     } else {
@@ -131,25 +135,50 @@ export function MailIndex() {
     })
   }
 
+  function onRemoveAll() {
+    const updatedMails = mails.filter((mail) => !currCheckedIds.current.includes(mail.id))
+    mailService.removeMultiple(currCheckedIds.current)
+    setMails(updatedMails)
+  }
+
   function handleAllMailsCheckbox(ev) {
     setIsAllChecked(!isAllChecked)
+    if (!isAllChecked) {
+      currCheckedIds.current = mails.map((mail) => mail.id)
+    } else {
+      currCheckedIds.current = []
+    }
+    console.log('currCheckedIds.current:', currCheckedIds.current)
   }
-  console.log('isAllChecked:', isAllChecked)
+  // console.log('currCheckedIds.current:', currCheckedIds.current)
 
   return (
     <PageLayout>
       <section className='mail-index app-container'>
         <section className='mail-index-header flex align-center justify-between'>
           <div className='check-all'>
-            <input
-              type='checkbox'
-              name='checkAll'
-              id='checkAll'
-              onChange={(ev) => {
-                handleAllMailsCheckbox(ev)
-              }}
-            />
+            <button className='btn-rnd-l'>
+              <input
+                defaultChecked={isMultiChecked}
+                type='checkbox'
+                name='checkAll'
+                id='checkAll'
+                onChange={(ev) => {
+                  handleAllMailsCheckbox(ev)
+                }}
+              />
+            </button>
           </div>
+          {currCheckedIds.current.length > 1 && (
+            <div className='all-mails-tools'>
+              <button onClick={onRemoveAll} className='btn-rnd-l'>
+                <i className='fa-solid fa-trash'></i>
+              </button>
+              <button className='btn-rnd-l'>
+                <i className='fa-regular fa-envelope'></i>
+              </button>
+            </div>
+          )}
         </section>
         <MailCompose sendMail={sendMail} draftMail={draftMail} />
         {!mails || (!mails.length && <Loader />)}
