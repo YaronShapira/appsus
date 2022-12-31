@@ -13,11 +13,14 @@ export function MailIndex() {
   const [searchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
 
+  console.log('searchP STARED', searchParams.get('isStared'))
+  console.log('searchP FOLDER', searchParams.get('folder'))
   useEffect(() => {
     loadMails({
       ...filterBy,
       txt: searchParams.get('q') || '',
       status: searchParams.get('folder') || 'inbox',
+      isStared: searchParams.get('isStared') || false,
     })
   }, [])
 
@@ -27,6 +30,7 @@ export function MailIndex() {
         ...prevFilterBy,
         txt: searchParams.get('q') + '' || '',
         status: searchParams.get('folder') || 'inbox',
+        isStared: searchParams.get('isStared') || false,
       }
     })
   }, [searchParams])
