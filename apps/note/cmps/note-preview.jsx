@@ -18,6 +18,8 @@ export default function NotePreview({ note, setNotes }) {
     const [currNote, setCurrNote] = useState(note)
     const [isEditing, setIsEditing] = useState(false)
 
+   
+
     function onDuplicateNote(ev) {
         ev.stopPropagation()
         // const duplicatedNote = noteService.duplicateNote(note)

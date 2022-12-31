@@ -29,6 +29,7 @@
 @import 'cmps/note/todo-input.css';
 @import 'cmps/note/note-todo.css';
 @import 'cmps/note/note-map.css';
+@import 'cmps/note/note-canvas.css';
 
 /* Mail  Componenets */
 @import 'cmps/mail/mail-index.css';
