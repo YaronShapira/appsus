@@ -349,8 +349,8 @@ function _createNotes() {
                     txt: '',
                 },
                 todos: [
-                    { value: 'Find a good teammate for sprint number 3', isChecked: true },
-                    { value: 'Find a good team for sprint number 4', isChecked: false },
+                    { value: 'Sprint 3 Done!', isChecked: true },
+                    { value: 'Sprint 4 Done?', isChecked: false },
                 ],
                 src: '',
                 status: 'notes',
